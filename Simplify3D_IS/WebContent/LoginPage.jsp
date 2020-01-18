@@ -20,7 +20,7 @@
 				<h3>Login</h3>
 			</div>
 			<div class="card-body">
-				<form name="Accedi" id="accedi_form" action="UtenteControl" method="post" ><!--  onsubmit="return validateFormAccedi()"-->
+				<form name="Accedi" id="accedi_form" action="UtenteControl" method="post" onsubmit="return validateFormAccedi()">
 					<input type="hidden" name="action" value="login"><!-- Serve a comunicare con l'AccountControl sulla scelta che si fa -->
 					<div class="input-group form-group">
 						<div class="input-group-prepend">

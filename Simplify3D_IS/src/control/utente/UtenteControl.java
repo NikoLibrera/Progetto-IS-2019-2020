@@ -38,7 +38,7 @@ public class UtenteControl extends HttpServlet
 		{ 
 			if(action != null) 
 			{
-	            if(action.equalsIgnoreCase("registrati"))//Quando un utente si registra 
+	            if(action.equalsIgnoreCase("registrati"))
 	            {
 	            	String username = request.getParameter("username");	
 	            	String cognome = request.getParameter("cognome");
@@ -77,22 +77,25 @@ public class UtenteControl extends HttpServlet
 	            }
 	            else if(action.equalsIgnoreCase("login"))
 				{
+	            	System.out.println("1");
 					String username = request.getParameter("username");		
 					String password = request.getParameter("password");
 					
 					utente = model.doLogin(username,password);
 					if(utente != null)
 					{
+						System.out.println("2");
 						request.getSession().setAttribute("utente", utente);
 						request.setAttribute("utente", utente);
 						
 						out.println("<script>");
-						out.println("window.open('http://localhost/Simplify3D_IS/RegistrationPage.jsp','_self')");
+						out.println("window.open('http://localhost/Simplify3D_IS/HomePage.jsp','_self')");
 						out.println("</script>");
 						return;
 					}
 					else
 					{
+						System.out.println("3");
 						System.out.println("Username o password errata");
 						out.println("<script>");
 						out.println("window.history.back()");

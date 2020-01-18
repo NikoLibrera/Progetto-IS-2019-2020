@@ -85,7 +85,7 @@ function validateFormAccedi() //Controlla se tutti i campi del login sono corret
 	
 	if(checkusername(username))
 	{
-		if(checkpassword(password))
+		if(checkpassword1(password))
 		{
 			
 		}
@@ -176,6 +176,24 @@ function checkpassword(password)
 		return false;
 	}
 	else if (passid_len > 15)
+	{
+		alert("La password non deve essere superiore a 15 caratteri");
+		password.focus();
+		return false;
+	}
+	return true;
+}
+
+function checkpassword1(password)
+{
+	var passid_len2 = password.value.length;
+	if (passid_len2 == 0)
+	{
+		alert("Inserire una password");
+		password.focus();
+		return false;
+	}
+	else if (passid_len2 > 15)
 	{
 		alert("La password non deve essere superiore a 15 caratteri");
 		password.focus();
