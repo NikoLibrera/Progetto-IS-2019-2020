@@ -39,12 +39,11 @@ public class UtenteModelDM implements UtenteModel<Utente>
 					preparedStatement.setString(2, utente.getCognome());
 					preparedStatement.setString(3, utente.getNome());
 					preparedStatement.setDate(4, utente.getData_nascita());
-					preparedStatement.setBoolean(5, utente.getIsAdmin());
+					preparedStatement.setInt(5, utente.getIsAdmin());
 					preparedStatement.setString(6, utente.getPassword());
 					preparedStatement.setString(7, utente.getEmail());
 					preparedStatement.setString(8, utente.getNazionalita());
 					
-
 					System.out.println("doRegistrazione: "+ preparedStatement.toString());
 					preparedStatement.executeUpdate();
 					connection.commit();
@@ -107,11 +106,64 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				u.setCognome(rs.getString("cognome"));
 				u.setNome(rs.getString("nome"));
 				//u.setData_nascita(rs.getDate("data_nascita"));
-				//u.setIsAdmin(rs.getBoolean("isAdmin"));
+				//u.setIsAdmin(rs.getInt("isAdmin"));
 				u.setPassword(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));
 				System.out.println("doLogin: "+ preparedStatement.toString());
+				connection.commit();
+			}
+		} 
+		finally 
+		{
+			try 
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}	
+		if(find == true) return u;
+		else return null;
+	}
+	
+	@Override
+	public Utente doPasswordDimenticata(String username, String email) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		Utente u = new Utente();
+	
+		String selectSQL = "SELECT * FROM utente WHERE username = ? AND email = ?";
+		boolean find = false;
+		
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(selectSQL);
+			
+			preparedStatement.setString(1, username);
+			preparedStatement.setString(2, email);
+			
+			System.out.println("doControlSELECTPasswordDimenticata:" + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			while(rs.next()) 
+			{
+				find = true;
+				u.setUsername(rs.getString("username"));
+				u.setCognome(rs.getString("cognome"));
+				u.setNome(rs.getString("nome"));
+				//u.setData_nascita(rs.getDate("data_nascita"));
+				//u.setIsAdmin(rs.getInt("isAdmin"));
+				u.setPassword(rs.getString("password"));
+				u.setEmail(rs.getString("email"));
+				u.setNazionalita(rs.getString("nazionalita"));
+				System.out.println("doPasswordDimenticata: "+ preparedStatement.toString());
 				connection.commit();
 			}
 		} 

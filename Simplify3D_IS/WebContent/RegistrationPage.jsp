@@ -8,20 +8,22 @@
         <link rel="stylesheet" type="text/css" href="styleRegistration.css">
         <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
+    
 	<body>
+		<div class="container" align="center">
+			<div class="foto">
+				<img src="images/logo.PNG" height="150px" width="250px">
+			</div>
+		<div class="d-flex justify-content-center h-100">
 	
-	<div class="container" align="center">
-		<div class="foto">
-			<img src="images/logo.PNG" height="150px" width="250px">
-		</div>
-	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header" align="center">
 				<h3>Registrazione</h3>
 			</div>
+			
 			<div class="card-body">
 				<form name="Registrazione" id="registration_form" action="UtenteControl" method="post" onsubmit="return validateFormRegistrazione()">
-					<input type="hidden" name="action" value="registrati"><!-- Serve a comunicare con l'AccountControl sulla scelta che si fa -->
+					<input type="hidden" name="action" value="registrati">
 					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
@@ -80,7 +82,7 @@
 					</div>
 					
 					<div class ="text">
-						<input type="checkbox" name="contratto" value="no"/>Accetta le condizioni di utilizzo di Simplify3D
+						<input type="checkbox" name="contratto" value="no"/>Accetto le condizioni di utilizzo di Simplify3D
 					</div>
 					
 					<div class="form-group">

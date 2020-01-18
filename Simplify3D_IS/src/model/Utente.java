@@ -11,7 +11,7 @@ public class Utente implements Serializable
 	
 	private Date data_nascita;
 	
-	private boolean isAdmin;
+	private int isAdmin;
 	
 	public Utente()
 	{
@@ -19,7 +19,7 @@ public class Utente implements Serializable
 		this.cognome = null;
 		this.nome = null;
 		this.data_nascita = null;
-		this.isAdmin = false;
+		this.isAdmin = -1;
 		this.password = null;
 		this.email = null;
 		this.nazionalita = null;
@@ -81,11 +81,11 @@ public class Utente implements Serializable
 		this.data_nascita = data_nascita;
 	}
 
-	public boolean getIsAdmin() {
+	public int getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setIsAdmin(boolean isAdmin) {
+	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 

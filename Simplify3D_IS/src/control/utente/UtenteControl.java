@@ -2,7 +2,6 @@ package control.utente;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -33,7 +32,7 @@ public class UtenteControl extends HttpServlet
         PrintWriter out = response.getWriter();
         Utente utente = (Utente) request.getSession().getAttribute("utente");
         
-        String action = request.getParameter("action");//Sono le possibili azioni che possiamo fare tra le diverse pagine
+        String action = request.getParameter("action");
 		try 
 		{ 
 			if(action != null) 
@@ -43,8 +42,8 @@ public class UtenteControl extends HttpServlet
 	            	String username = request.getParameter("username");	
 	            	String cognome = request.getParameter("cognome");
 	                String nome = request.getParameter("nome");		
-	                //Date data_nascita = request.getParameter("data_nascita");
-	                //boolean isAdmin = request.getParameter("isAdmin");
+	                //String data_nascita = request.getParameter("data_nascita");
+	                //int isAdmin = (Integer)request.getParameter("isAdmin");
 	                String password = request.getParameter("password");
 	                String email = request.getParameter("email");
 	                String nazionalita = request.getParameter("nazionalita");
@@ -77,14 +76,12 @@ public class UtenteControl extends HttpServlet
 	            }
 	            else if(action.equalsIgnoreCase("login"))
 				{
-	            	System.out.println("1");
 					String username = request.getParameter("username");		
 					String password = request.getParameter("password");
 					
 					utente = model.doLogin(username,password);
 					if(utente != null)
 					{
-						System.out.println("2");
 						request.getSession().setAttribute("utente", utente);
 						request.setAttribute("utente", utente);
 						
@@ -95,7 +92,31 @@ public class UtenteControl extends HttpServlet
 					}
 					else
 					{
-						System.out.println("3");
+						System.out.println("Username o password errata");
+						out.println("<script>");
+						out.println("window.history.back()");
+						out.println("alert('Username o password errata')");
+						out.println("</script>");
+					}
+				}
+	            else if(action.equalsIgnoreCase("password_dimenticata"))
+				{
+					String username = request.getParameter("username");		
+					String email = request.getParameter("email");
+					
+					utente = model.doPasswordDimenticata(username,email);
+					if(utente != null)
+					{
+						request.getSession().setAttribute("utente", utente);
+						request.setAttribute("utente", utente);
+						
+						out.println("<script>");
+						out.println("window.open('http://localhost/Simplify3D_IS/LoginPage.jsp','_self')");
+						out.println("</script>");
+						return;
+					}
+					else
+					{
 						System.out.println("Username o password errata");
 						out.println("<script>");
 						out.println("window.history.back()");
@@ -112,7 +133,7 @@ public class UtenteControl extends HttpServlet
 	        }	
 	        
 	        out.println("<script>");
-	        out.println("window.open('http://localhost/Simplify3D_IS/LoginPage.jsp','_self')");
+	        out.println("window.open('http://localhost/Simplify3D_IS/HomePage.jsp','_self')");
 	        out.println("</script>");
 	        out.close();
 	    }

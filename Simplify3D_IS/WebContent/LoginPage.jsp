@@ -8,20 +8,23 @@
         <link rel="stylesheet" type="text/css" href="styleLogin.css">
         <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
+    
 	<body>
-	<div class="container" align="center">
-		<div class="foto">
-			<img src="images/logo.PNG" height="150px" width="250px">
-		</div>
-	<div class="d-flex justify-content-center h-100">
+		<div class="container" align="center">
+			<div class="foto">
+				<img src="images/logo.PNG" height="150px" width="250px">
+			</div>
+		<div class="d-flex justify-content-center h-100">
 	
 		<div class="card">
 			<div class="card-header" align="center">
 				<h3>Login</h3>
 			</div>
+			
 			<div class="card-body">
-				<form name="Accedi" id="accedi_form" action="UtenteControl" method="post" onsubmit="return validateFormAccedi()">
-					<input type="hidden" name="action" value="login"><!-- Serve a comunicare con l'AccountControl sulla scelta che si fa -->
+				<form name="Accedi" id="accedi_form" action="UtenteControl" method="post"  onsubmit="return validateFormAccedi()">
+					<input type="hidden" name="action" value="login">
+					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-username"><img src="images/user.png" height="25px" width="25px"></i></span>
@@ -42,17 +45,16 @@
 				</form>
 				
 				</div>
-				
-				<div class="passworddimenticata">
-					<h6><a href="#">Password dimenticata? Clicca qui !</a></h6>
-				</div>
-				
-				<div class="card-header1" align="center">
-					<h6>Non sei ancora registrato?</h6>
-					<a href=RegistrationPage.jsp><input type="submit" value="Registrati" class="btn float-left registration_btn"></a>
+					<div class="passworddimenticata">
+						<h6><a href="PasswordDimenticataPage.jsp">Password dimenticata? Clicca qui !</a></h6>
+					</div>
+					
+					<div class="card-header1" align="center">
+						<h6>Non sei ancora registrato?</h6>
+						<a href=RegistrationPage.jsp><input type="submit" value="Registrati" class="btn float-left registration_btn"></a>
+					</div>
 				</div>
 			</div>
-		</div>
 		<div class="diritti">
 			<img id="copyright" src="images/copyright.png" height="20px" width="20px"><h6>2020 Simplify3D Inc. Tutti i diritti riservati</h6>
 		</div>

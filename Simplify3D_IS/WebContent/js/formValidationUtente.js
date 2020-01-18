@@ -100,6 +100,28 @@ function validateFormAccedi() //Controlla se tutti i campi del login sono corret
 	}
 }
 
+function validateFormPassowordDimenticata() //Controlla se tutti i campi della password password dimenticata sono corretti
+{
+	var username = document.Dimenticata.username;
+	var password = document.Dimenticata.password;
+	
+	if(checkusername(username))
+	{
+		if(checkmail(email))
+		{
+			
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
+
 function checknome(nome)
 {
 	if(nome.value.length == 0)
