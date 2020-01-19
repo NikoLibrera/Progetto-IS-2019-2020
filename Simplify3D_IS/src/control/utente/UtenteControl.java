@@ -86,7 +86,7 @@ public class UtenteControl extends HttpServlet
 						request.setAttribute("utente", utente);
 						
 						out.println("<script>");
-						out.println("window.open('http://localhost/Simplify3D_IS/HomePage.jsp','_self')");
+						out.println("window.open('http://localhost/Simplify3D_IS/HomePageLog.jsp','_self')");
 						out.println("</script>");
 						return;
 					}
@@ -123,6 +123,16 @@ public class UtenteControl extends HttpServlet
 						out.println("alert('Username o password errata')");
 						out.println("</script>");
 					}
+				}
+	            else if(action.equalsIgnoreCase("logout"))
+				{			
+					request.getSession().removeAttribute("utente");
+					request.getSession().invalidate();
+
+					out.println("<script>");
+					out.println("window.open('http://localhost/Simplify3D_IS/HomePage.jsp','_self')");
+					out.println("</script>");
+					return;
 				}
 				} 
 			}
