@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Simplify3D">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/SIMPLIFY3D/src"/>
+        <property name="context-root" value="Simplify3D"/>
+        <property name="java-output-path" value="/Simplify3D/bin"/>
+    </wb-module>
+</project-modules>

@@ -1,0 +1,34 @@
+body{ padding-top: 50px; }
+
+html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
+
+.blocco{ height: 420px; margin-top: 150px; margin-bottom: auto; width: 650px; background-color: rgb(84,181,255) !important; 
+		 margin-left: -630px; }
+
+.container{ height: 100%; align-content: center; }
+
+.foto{ margin-top: 60px; margin-left: -1100px;}
+
+.profilo_btn{ width: 100px; height:80px; margin-top:-135px; margin-left:1050px;}
+
+.logout_btn{ width: 100px; height:80px; margin-top:-135px; margin-left:1150px;}
+
+.form-control-borderless { border: none; }
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus{ border: none; outline: none; box-shadow: none; }
+
+.btn1{ background-color: #FFC312; border-color:#FFC312; color:black;  }
+
+.btn1:hover{color: black; background-color: white; border-color: black;}
+
+.barra { margin-top: -130px;}
+
+#textgiallo{ font-size: 30px; font-weight: bold; color: #FFC312; }
+
+#textnero{ font-size: 25px; font-weight: bold; color: black; }
+
+.diritti { margin-top: 30px;}
+
+.diritti h6 { font-size: 13px; margin-left: 25px; margin-top:-27px;}
+
+#copyright { margin-left:-290px; margin-top:-20px;}
