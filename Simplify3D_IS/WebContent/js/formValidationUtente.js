@@ -122,6 +122,36 @@ function validateFormPassowordDimenticata() //Controlla se tutti i campi della p
 	}
 }
 
+function validateFormModificaPassword()
+{
+	var passwordattuale = document.ModificaPassword.password;
+	var nuovapassword = document.ModificaPassword.nuovapassword;
+	var ripetinuovapassword = document.ModificaPassword.ripetinuovapassword;
+	
+	if(checkpassword(passwordattuale))
+	{
+		if(checkpassword(nuovapassword))
+		{
+			if(checkmodificapassword(nuovapassword,ripetinuovapassword))
+			{
+				
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	}
+	else
+	{
+		return false;
+	}
+}
+
 function checknome(nome)
 {
 	if(nome.value.length == 0)
@@ -238,6 +268,26 @@ function checkconfermapassword(confermapassword,password)
 	{
 		alert("La due passord non coincidono");
 		confermapassword.focus();
+		return false;
+	}
+	return true;
+}
+
+function checkmodificapassword(nuovapassword,ripetinuovapassword)
+{
+	var passid_len1 = nuovapassword.value.length;
+	var passid_len2 = ripetinuovapassword.value.length;
+	
+	if (passid_len2 == 0)
+	{
+		alert("Inserire nuovamente la password");
+		nuovapassword.focus();
+		return false;
+	}
+	if (passid_len2 != passid_len1)
+	{
+		alert("La due passord non coincidono");
+		nuovapassword.focus();
 		return false;
 	}
 	return true;

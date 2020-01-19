@@ -134,6 +134,20 @@ public class UtenteControl extends HttpServlet
 					out.println("</script>");
 					return;
 				}
+	            else if(action.equalsIgnoreCase("modificapassword"))
+				{
+					String ripetinuovapassword = request.getParameter("ripetinuovapassword");
+					String username = utente.getUsername();
+					
+					Utente u = new Utente();
+					u.setPassword(ripetinuovapassword);
+					u.setUsername(username);
+					model.doModificaPassword(u);
+	               
+                    out.println("<script>");
+                    out.println("alert('Password Modificata Correttamente')");
+                    out.println("</script>");  
+				}
 				} 
 			}
 	        catch(SQLException e) 

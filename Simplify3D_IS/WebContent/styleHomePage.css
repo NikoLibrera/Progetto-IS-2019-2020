@@ -1,7 +1,4 @@
-body
-{
-	padding-top: 50px;
-}
+body{ padding-top: 50px; }
 
 html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
 
@@ -15,15 +12,9 @@ html,body { background-size: cover; background-repeat: no-repeat; height: 100%; 
 
 .registration_btn:hover{ color: white; background-color: black; border-color: black;}
 
-.form-control-borderless {
-    border: none;
-}
+.form-control-borderless{ border: none; }
 
-.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
-    border: none;
-    outline: none;
-    box-shadow: none;
-}
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus{ border: none; outline: none; box-shadow: none; }
 
 .btn{ background-color: #FFC312; border-color:#FFC312; color:black;  }
 

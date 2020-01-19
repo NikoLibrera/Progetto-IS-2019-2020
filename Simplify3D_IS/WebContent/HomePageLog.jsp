@@ -26,7 +26,7 @@
 		</div>
 		
 		<div class="bottoneprofilo">
-			  <button class="btn float-left profilo_btn"><img src="images/utente_profilo.png" height= "70px" width="70px"><br><h6><%= utente.getNome() + "\n" + utente.getCognome() %></h6></button>
+			  <a href=""><button class="btn float-left profilo_btn"><img src="images/utente_profilo.png" height= "70px" width="70px"><br><h6><%= utente.getNome() + "\n" + utente.getCognome() %></h6></button></a>
 		</div>
 		
 		<div class="bottonelogout">

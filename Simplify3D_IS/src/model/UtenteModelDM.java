@@ -182,4 +182,36 @@ public class UtenteModelDM implements UtenteModel<Utente>
 		if(find == true) return u;
 		else return null;
 	}
+	
+	@Override
+	public void doModificaPassword(Utente utente) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String updateSQL = "UPDATE utente SET password = ? WHERE username = ?";
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setString(1, utente.getPassword());
+			preparedStatement.setString(2, utente.getUsername());
+			
+			System.out.println("doModificaPassword: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		} 
+		finally 
+		{
+			try 
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}	
+	}
 }
