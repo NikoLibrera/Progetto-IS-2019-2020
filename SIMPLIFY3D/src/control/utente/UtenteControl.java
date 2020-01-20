@@ -144,21 +144,21 @@ public class UtenteControl extends HttpServlet
 				        props.put("mail.smtp.host", "smtp.gmail.com");
 				        props.put("mail.smtp.port", "587");
 			        
-				        Session session = 
-				        		Session.getInstance(props, new javax.mail.Authenticator()
-									        		{
-									        			protected PasswordAuthentication getPasswordAuthentication() 
-									        			{
-									        				return new PasswordAuthentication(email_platform, pass_word);
-									        			}
-								                    }
-				        							);
+				         Session session =
+					            Session.getInstance(
+					                props,
+					                new javax.mail.Authenticator() {
+					                  protected PasswordAuthentication getPasswordAuthentication() {
+					                    return new PasswordAuthentication(email_platform, pass_word);
+					                  }
+					                });
 					
-				        Message message = new MimeMessage(session);
-				        message.setFrom(new InternetAddress(username));
-				        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-				        message.setSubject("Reset Password Simplify3D");
-				        message.setText("Ciao " + username + ", \n" + "La tua nuova password ш: " + password + "\n Grazie!");
+					        Message message = new MimeMessage(session);
+					        message.setFrom(new InternetAddress(username));
+					        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+					        message.setSubject("Reset Password Simplify3D");
+					        message.setText(
+					            "Ciao " + username + ", \n" + "La tua nuova password ши: " + password + "\n Grazie!");
 			        
 				        String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
 	
@@ -174,14 +174,10 @@ public class UtenteControl extends HttpServlet
 						return;
 						
 				    } 
-				    catch (AddressException e) 
+				    catch (Exception e) 
 				    {
 				      e.printStackTrace();
 				    } 
-				    catch (MessagingException e) 
-				    {
-				      e.printStackTrace();
-				    }
 	            	
 					utente = model.doPasswordDimenticata(user);
 					if(utente != null)
