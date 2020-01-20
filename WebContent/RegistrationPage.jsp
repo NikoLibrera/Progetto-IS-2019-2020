@@ -29,14 +29,14 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-nome"><img src="images/user.png" height="25px" width="25px"></i></span>
 						</div>
-						<input type="text" name="nome" class="form-control" placeholder="Nome">
+						<input type="text" name="nome" class="form-control" placeholder="Nome" required>
 					</div>
 					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-cognome"><img src="images/user.png" height="25px" width="25px"></i></span>
 						</div>
-						<input type="text" name="cognome" class="form-control" placeholder="Cognome">
+						<input type="text" name="cognome" class="form-control" placeholder="Cognome" required>
 					</div>
 					
 					<div class="input-group form-group">

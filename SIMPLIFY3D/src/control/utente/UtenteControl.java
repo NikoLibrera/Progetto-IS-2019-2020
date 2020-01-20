@@ -4,13 +4,26 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.Properties;
+import java.util.Random;
 
+/*
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+*/
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CryptWithMD5;
 import model.Utente;
 import manager.utente.*;
 
@@ -99,9 +112,77 @@ public class UtenteControl extends HttpServlet
 				}
 	            else if(action.equalsIgnoreCase("password_dimenticata"))
 				{
+	            	/*
+	            	Utente user = new Utente();
 					String username = request.getParameter("username");		
 					String email = request.getParameter("email");
 					
+					user.setEmail(email);
+				    user.setUsername(username);
+				    
+				    try 
+				    {
+				    	//Generazione password casuale
+				    	String password = "";
+				    	String alfabeto = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				    	Random rnd = new Random(System.currentTimeMillis());
+				    	int lunghezza = 8;
+			        
+				    	StringBuilder sb = new StringBuilder(lunghezza);
+
+				    	for (int i = 0; i < lunghezza; i++)
+				    		sb.append(alfabeto.charAt(rnd.nextInt(alfabeto.length())));
+			        
+				    	password = sb.toString();
+			        
+				    	final String email_platform = "Simplify3Dplatform@gmail.com";
+				    	final String pass_word = "Simplify3D";
+
+				        Properties props = new Properties();
+				        props.put("mail.smtp.auth", "true");
+				        props.put("mail.smtp.starttls.enable", "true");
+				        props.put("mail.smtp.host", "smtp.gmail.com");
+				        props.put("mail.smtp.port", "587");
+			        
+				        Session session = 
+				        		Session.getInstance(props, new javax.mail.Authenticator()
+									        		{
+									        			protected PasswordAuthentication getPasswordAuthentication() 
+									        			{
+									        				return new PasswordAuthentication(email_platform, pass_word);
+									        			}
+								                    }
+				        							);
+					
+				        Message message = new MimeMessage(session);
+				        message.setFrom(new InternetAddress(username));
+				        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+				        message.setSubject("Reset Password Unisask");
+				        message.setText("Ciao " + username + ", \n" + "La tua nuova password è: " + password + "\n Grazie!");
+			        
+				        String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
+	
+				        user.setPassword(generatedPassword1);
+				        
+				        model.doPasswordDimenticata(user);
+				        
+				        Transport.send(message);
+			        
+				        out.println("<script>");
+						out.println("window.open('http://localhost:8080/Simplify3D/LoginPage.jsp','_self')");
+						out.println("</script>");
+						return;
+						
+				    } 
+				    catch (AddressException e) 
+				    {
+				      e.printStackTrace();
+				    } 
+				    catch (MessagingException e) 
+				    {
+				      e.printStackTrace();
+				    }
+	            	/*
 					utente = model.doPasswordDimenticata(username,email);
 					if(utente != null)
 					{
@@ -120,7 +201,8 @@ public class UtenteControl extends HttpServlet
 						out.println("window.history.back()");
 						out.println("alert('Username o password errata')");
 						out.println("</script>");
-					}
+					}*/
+	            	
 				}
 	            else if(action.equalsIgnoreCase("logout"))
 				{			

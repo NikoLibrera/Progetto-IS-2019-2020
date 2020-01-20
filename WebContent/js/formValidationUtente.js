@@ -11,31 +11,18 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 	
 	var passid_len;
 		
-	if(checknome(nome))
+	
+	if(checkusername(username))
 	{
-		if(checkcognome(cognome))
+		if(checkmail(email))
 		{
-			if(checkusername(username))
+			if(checkpassword(password))
 			{
-				if(checkmail(email))
+				if(checkconfermapassword(confermapassword,password))
 				{
-					if(checkpassword(password))
+					if(checknazionalita(f))
 					{
-						if(checkconfermapassword(confermapassword,password))
-						{
-							if(checknazionalita(f))
-							{
-								
-							}
-							else
-							{
-								return false;
-							}
-						}
-						else
-						{
-							return false;
-						}
+						
 					}
 					else
 					{
@@ -56,7 +43,7 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 		{
 			return false;
 		}
-	}	
+	}
 	else
 	{
 		return false;
@@ -135,40 +122,6 @@ function validateFormModificaPassword()
 	{
 		return false;
 	}
-}
-
-function checknome(nome)
-{
-	if(nome.value.length == 0)
-	{
-		alert("Inserire il nome");
-		nome.focus();
-		return false;
-	}
-	else if(nome.value.length>20)
-	{
-		alert("Il nome non deve essere superiore a 20 caratteri");
-		nome.focus();
-		return false;
-	}
-	return true;
-}
-
-function checkcognome(cognome)
-{
-	if(cognome.value.length == 0)
-	{
-		alert("Inserire il cognome");
-		cognome.focus();
-		return false;
-	}
-	else if(cognome.value.length>20)
-	{
-		alert("Il cognome non deve essere superiore a 20 caratteri");
-		cognome.focus();
-		return false;
-	}
-	return true;
 }
 
 function checkusername(username)

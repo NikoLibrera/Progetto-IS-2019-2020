@@ -15,8 +15,9 @@ public class UtenteModelDM implements UtenteModel<Utente>
 		PreparedStatement preparedStatement = null;
 		boolean emailGiaPresente = true;
 		
-		//Parte il controllo che guarda se esiste già un altro utente con stesso username o con la stessa email
-		String controlloSQL = "SELECT * FROM utente WHERE email = ?";// Viene eseguita una query con la quale si va a controllora se esiste già un altro utente con un email uguale
+		//Query per controllare se esiste un utente con la stessa email
+		String controlloSQL = "SELECT * FROM utente WHERE email = ?";
+		
 		try
 		{
 			connection = DriverManagerConnectionPool.getConnection();
@@ -26,12 +27,15 @@ public class UtenteModelDM implements UtenteModel<Utente>
 			
 			System.out.println("ControllaEmail:" + preparedStatement.toString());
 			
-			ResultSet rs = preparedStatement.executeQuery(); //In RS finisce il risultato della query che è stata appena eseguita
-
-			if(rs.next() == false) //Se rs.next è false vuol dire che non esiste un altro utente con la stessa email e quindi si passa all inserimento dell'utente nel DB  
+			//In RS finisce il risultato della query che � stata appena eseguita
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			//Se rs.next == false allora non esiste un altro utente con la 
+			//stessa email e quindi si passa all inserimento dell'utente nel DB
+			if(rs.next() == false)   
 			{
 				emailGiaPresente = false;
-				String insertSQL = "INSERT INTO utente (username, cognome, nome, data_nascita, isAdmin, password, email, nazionalita) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"; // Viene eseguita una query con la quale si va ad inserire nel DB il nuovo utente
+				String insertSQL = "INSERT INTO utente (username, cognome, nome, data_nascita, isAdmin, password, email, nazionalita) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 				try 
 				{
 					connection = DriverManagerConnectionPool.getConnection();
@@ -79,15 +83,15 @@ public class UtenteModelDM implements UtenteModel<Utente>
 	}
 	
 	@Override
-	public Utente doLogin(String username, String password) throws SQLException //Questo metodo serve per controllare se i dati che l'utente inserisce al login corrispondono ai dati presenti nel DB
+	public Utente doLogin(String username, String password) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		Utente u = new Utente();
 	
-		String selectSQL = "SELECT * FROM utente WHERE username = ? AND password = ?"; // Viene eseguita una query con la quale si va a controllare se esiste un utente con le credenziali inserite
-		boolean find = false; //Si imposta una varibile booleana a false,questa serve a controllare se l'utente è stato trovato nel DB
+		String selectSQL = "SELECT * FROM utente WHERE username = ? AND password = ?";
+		boolean find = false;
 		
 		try 
 		{
@@ -99,10 +103,10 @@ public class UtenteModelDM implements UtenteModel<Utente>
 			
 			System.out.println("doControlSELECTLogin:" + preparedStatement.toString());
 			
-			ResultSet rs = preparedStatement.executeQuery(); //In RS finisce il risultato della query che � stata appena eseguita
+			ResultSet rs = preparedStatement.executeQuery();
 			while(rs.next()) 
 			{
-				find = true; //Impostiamo la variabile booleana a true poichè l'utente con queste credenziali è stato trovato
+				find = true;
 				u.setUsername(rs.getString("username"));
 				u.setCognome(rs.getString("cognome"));
 				u.setNome(rs.getString("nome"));
@@ -131,25 +135,79 @@ public class UtenteModelDM implements UtenteModel<Utente>
 		else return null;
 	}
 	
-	@Override
-	public Utente doPasswordDimenticata(String username, String email) throws SQLException
+	public void doPasswordDimenticata(Utente utente) throws SQLException
 	{
+		/*
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
 		Utente u = new Utente();
-	
-		String selectSQL = "SELECT * FROM utente WHERE username = ? AND email = ?";
+		String updateSQL = "UPDATE utente SET password = ? WHERE username = ?";
 		boolean find = false;
 		
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(selectSQL);
+			preparedStatement = connection.prepareStatement(updateSQL);
 			
-			preparedStatement.setString(1, username);
-			preparedStatement.setString(2, email);
+			preparedStatement.setString(1, u.getPassword());
+			preparedStatement.setString(2, u.getUsername());
+			/*
+			// Generazione password casuale
+	        String password = "";
+	        String alfabeto = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	        Random rnd = new Random(System.currentTimeMillis());
+	        int lunghezza = 8;
+	        
+	        StringBuilder sb = new StringBuilder(lunghezza);
+
+	        for (int i = 0; i < lunghezza; i++) {
+	          sb.append(alfabeto.charAt(rnd.nextInt(alfabeto.length())));
+	        }
+	        
+	        password = sb.toString();
+	        
+	        final String email_platform = "Simplify3Dplatform@gmail.com";
+	        final String pass_word = "Simplify3D";
+
+	        Properties props = new Properties();
+	        props.put("mail.smtp.auth", "true");
+	        props.put("mail.smtp.starttls.enable", "true");
+	        props.put("mail.smtp.host", "smtp.gmail.com");
+	        props.put("mail.smtp.port", "587");
+	        
+	        Session session =
+	                Session.getInstance(
+	                    props,
+	                    new javax.mail.Authenticator() {
+	                      protected PasswordAuthentication getPasswordAuthentication() {
+	                        return new PasswordAuthentication(email_platform, pass_word);
+	                      }
+	                    });
 			
+	        Message message = new MimeMessage(session);
+	        message.setFrom(new InternetAddress(username));
+	        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+	        message.setSubject("Reset Password Unisask");
+	        message.setText("Ciao " + u.getUsername() + ", \n" + "La tua nuova password �: " + password + "\n Grazie!");
+	        
+	        String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
+
+	        u.setPassword(generatedPassword1);
+	        
+	        Transport.send(message);
+		} catch (AddressException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    } catch (SQLException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    } catch (MessagingException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    }*/
+	        
+			/*
 			System.out.println("doControlSELECTPasswordDimenticata:" + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
@@ -159,14 +217,16 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				u.setUsername(rs.getString("username"));
 				u.setCognome(rs.getString("cognome"));
 				u.setNome(rs.getString("nome"));
-				//u.setData_nascita(rs.getDate("data_nascita"));
-				//u.setIsAdmin(rs.getInt("isAdmin"));
+				u.setData_nascita(rs.getString("data_nascita"));
+				u.setIsAdmin(rs.getInt("isAdmin"));
 				u.setPassword(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));
 				System.out.println("doPasswordDimenticata: "+ preparedStatement.toString());
+				
 				connection.commit();
-			}
+			//}
+			
 		} 
 		finally 
 		{
@@ -180,8 +240,10 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}	
+		/*
 		if(find == true) return u;
 		else return null;
+		*/
 	}
 	
 	@Override
