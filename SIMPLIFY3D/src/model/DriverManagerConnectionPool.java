@@ -26,11 +26,11 @@ public class DriverManagerConnectionPool
 	private static synchronized Connection createDBConnection() throws SQLException 
 	{
 		Connection newConnection = null;
-		String ip = "simplify3d";
+		String ip = "localhost";
 		String port = "3306";
-		String db = "sofair";
+		String db = "simplify3d";
 		String username = "root";
-		String password = "root";
+		String password = "*Resistenza98";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useTimezone=true&serverTimezone=UTC", username, password);
 

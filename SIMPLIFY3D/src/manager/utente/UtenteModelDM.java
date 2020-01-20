@@ -1,9 +1,12 @@
-package model;
+package manager.utente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import model.DriverManagerConnectionPool;
+import model.Utente;
 
 
 public class UtenteModelDM implements UtenteModel<Utente>

@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import manager.utente.UtenteModel;
+import manager.utente.UtenteModelDM;
 import model.Utente;
-import model.UtenteModel;
-import model.UtenteModelDM;
 
 @WebServlet(name = "UtenteControl", urlPatterns = {"/UtenteControl"})
 public class UtenteControl extends HttpServlet 
@@ -70,7 +70,7 @@ public class UtenteControl extends HttpServlet
 	                else
 	                {
 	                        out.println("<script>");
-	                        out.println("window.open('http://localhost/Simplify3D/RegistrationPage.jsp','_self')");
+	                        out.println("window.open('http://localhost:8080/Simplify3D/RegistrationPage.jsp','_self')");
 	                        out.println("alert('Esiste già un'account con lo stesso indirizzo email')");
 	                        out.println("</script>");
 	                }
@@ -84,7 +84,7 @@ public class UtenteControl extends HttpServlet
 	        }	
 	        
 	        out.println("<script>");
-	        out.println("window.open('http://localhost/Simplify3D/LoginPage.jsp','_self')");
+	        out.println("window.open('http://localhost:8080/Simplify3D/LoginPage.jsp','_self')");
 	        out.println("</script>");
 	        out.close();
 	    }

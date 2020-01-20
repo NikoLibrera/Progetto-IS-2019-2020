@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Simplify3D Login</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="styleLogin.css">
+        <link rel="stylesheet" type="text/css" href="css/styleLogin.css">
         <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
     
