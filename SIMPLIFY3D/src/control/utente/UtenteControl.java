@@ -2,7 +2,6 @@ package control.utente;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -11,9 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import manager.utente.UtenteModel;
-import manager.utente.UtenteModelDM;
 import model.Utente;
+import manager.utente.*;
 
 @WebServlet(name = "UtenteControl", urlPatterns = {"/UtenteControl"})
 public class UtenteControl extends HttpServlet 
@@ -33,18 +31,18 @@ public class UtenteControl extends HttpServlet
         PrintWriter out = response.getWriter();
         Utente utente = (Utente) request.getSession().getAttribute("utente");
         
-        String action = request.getParameter("action");//Sono le possibili azioni che possiamo fare tra le diverse pagine
+        String action = request.getParameter("action");
 		try 
 		{ 
 			if(action != null) 
 			{
-	            if(action.equalsIgnoreCase("registrati"))//Quando un utente si registra 
+	            if(action.equalsIgnoreCase("registrati"))
 	            {
 	            	String username = request.getParameter("username");	
 	            	String cognome = request.getParameter("cognome");
 	                String nome = request.getParameter("nome");		
-	                //Date data_nascita = request.getParameter("data_nascita");
-	                //boolean isAdmin = request.getParameter("isAdmin");
+	                //String data_nascita = request.getParameter("data_nascita");
+	                //int isAdmin = (Integer)request.getParameter("isAdmin");
 	                String password = request.getParameter("password");
 	                String email = request.getParameter("email");
 	                String nazionalita = request.getParameter("nazionalita");
@@ -75,7 +73,81 @@ public class UtenteControl extends HttpServlet
 	                        out.println("</script>");
 	                }
 	            }
-			} 
+	            else if(action.equalsIgnoreCase("login"))
+				{
+					String username = request.getParameter("username");		
+					String password = request.getParameter("password");
+					
+					utente = model.doLogin(username,password);
+					if(utente != null)
+					{
+						request.getSession().setAttribute("utente", utente);
+						request.setAttribute("utente", utente);
+						
+						out.println("<script>");
+						out.println("window.open('http://localhost:8080/Simplify3D/HomePageLog.jsp','_self')");
+						out.println("</script>");
+						return;
+					}
+					else
+					{
+						System.out.println("Username o password errata");
+						out.println("<script>");
+						out.println("window.history.back()");
+						out.println("alert('Username o password errata')");
+						out.println("</script>");
+					}
+				}
+	            else if(action.equalsIgnoreCase("password_dimenticata"))
+				{
+					String username = request.getParameter("username");		
+					String email = request.getParameter("email");
+					
+					utente = model.doPasswordDimenticata(username,email);
+					if(utente != null)
+					{
+						request.getSession().setAttribute("utente", utente);
+						request.setAttribute("utente", utente);
+						
+						out.println("<script>");
+						out.println("window.open('http://localhost:8080/Simplify3D/LoginPage.jsp','_self')");
+						out.println("</script>");
+						return;
+					}
+					else
+					{
+						System.out.println("Username o password errata");
+						out.println("<script>");
+						out.println("window.history.back()");
+						out.println("alert('Username o password errata')");
+						out.println("</script>");
+					}
+				}
+	            else if(action.equalsIgnoreCase("logout"))
+				{			
+					request.getSession().removeAttribute("utente");
+					request.getSession().invalidate();
+
+					out.println("<script>");
+					out.println("window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')");
+					out.println("</script>");
+					return;
+				}
+	            else if(action.equalsIgnoreCase("modificapassword"))
+				{
+					String ripetinuovapassword = request.getParameter("ripetinuovapassword");
+					String username = utente.getUsername();
+					
+					Utente u = new Utente();
+					u.setPassword(ripetinuovapassword);
+					u.setUsername(username);
+					model.doModificaPassword(u);
+	               
+                    out.println("<script>");
+                    out.println("alert('Password Modificata Correttamente')");
+                    out.println("</script>");  
+				}
+				} 
 			}
 	        catch(SQLException e) 
 	        {
@@ -84,7 +156,7 @@ public class UtenteControl extends HttpServlet
 	        }	
 	        
 	        out.println("<script>");
-	        out.println("window.open('http://localhost:8080/Simplify3D/LoginPage.jsp','_self')");
+	        out.println("window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')");
 	        out.println("</script>");
 	        out.close();
 	    }

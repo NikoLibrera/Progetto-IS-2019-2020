@@ -7,22 +7,19 @@ public class Utente implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	
-	private int idUtente;
-	
-	private String username,cognome, nome, password, email, nazionalita;
+	private String username, cognome, nome, password, email, nazionalita;
 	
 	private Date data_nascita;
 	
-	private boolean isAdmin;
+	private int isAdmin;
 	
 	public Utente()
 	{
-		this.idUtente = -1;
 		this.username = null;
 		this.cognome = null;
 		this.nome = null;
 		this.data_nascita = null;
-		this.isAdmin = false;
+		this.isAdmin = -1;
 		this.password = null;
 		this.email = null;
 		this.nazionalita = null;
@@ -34,14 +31,6 @@ public class Utente implements Serializable
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public int getIdUtente() {
-		return idUtente;
-	}
-
-	public void setIdUtente(int idUtente) {
-		this.idUtente = idUtente;
 	}
 
 	public String getCognome() {
@@ -92,19 +81,18 @@ public class Utente implements Serializable
 		this.data_nascita = data_nascita;
 	}
 
-	public boolean getIsAdmin() {
+	public int getIsAdmin() {
 		return isAdmin;
 	}
 
-	public void setIsAdmin(boolean isAdmin) {
+	public void setIsAdmin(int isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 
 	@Override
 	public String toString() {
-		return "Utente [idUtente=" + idUtente + ", username=" + username + ", cognome=" + cognome + ", nome=" + nome
-				+ ", password=" + password + ", email=" + email + ", nazionalita=" + nazionalita + ", data_nascita="
-				+ data_nascita + ", isAdmin=" + isAdmin + "]";
-	}
-	
+		return "Utente [username=" + username + ", cognome=" + cognome + ", nome=" + nome + ", password=" + password
+				+ ", email=" + email + ", nazionalita=" + nazionalita + ", data_nascita=" + data_nascita + ", isAdmin="
+				+ isAdmin + "]";
+	}	
 }
