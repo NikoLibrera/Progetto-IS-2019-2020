@@ -39,7 +39,7 @@ public class UtenteModelDM implements UtenteModel<Utente>
 					preparedStatement.setString(1, utente.getUsername());
 					preparedStatement.setString(2, utente.getCognome());
 					preparedStatement.setString(3, utente.getNome());
-					preparedStatement.setDate(4, utente.getData_nascita());
+					preparedStatement.setString(4, utente.getData_nascita());
 					preparedStatement.setInt(5, utente.getIsAdmin());
 					preparedStatement.setString(6, utente.getPassword());
 					preparedStatement.setString(7, utente.getEmail());
@@ -106,8 +106,8 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				u.setUsername(rs.getString("username"));
 				u.setCognome(rs.getString("cognome"));
 				u.setNome(rs.getString("nome"));
-				//u.setData_nascita(rs.getDate("data_nascita"));
-				//u.setIsAdmin(rs.getInt("isAdmin"));
+				u.setData_nascita(rs.getString("data_nascita"));
+				u.setIsAdmin(rs.getInt("isAdmin"));
 				u.setPassword(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));

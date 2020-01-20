@@ -19,7 +19,7 @@ public class DriverManagerConnectionPool
 		}
 		catch (ClassNotFoundException e) 
 		{
-			System.out.println("DB driver not found:"+ e.getMessage());
+			System.out.println("DB driver non trovato:"+ e.getMessage());
 		} 
 	}
 	
@@ -30,11 +30,11 @@ public class DriverManagerConnectionPool
 		String port = "3306";
 		String db = "simplify3d";
 		String username = "root";
-		String password = "123qweasdzxc";
+		String password = "root";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useTimezone=true&serverTimezone=UTC", username, password);
 
-		System.out.println("Create a new DB connection");
+		System.out.println("Creazione di una nuova connessione al Database");
 		newConnection.setAutoCommit(false);
 		return newConnection;
 	}	

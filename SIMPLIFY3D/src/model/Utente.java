@@ -9,7 +9,7 @@ public class Utente implements Serializable
 	
 	private String username, cognome, nome, password, email, nazionalita;
 	
-	private Date data_nascita;
+	private String data_nascita;
 	
 	private int isAdmin;
 	
@@ -19,7 +19,7 @@ public class Utente implements Serializable
 		this.cognome = null;
 		this.nome = null;
 		this.data_nascita = null;
-		this.isAdmin = -1;
+		this.isAdmin = 0;
 		this.password = null;
 		this.email = null;
 		this.nazionalita = null;
@@ -73,11 +73,11 @@ public class Utente implements Serializable
 		this.nazionalita = nazionalita;
 	}
 
-	public Date getData_nascita() {
+	public String getData_nascita() {
 		return data_nascita;
 	}
 
-	public void setData_nascita(Date data_nascita) {
+	public void setData_nascita(String data_nascita) {
 		this.data_nascita = data_nascita;
 	}
 

@@ -7,8 +7,7 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 	var password = document.Registrazione.password;
 	var confermapassword = document.Registrazione.confermapassword;
 	var nazionalita = document.Registrazione.nazionalita;
-	var datanascita = document.Registrazione.data_nascita;
-	var contratto = document.Registrazione.contratto;
+	var f = document.forms['Registrazione'];
 	
 	var passid_len;
 		
@@ -24,23 +23,9 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 					{
 						if(checkconfermapassword(confermapassword,password))
 						{
-							if(checknazionalita(nazionalita))
+							if(checknazionalita(f))
 							{
-								if(checkdatanascita(datanascita))
-								{
-									if(checkcontratto(contratto))
-									{
-										
-									}
-									else
-									{
-										return false;
-									}
-								}
-								else
-								{
-									return false;
-								}
+								
 							}
 							else
 							{
@@ -293,25 +278,15 @@ function checkmodificapassword(nuovapassword,ripetinuovapassword)
 	return true;
 }
 
-function checknazionalita(nazionalita)
+function checknazionalita(f)
 {
-	if(nazionalita.value.length == 0)
+	if(f.nazionalita.options[f.nazionalita.selectedIndex].value == "Seleziona")
 	{
 		alert("Inserire la nazionalita");
-		nazionalita.focus();
+		f.focus();
 		return false;
 	}
 	return true;
 }
 
-function checkdatanascita(datanascita)
-{
-	if(datanascita.value.length == 0)
-	{
-		alert("Inserire la data di nascita");
-		datanascita.focus();
-		return false;
-	}
-	return true;
-}
 

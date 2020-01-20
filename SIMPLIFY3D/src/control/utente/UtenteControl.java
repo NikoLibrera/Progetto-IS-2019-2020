@@ -3,6 +3,7 @@ package control.utente;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,8 +42,7 @@ public class UtenteControl extends HttpServlet
 	            	String username = request.getParameter("username");	
 	            	String cognome = request.getParameter("cognome");
 	                String nome = request.getParameter("nome");		
-	                //String data_nascita = request.getParameter("data_nascita");
-	                //int isAdmin = (Integer)request.getParameter("isAdmin");
+	                String data_nascita = request.getParameter("datanascita");
 	                String password = request.getParameter("password");
 	                String email = request.getParameter("email");
 	                String nazionalita = request.getParameter("nazionalita");
@@ -52,8 +52,7 @@ public class UtenteControl extends HttpServlet
 	                u.setUsername(username);
 	                u.setCognome(cognome);
 	                u.setNome(nome);
-	                //u.setData_nascita(data_nascita);
-	                //u.setIsAdmin(isAdmin);
+	                u.setData_nascita(data_nascita);
 	                u.setPassword(password);
 	                u.setEmail(email);
 	                u.setNazionalita(nazionalita);
