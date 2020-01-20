@@ -135,83 +135,27 @@ public class UtenteModelDM implements UtenteModel<Utente>
 		else return null;
 	}
 	
-	public void doPasswordDimenticata(Utente utente) throws SQLException
+	public Utente doPasswordDimenticata(Utente utente) throws SQLException
 	{
-		/*
+		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		
 		Utente u = new Utente();
-		String updateSQL = "UPDATE utente SET password = ? WHERE username = ?";
+		String selectSQL = "SELECT * FROM utente WHERE username = ? AND email = ?";
 		boolean find = false;
 		
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement = connection.prepareStatement(selectSQL);
 			
-			preparedStatement.setString(1, u.getPassword());
-			preparedStatement.setString(2, u.getUsername());
-			/*
-			// Generazione password casuale
-	        String password = "";
-	        String alfabeto = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	        Random rnd = new Random(System.currentTimeMillis());
-	        int lunghezza = 8;
-	        
-	        StringBuilder sb = new StringBuilder(lunghezza);
-
-	        for (int i = 0; i < lunghezza; i++) {
-	          sb.append(alfabeto.charAt(rnd.nextInt(alfabeto.length())));
-	        }
-	        
-	        password = sb.toString();
-	        
-	        final String email_platform = "Simplify3Dplatform@gmail.com";
-	        final String pass_word = "Simplify3D";
-
-	        Properties props = new Properties();
-	        props.put("mail.smtp.auth", "true");
-	        props.put("mail.smtp.starttls.enable", "true");
-	        props.put("mail.smtp.host", "smtp.gmail.com");
-	        props.put("mail.smtp.port", "587");
-	        
-	        Session session =
-	                Session.getInstance(
-	                    props,
-	                    new javax.mail.Authenticator() {
-	                      protected PasswordAuthentication getPasswordAuthentication() {
-	                        return new PasswordAuthentication(email_platform, pass_word);
-	                      }
-	                    });
+			preparedStatement.setString(1, utente.getUsername());
+			preparedStatement.setString(2, utente.getEmail());
 			
-	        Message message = new MimeMessage(session);
-	        message.setFrom(new InternetAddress(username));
-	        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-	        message.setSubject("Reset Password Unisask");
-	        message.setText("Ciao " + u.getUsername() + ", \n" + "La tua nuova password è: " + password + "\n Grazie!");
-	        
-	        String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
-
-	        u.setPassword(generatedPassword1);
-	        
-	        Transport.send(message);
-		} catch (AddressException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		    } catch (SQLException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		    } catch (MessagingException e) {
-		      // TODO Auto-generated catch block
-		      e.printStackTrace();
-		    }*/
-	        
-			/*
-			System.out.println("doControlSELECTPasswordDimenticata:" + preparedStatement.toString());
+			System.out.println("doControlSELECTresetPassword:" + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
-			while(rs.next()) 
+			if(rs.next()) 
 			{
 				find = true;
 				u.setUsername(rs.getString("username"));
@@ -219,14 +163,15 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				u.setNome(rs.getString("nome"));
 				u.setData_nascita(rs.getString("data_nascita"));
 				u.setIsAdmin(rs.getInt("isAdmin"));
-				u.setPassword(rs.getString("password"));
+				u.setPassword(utente.getPassword());
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));
-				System.out.println("doPasswordDimenticata: "+ preparedStatement.toString());
+				System.out.println("utente trovato: "+ preparedStatement.toString());
+				
+				doModificaPassword(u);
 				
 				connection.commit();
-			//}
-			
+			}
 		} 
 		finally 
 		{
@@ -240,10 +185,10 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}	
-		/*
-		if(find == true) return u;
+		
+			if(find == true) return u;
 		else return null;
-		*/
+		
 	}
 	
 	@Override

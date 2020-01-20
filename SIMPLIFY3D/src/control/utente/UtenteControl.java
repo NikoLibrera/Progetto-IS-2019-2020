@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Properties;
 import java.util.Random;
 
-/*
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -16,7 +16,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-*/
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -112,7 +112,7 @@ public class UtenteControl extends HttpServlet
 				}
 	            else if(action.equalsIgnoreCase("password_dimenticata"))
 				{
-	            	/*
+	            	
 	            	Utente user = new Utente();
 					String username = request.getParameter("username");		
 					String email = request.getParameter("email");
@@ -135,8 +135,8 @@ public class UtenteControl extends HttpServlet
 			        
 				    	password = sb.toString();
 			        
-				    	final String email_platform = "Simplify3Dplatform@gmail.com";
-				    	final String pass_word = "Simplify3D";
+				    	final String email_platform = "Simplify3Dmail@gmail.com";
+				    	final String pass_word = "esame_is";
 
 				        Properties props = new Properties();
 				        props.put("mail.smtp.auth", "true");
@@ -157,7 +157,7 @@ public class UtenteControl extends HttpServlet
 				        Message message = new MimeMessage(session);
 				        message.setFrom(new InternetAddress(username));
 				        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-				        message.setSubject("Reset Password Unisask");
+				        message.setSubject("Reset Password Simplify3D");
 				        message.setText("Ciao " + username + ", \n" + "La tua nuova password è: " + password + "\n Grazie!");
 			        
 				        String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
@@ -182,8 +182,8 @@ public class UtenteControl extends HttpServlet
 				    {
 				      e.printStackTrace();
 				    }
-	            	/*
-					utente = model.doPasswordDimenticata(username,email);
+	            	
+					utente = model.doPasswordDimenticata(user);
 					if(utente != null)
 					{
 						request.getSession().setAttribute("utente", utente);
@@ -196,12 +196,12 @@ public class UtenteControl extends HttpServlet
 					}
 					else
 					{
-						System.out.println("Username o password errata");
+						System.out.println("Username o email errata");
 						out.println("<script>");
 						out.println("window.history.back()");
-						out.println("alert('Username o password errata')");
+						out.println("alert('Username o email errata')");
 						out.println("</script>");
-					}*/
+					}
 	            	
 				}
 	            else if(action.equalsIgnoreCase("logout"))
