@@ -1,4 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"
+	import="java.util.*,model.Utente"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,6 +11,14 @@
     </head>
     
 	<body>
+	
+	<% 	
+		Utente u=(Utente)session.getAttribute("utente");
+		if(u!=null){%>
+			<script>
+			window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')
+			</script>
+	<% 	} %>
 		<div class="container" align="center">
 			<div class="foto">
 				<img src="images/logo.PNG" height="150px" width="250px">
@@ -29,9 +38,8 @@
 						<div class="bloccotext">
 							<br>
 							<h6> Abbiamo inviato una nuova</h6>
-							<h6> password all'indirizzo: </h6>
-							<br>
-							<h6> email </h6>
+							<h6> password all'indirizzo </h6>
+							<h6> specificato.</h6>
 						</div>
 						
 						<div class="form-group">

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*,model.Utente" %>
+<%@ page language="java" contentType="text/html"
+    pageEncoding="UTF-8" import="java.util.*,model.Utente" %>
     
     <%
 	Utente utente = (Utente) request.getSession().getAttribute("utente");
@@ -21,40 +21,7 @@
     </head>
 	<body>
 
-	<div class="container" align="center">
-		<div class="foto">
-			<img src="images/logo.PNG" height="150px" width="250px">
-		</div>
-		
-		<div class="bottoneprofilo">
-			  <button class="btn float-left profilo_btn"><img src="images/utente_profilo.png" height= "70px" width="70px"><br><h6><%= utente.getNome() + "\n" + utente.getCognome() %></h6></button>
-		</div>
-		
-		<div class="bottonelogout">
-			  <a href="UtenteControl?action=logout"><button class="btn float-left logout_btn"><img src="images/logout.png" height= "70px" width="70px"><br><h6>Logout</h6></button></a>
-		</div>
-		
-		<div class="barra">
-			<div class="row justify-content-center">
-	        	<div class="col-12 col-md-10 col-lg-8">
-	            	<form class="card card-sm">
-		                <div class="card-body row no-gutters align-items-center">
-		                    <div class="col-auto">
-		                        <i class="fas fa-search h4 text-body"></i>
-		                    </div>
-		                    
-		                    <div class="col">
-		                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Digita qui per ricercare un progetto...">
-		                    </div>
-		                    
-		                    <div class="col-auto">
-		                        <button class="btn1 btn-lg btn-success" type="submit">Cerca</button>
-		                    </div>
-		                </div>
-	                </form>
-	           	</div>
-	        </div>
-        </div>
+	<div><%@ include file="Header.jsp" %></div>
         
         <div class="blocco" >
         	<div class="bottoneprofilonelblocco" align="center">
@@ -77,7 +44,7 @@
 		 	<h6>Cognome: &nbsp;<%= utente.getCognome() %></h6>
 		 	<h6>Username: &nbsp;<%= utente.getUsername() %></h6>
 		 	<h6>Password: &nbsp;<%= utente.getPassword() %></h6>
-		 	<h6>Nazionalit‡: &nbsp;<%= utente.getNazionalita() %></h6>
+		 	<h6>Nazionalit√†: &nbsp;<%= utente.getNazionalita() %></h6>
 		 	<h6>E-Mail: &nbsp;<%= utente.getEmail() %></h6>
 		 	<h6>Data di nascita: &nbsp;<%= utente.getData_nascita() %></h6>
 	 	</div>

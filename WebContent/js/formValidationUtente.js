@@ -50,28 +50,6 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 	}
 }
 
-function validateFormAccedi() //Controlla se tutti i campi del login sono corretti
-{
-	var username = document.Accedi.username;
-	var password = document.Accedi.password;
-	
-	if(checkusername(username))
-	{
-		if(checkpassword1(password))
-		{
-			
-		}
-		else
-		{
-			return false;
-		}
-	}
-	else
-	{
-		return false;
-	}
-}
-
 function validateFormPassowordDimenticata() //Controlla se tutti i campi della password password dimenticata sono corretti
 {
 	var username = document.Dimenticata.username;

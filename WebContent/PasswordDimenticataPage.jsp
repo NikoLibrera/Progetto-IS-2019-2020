@@ -1,4 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"
+	import="java.util.*,model.Utente"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,6 +11,14 @@
     </head>
     
 	<body>
+	
+	<% 	
+		Utente u=(Utente)session.getAttribute("utente");
+		if(u!=null){%>
+			<script>
+			window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')
+			</script>
+	<% 	} %>
 		<div class="container" align="center">
 			<div class="foto">
 				<img src="images/logo.PNG" height="150px" width="250px">
@@ -23,8 +32,7 @@
 				</div>
 			
 				<div class="card-body">
-					<form name="Dimenticata" id="accedi_form" action="UtenteControl" method="post" onsubmit="return validateFormPassowordDimenticata()">
-						<input type="hidden" name="action" value="password_dimenticata">
+					<form name="Dimenticata" id="accedi_form" action="PasswordDimenticata" method="post" onsubmit="return validateFormPassowordDimenticata()">
 						
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
