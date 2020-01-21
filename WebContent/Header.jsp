@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.*,model.Utente" %>
+<%@ page language="java" contentType="text/html"
+    pageEncoding="UTF-8" import="java.util.*,model.Utente" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +22,12 @@
 		Utente u=(Utente)session.getAttribute("utente");
 		if(u==null){%>
 				
-			  <form action="#" class="formAccedi">
+			  <form action="LoginPage.jsp" class="formAccedi">
 				<button class="button_accedi">Accedi o Registrati</button>
 			</form>
 	<% 	}else{ %>
-	<form action="#" class="formAccedi">
 				<a class="profilo" href="ProfiloPersonale.jsp"><button class="imgProfilo"><img src="images/utente_profilo.png" ><h3><%= u.getNome() + "\n" + u.getCognome() %></h3></button></a>
 				<a class="logout" href="Logout"><button class="imgLogout"><img src="images/logout.png"><h3>Logout</h3></button></a>
-			</form>
         <%} %>
         
 			
@@ -37,7 +35,7 @@
 	</div>
 	<div class="nav">
 		<ul>
-		  <li><a href="#home">Home</a></li>
+		  <li><a href="HomePage.jsp">Home</a></li>
 		  <li><a href="#news">Categorie</a></li>
 		  <li><a href="#contact">Upload</a></li>
 		</ul>
