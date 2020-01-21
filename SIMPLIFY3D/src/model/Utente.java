@@ -1,7 +1,6 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Utente implements Serializable
 {
@@ -12,6 +11,8 @@ public class Utente implements Serializable
 	private String data_nascita;
 	
 	private int isAdmin;
+	private int confermato;
+	private int codice;
 	
 	public Utente()
 	{
@@ -23,6 +24,8 @@ public class Utente implements Serializable
 		this.password = null;
 		this.email = null;
 		this.nazionalita = null;
+		this.confermato = 0;
+		this.codice = 0;
 	}
 
 	public String getUsername() {
@@ -31,6 +34,22 @@ public class Utente implements Serializable
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public int getConfermato() {
+		return confermato;
+	}
+
+	public void setConfermato(int confermato) {
+		this.confermato = confermato;
+	}
+	
+	public int getCodice() {
+		return codice;
+	}
+
+	public void setCodice(int codice) {
+		this.codice = codice;
 	}
 
 	public String getCognome() {
@@ -93,6 +112,6 @@ public class Utente implements Serializable
 	public String toString() {
 		return "Utente [username=" + username + ", cognome=" + cognome + ", nome=" + nome + ", password=" + password
 				+ ", email=" + email + ", nazionalita=" + nazionalita + ", data_nascita=" + data_nascita + ", isAdmin="
-				+ isAdmin + "]";
+				+ isAdmin + ", confermato=" + confermato +", codice=" + codice +"]";
 	}	
 }
