@@ -1,0 +1,14 @@
+
+div#cont{ margin-left:37px;  width: 1450px; background-color: rgb(84,181,255); }
+
+#containerfoto{ margin-left:37px;  width: 450px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border: 3px;}
+
+.download_btn{ color: black; background-color: #FFC312; width: 100px;}
+
+.download_btn:hover{ color: white; background-color: black; }
+
+.preferiti_btn{ color: black; background-color: #FFC312; width: 100px;}
+
+.preferiti_btn:hover{ color: white; background-color: black; }
+
+
