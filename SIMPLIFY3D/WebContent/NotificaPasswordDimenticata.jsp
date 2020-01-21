@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Simplify3D Password Dimenticata</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="stylePasswordDimenticata.css">
+        <link rel="stylesheet" type="text/css" href="css/styleNotificaPasswordDimenticata.css">
         <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
     
@@ -32,20 +32,14 @@
 				</div>
 			
 				<div class="card-body">
-					<form name="Dimenticata" id="accedi_form" action="PasswordDimenticata" method="post" onsubmit="return validateFormPassowordDimenticata()">
+					<form name="Dimenticata" id="accedi_form" action="UtenteControl" method="post" onsubmit="return validateFormPassowordDimenticata()">
+						<input type="hidden" name="action" value="password_dimenticata">
 						
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-username"><img src="images/user.png" height="25px" width="25px"></i></span>
-							</div>
-							<input type="text" name="username" class="form-control" placeholder="Username">
-						</div>
-					
-						<div class="input-group form-group">
-							<div class="input-group-prepend">
-								<span class="input-group-text"><i class="fas fa-email"><img src="images/email.png" height="25px" width="25px"></i></span>
-							</div>
-							<input type="text" name="email" class="form-control" placeholder="E-mail">
+						<div class="bloccotext">
+							<br>
+							<h6> Abbiamo inviato una nuova</h6>
+							<h6> password all'indirizzo </h6>
+							<h6> specificato.</h6>
 						</div>
 						
 						<div class="form-group">

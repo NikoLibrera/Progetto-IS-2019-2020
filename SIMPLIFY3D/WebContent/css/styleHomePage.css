@@ -1,0 +1,36 @@
+body{ padding-top: 50px; }
+
+html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
+
+.blocco{ height: 420px; margin-top: 150px; margin-bottom: auto; width: 650px; background-color: rgb(84,181,255) !important; margin-left: -630px; }
+
+.container{ height: 100%; align-content: center; }
+
+.foto{ margin-top: 60px; margin-left: -1100px;}
+
+.registration_btn{ color: black; background-color: #FFC312; width: 250px; height:48px; margin-top:-108px; margin-left:1000px;}
+
+.registration_btn:hover{ color: white; background-color: black; border-color: black;}
+
+.form-control-borderless{ border: none; }
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus{ border: none; outline: none; box-shadow: none; }
+
+.btn{ background-color: #FFC312; border-color:#FFC312; color:black;  }
+
+.btn:hover{color: white; background-color: black; border-color: black;}
+
+.barra { margin-top: -130px;}
+
+#textgiallo{ font-size: 30px; font-weight: bold; color: #FFC312; }
+
+#textnero{ font-size: 25px; font-weight: bold; color: black; }
+
+.diritti { margin-top: 30px;}
+
+.diritti h6 { font-size: 13px; margin-left: 25px; margin-top:-27px;}
+
+#copyright { margin-left:-290px; margin-top:-20px;}
+
+
+

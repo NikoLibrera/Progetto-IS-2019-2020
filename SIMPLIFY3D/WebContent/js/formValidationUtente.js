@@ -7,50 +7,22 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 	var password = document.Registrazione.password;
 	var confermapassword = document.Registrazione.confermapassword;
 	var nazionalita = document.Registrazione.nazionalita;
-	var datanascita = document.Registrazione.data_nascita;
-	var contratto = document.Registrazione.contratto;
+	var f = document.forms['Registrazione'];
 	
 	var passid_len;
 		
-	if(checknome(nome))
+	
+	if(checkusername(username))
 	{
-		if(checkcognome(cognome))
+		if(checkmail(email))
 		{
-			if(checkusername(username))
+			if(checkpassword(password))
 			{
-				if(checkmail(email))
+				if(checkconfermapassword(confermapassword,password))
 				{
-					if(checkpassword(password))
+					if(checknazionalita(f))
 					{
-						if(checkconfermapassword(confermapassword,password))
-						{
-							if(checknazionalita(nazionalita))
-							{
-								if(checkdatanascita(datanascita))
-								{
-									if(checkcontratto(contratto))
-									{
-										
-									}
-									else
-									{
-										return false;
-									}
-								}
-								else
-								{
-									return false;
-								}
-							}
-							else
-							{
-								return false;
-							}
-						}
-						else
-						{
-							return false;
-						}
+						
 					}
 					else
 					{
@@ -66,28 +38,6 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 			{
 				return false;
 			}
-		}
-		else
-		{
-			return false;
-		}
-	}	
-	else
-	{
-		return false;
-	}
-}
-
-function validateFormAccedi() //Controlla se tutti i campi del login sono corretti
-{
-	var username = document.Accedi.username;
-	var password = document.Accedi.password;
-	
-	if(checkusername(username))
-	{
-		if(checkpassword1(password))
-		{
-			
 		}
 		else
 		{
@@ -152,40 +102,6 @@ function validateFormModificaPassword()
 	}
 }
 
-function checknome(nome)
-{
-	if(nome.value.length == 0)
-	{
-		alert("Inserire il nome");
-		nome.focus();
-		return false;
-	}
-	else if(nome.value.length>20)
-	{
-		alert("Il nome non deve essere superiore a 20 caratteri");
-		nome.focus();
-		return false;
-	}
-	return true;
-}
-
-function checkcognome(cognome)
-{
-	if(cognome.value.length == 0)
-	{
-		alert("Inserire il cognome");
-		cognome.focus();
-		return false;
-	}
-	else if(cognome.value.length>20)
-	{
-		alert("Il cognome non deve essere superiore a 20 caratteri");
-		cognome.focus();
-		return false;
-	}
-	return true;
-}
-
 function checkusername(username)
 {
 	if(username.value.length == 0)
@@ -227,9 +143,9 @@ function checkpassword(password)
 		password.focus();
 		return false;
 	}
-	else if (passid_len > 15)
+	else if (passid_len > 15 || passid_len<8)
 	{
-		alert("La password non deve essere superiore a 15 caratteri");
+		alert("La password deve essere superiore a 8 caratteri e inferiore a 15");
 		password.focus();
 		return false;
 	}
@@ -245,9 +161,9 @@ function checkpassword1(password)
 		password.focus();
 		return false;
 	}
-	else if (passid_len2 > 15)
+	else if (passid_len2 > 15 || passid_len2<8)
 	{
-		alert("La password non deve essere superiore a 15 caratteri");
+		alert("La password deve essere superiore a 8 caratteri e inferiore a 15");
 		password.focus();
 		return false;
 	}
@@ -293,25 +209,15 @@ function checkmodificapassword(nuovapassword,ripetinuovapassword)
 	return true;
 }
 
-function checknazionalita(nazionalita)
+function checknazionalita(f)
 {
-	if(nazionalita.value.length == 0)
+	if(f.nazionalita.options[f.nazionalita.selectedIndex].value == "Seleziona")
 	{
 		alert("Inserire la nazionalita");
-		nazionalita.focus();
+		f.focus();
 		return false;
 	}
 	return true;
 }
 
-function checkdatanascita(datanascita)
-{
-	if(datanascita.value.length == 0)
-	{
-		alert("Inserire la data di nascita");
-		datanascita.focus();
-		return false;
-	}
-	return true;
-}
 
