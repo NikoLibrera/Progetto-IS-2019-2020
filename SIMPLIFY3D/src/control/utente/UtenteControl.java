@@ -57,8 +57,17 @@ public class UtenteControl extends HttpServlet
 	                String nome = request.getParameter("nome");		
 	                String data_nascita = request.getParameter("datanascita");
 	                String password = request.getParameter("password");
+	                String confermapassword = request.getParameter("confermapassword");
 	                String email = request.getParameter("email");
 	                String nazionalita = request.getParameter("nazionalita");
+	                if(!confermapassword.equals(password)) {
+						System.out.println("La due passord non coincidono");
+						out.println("<script>");
+						out.println("window.history.back()");
+						out.println("alert('La due passord non coincidono')");
+						out.println("</script>");
+						return;
+                	}
 	                
 	                boolean emailGiaEsistente;
 	                Utente u = new Utente();
@@ -89,8 +98,8 @@ public class UtenteControl extends HttpServlet
 				{
 					String username = request.getParameter("username");		
 					String password = request.getParameter("password");
-					
-					utente = model.doLogin(username,password);
+					String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
+					utente = model.doLogin(username,generatedPassword1);
 					if(utente != null)
 					{
 						request.getSession().setAttribute("utente", utente);
@@ -162,9 +171,9 @@ public class UtenteControl extends HttpServlet
 			        
 				        String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
 	
-				        user.setPassword(generatedPassword1);
+				   
 				        
-				        model.doPasswordDimenticata(user);
+				        utente = model.doPasswordDimenticata(user,generatedPassword1);
 				        
 				        Transport.send(message);
 			        
@@ -179,7 +188,6 @@ public class UtenteControl extends HttpServlet
 				      e.printStackTrace();
 				    } 
 	            	
-					utente = model.doPasswordDimenticata(user);
 					if(utente != null)
 					{
 						request.getSession().setAttribute("utente", utente);
@@ -212,17 +220,52 @@ public class UtenteControl extends HttpServlet
 				}
 	            else if(action.equalsIgnoreCase("modificapassword"))
 				{
+	            	String vecchiapassword = request.getParameter("password");
+					String nuovapassword = request.getParameter("nuovapassword");
 					String ripetinuovapassword = request.getParameter("ripetinuovapassword");
+					
+					if(!nuovapassword.equals(ripetinuovapassword)) {
+						System.out.println("Le password non combaciano");
+						out.println("<script>");
+						out.println("window.history.back()");
+						out.println("alert('Le password non combaciano')");
+						out.println("</script>");
+						return;
+                	}
+					else if(nuovapassword.equals(vecchiapassword)) {
+						System.out.println("La nuova password non può essere uguale alla vecchia");
+						out.println("<script>");
+						out.println("window.history.back()");
+						out.println("alert('La nuova password non può essere uguale alla vecchia')");
+						out.println("</script>");
+						return;
+                	}
+					
 					String username = utente.getUsername();
 					
+					String generatedPassword1 = CryptWithMD5.cryptWithMD5(vecchiapassword);
+					String generatedPassword2 = CryptWithMD5.cryptWithMD5(nuovapassword);
+					
 					Utente u = new Utente();
-					u.setPassword(ripetinuovapassword);
+					u.setPassword(generatedPassword1);
 					u.setUsername(username);
-					model.doModificaPassword(u);
-	               
-                    out.println("<script>");
-                    out.println("alert('Password Modificata Correttamente')");
-                    out.println("</script>");  
+					u=model.doModificaPassword(u,generatedPassword2);
+					if(u != null)
+					{
+						request.getSession().setAttribute("utente", utente);
+						request.setAttribute("utente", utente);
+	                    out.println("<script>");
+	                    out.println("alert('Password Modificata Correttamente')");
+	                    out.println("</script>");
+					}
+                    else
+					{
+						System.out.println("Password errata");
+						out.println("<script>");
+						out.println("window.history.back()");
+						out.println("alert('Password errata')");
+						out.println("</script>");
+					}
 				}
 				} 
 			}

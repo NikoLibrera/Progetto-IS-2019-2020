@@ -10,8 +10,8 @@ public interface UtenteModel<T>
 	
 	public Utente doLogin(String username, String password) throws SQLException;
 	
-	public Utente doPasswordDimenticata(T utente) throws SQLException;
+	public Utente doPasswordDimenticata(T utente, String nuovapassword) throws SQLException;
 	
-	public void doModificaPassword(T utente) throws SQLException;
+	public Utente doModificaPassword(T utente, String nuovapassword) throws SQLException;
 	
 }

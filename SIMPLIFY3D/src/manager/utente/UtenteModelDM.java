@@ -105,7 +105,7 @@ public class UtenteModelDM implements UtenteModel<Utente>
 			System.out.println("doControlSELECTLogin:" + preparedStatement.toString());
 			
 			ResultSet rs = preparedStatement.executeQuery();
-			while(rs.next()) 
+			if(rs.next()) 
 			{
 				find = true;
 				u.setUsername(rs.getString("username"));
@@ -136,7 +136,7 @@ public class UtenteModelDM implements UtenteModel<Utente>
 		else return null;
 	}
 	
-	public Utente doPasswordDimenticata(Utente utente) throws SQLException
+	public Utente doPasswordDimenticata(Utente utente,String nuovapassword) throws SQLException
 	{
 		
 		Connection connection = null;
@@ -164,12 +164,12 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				u.setNome(rs.getString("nome"));
 				u.setData_nascita(rs.getString("data_nascita"));
 				u.setIsAdmin(rs.getInt("isAdmin"));
-				u.setPassword(utente.getPassword());
+				u.setPassword(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));
 				System.out.println("utente trovato: "+ preparedStatement.toString());
 				connection.commit();
-				doModificaPassword(u);
+				doModificaPassword(u,nuovapassword);
 				
 				
 			}
@@ -193,22 +193,39 @@ public class UtenteModelDM implements UtenteModel<Utente>
 	}
 	
 	@Override
-	public void doModificaPassword(Utente utente) throws SQLException
+	public Utente doModificaPassword(Utente utente,String nuovapassword) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String updateSQL = "UPDATE utente SET password = ? WHERE username = ?";
+		String selectSQL = "SELECT * FROM utente WHERE username = ? AND password = ?";
+		boolean find = false;
+		
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(updateSQL);
-			preparedStatement.setString(1, utente.getPassword());
-			preparedStatement.setString(2, utente.getUsername());
+			preparedStatement = connection.prepareStatement(selectSQL);
 			
-			System.out.println("doModificaPassword: "+ preparedStatement.toString());
-			preparedStatement.executeUpdate();
-			connection.commit();
+			preparedStatement.setString(1, utente.getUsername());
+			preparedStatement.setString(2, utente.getPassword());
+			
+			System.out.println("doControlSELECTmodificaPassword:" + preparedStatement.toString());
+			
+			ResultSet rs = preparedStatement.executeQuery();
+			if(rs.next()) 
+			{
+				find = true;
+				String updateSQL = "UPDATE utente SET password = ? WHERE username = ?";
+				connection.commit();
+				preparedStatement = connection.prepareStatement(updateSQL);
+				preparedStatement.setString(1, nuovapassword);
+				preparedStatement.setString(2, utente.getUsername());
+				
+				System.out.println("doModificaPassword: "+ preparedStatement.toString());
+				preparedStatement.executeUpdate();
+				connection.commit();
+				utente.setPassword(nuovapassword);
+			}
 		} 
 		finally 
 		{
@@ -222,5 +239,7 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}	
+		if(find == true) return utente;
+		else return null;
 	}
 }

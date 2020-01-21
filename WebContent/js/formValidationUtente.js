@@ -165,9 +165,9 @@ function checkpassword(password)
 		password.focus();
 		return false;
 	}
-	else if (passid_len > 15)
+	else if (passid_len > 15 || passid_len<8)
 	{
-		alert("La password non deve essere superiore a 15 caratteri");
+		alert("La password deve essere superiore a 8 caratteri e inferiore a 15");
 		password.focus();
 		return false;
 	}
@@ -183,9 +183,9 @@ function checkpassword1(password)
 		password.focus();
 		return false;
 	}
-	else if (passid_len2 > 15)
+	else if (passid_len2 > 15 || passid_len2<8)
 	{
-		alert("La password non deve essere superiore a 15 caratteri");
+		alert("La password deve essere superiore a 8 caratteri e inferiore a 15");
 		password.focus();
 		return false;
 	}
