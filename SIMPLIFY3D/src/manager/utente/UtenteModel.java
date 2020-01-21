@@ -14,4 +14,10 @@ public interface UtenteModel<T>
 	
 	public void doModificaPassword(T utente) throws SQLException;
 	
+	public static boolean controlloResetPassword(Utente utente) throws SQLException {
+		return false;
+	}
+
+	public static void resetPassword(Utente user) throws SQLException {
+	}
 }

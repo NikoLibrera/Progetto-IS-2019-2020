@@ -23,8 +23,8 @@
 				</div>
 			
 				<div class="card-body">
-					<form name="Dimenticata" id="accedi_form" action="UtenteControl" method="post" onsubmit="return validateFormPassowordDimenticata()">
-						<input type="hidden" name="action" value="password_dimenticata">
+					<form name="Dimenticata" id="accedi_form" action="ResetPassword" method="post" onsubmit="return validateFormPassowordDimenticata()">
+						<input type="hidden" value="password_dimenticata">
 						
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
