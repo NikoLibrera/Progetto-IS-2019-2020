@@ -112,7 +112,7 @@ public class UtenteControl extends HttpServlet
 				}
 	            else if(action.equalsIgnoreCase("password_dimenticata"))
 				{
-	            	/*
+	            	
 	            	Utente user = new Utente();
 					String username = request.getParameter("username");		
 					String email = request.getParameter("email");
@@ -198,7 +198,7 @@ public class UtenteControl extends HttpServlet
 						out.println("alert('Username o email errata')");
 						out.println("</script>");
 					}
-	            */	
+	            	
 				}
 	            else if(action.equalsIgnoreCase("logout"))
 				{			

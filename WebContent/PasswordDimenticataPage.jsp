@@ -5,7 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Simplify3D Password Dimenticata</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="css/stylePasswordDimenticata.css">
+        <link rel="stylesheet" type="text/css" href="stylePasswordDimenticata.css">
         <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
     
@@ -23,8 +23,8 @@
 				</div>
 			
 				<div class="card-body">
-					<form name="Dimenticata" id="accedi_form" action="ResetPassword" method="post" onsubmit="return validateFormPassowordDimenticata()">
-						<input type="hidden" value="password_dimenticata">
+					<form name="Dimenticata" id="accedi_form" action="UtenteControl" method="post" onsubmit="return validateFormPassowordDimenticata()">
+						<input type="hidden" name="action" value="password_dimenticata">
 						
 						<div class="input-group form-group">
 							<div class="input-group-prepend">

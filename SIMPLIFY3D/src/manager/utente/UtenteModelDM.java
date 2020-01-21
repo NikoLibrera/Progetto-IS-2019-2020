@@ -52,6 +52,7 @@ public class UtenteModelDM implements UtenteModel<Utente>
 					System.out.println("doRegistrazione: "+ preparedStatement.toString());
 					preparedStatement.executeUpdate();
 					connection.commit();
+					
 				}
 				finally 
 				{
@@ -167,10 +168,10 @@ public class UtenteModelDM implements UtenteModel<Utente>
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));
 				System.out.println("utente trovato: "+ preparedStatement.toString());
-				
+				connection.commit();
 				doModificaPassword(u);
 				
-				connection.commit();
+				
 			}
 		} 
 		finally 
@@ -222,83 +223,4 @@ public class UtenteModelDM implements UtenteModel<Utente>
 			}
 		}	
 	}
-
-	public static boolean controlloResetPassword(Utente utente) throws SQLException 
-	{
-	    Connection connection = null;
-	    PreparedStatement preparedStatement = null;
-
-	    final String select_sql = "SELECT * FROM utente WHERE username = ? AND email = ?";
-
-	    try 
-	    {
-	      connection = DriverManagerConnectionPool.getConnection();
-	      preparedStatement = connection.prepareStatement(select_sql);
-
-	      preparedStatement.setString(1, utente.getUsername());
-	      preparedStatement.setString(2, utente.getEmail());
-
-	      System.out.println("controlloResetPassword:" + preparedStatement.toString());
-
-	      ResultSet rs = preparedStatement.executeQuery();
-
-	      if (rs.next() == false)
-	      {
-	        return false;
-	      }
-	      else 
-	      {
-	        return true;
-	      }
-	    } 
-	    finally 
-	    {
-	      try 
-	      {
-	        if (preparedStatement != null)
-	        {
-	          preparedStatement.close();
-	        }
-	      }
-	      finally 
-	      {
-	        DriverManagerConnectionPool.releaseConnection(connection);
-	      }
-	    }
-	  }
-
-	public static void resetPassword(Utente user) throws SQLException
-	{
-	    Connection connection = null;
-	    PreparedStatement preparedStatement = null;
-
-	    final String update_sql = "UPDATE utente SET password= ? WHERE username = ?";
-
-	    try
-	    {
-	      connection = DriverManagerConnectionPool.getConnection();
-	      preparedStatement = connection.prepareStatement(update_sql);
-	      preparedStatement.setString(1, user.getPassword());
-	      preparedStatement.setString(2, user.getUsername());
-
-	      System.out.println("aggiornaUtente: " + preparedStatement.toString());
-	      preparedStatement.executeUpdate();
-
-	      connection.commit();
-	    }
-	    finally 
-	    {
-	      try 
-	      {
-	        if (preparedStatement != null) 
-	        {
-	          preparedStatement.close();
-	        }
-	      } 
-	      finally 
-	      {
-	        DriverManagerConnectionPool.releaseConnection(connection);
-	      }
-	    }
-	  }
 }
