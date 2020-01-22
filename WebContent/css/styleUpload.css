@@ -1,6 +1,6 @@
 /* INIZIO CSS PC NIKO */
 
-#cont{ margin-top:50px; margin-left: 150px;  height:600px; width: 1200px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border-width: 3px; }
+#cont{ margin-top:50px; margin-left: 90px;  height:500px; width: 1150px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border-width: 3px; }
 
 #containerfoto{margin-top:50px; margin-left:-550px; height:380px; width: 380px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border-width: 3px;}
 
@@ -13,5 +13,7 @@
 #bottone{margin-left:55px;}
 
 #muovitastoimmagine{margin-top:150px;}
+
+textarea { resize: none; overflow:auto;}
 
 /* FINE CSS PC NIKO */

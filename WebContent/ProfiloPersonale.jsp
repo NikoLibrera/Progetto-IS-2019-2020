@@ -15,7 +15,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Simplify3D: ProfiloPersonale</title>
-        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="css/styleProfiloPersonale.css">
         <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
@@ -60,9 +59,6 @@
 	 		<br><br>
 	 		<a href="UploadProgetto.jsp"><button class="btn float-center login_btn"> Upload Progetto</button></a>
 	 	</div>
-	
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 	
 	</body>
 </html>
