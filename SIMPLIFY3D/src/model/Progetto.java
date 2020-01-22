@@ -2,11 +2,9 @@ package model;
 
 import java.sql.Blob;
 
-public class Progetto {
-	
-	
+public class Progetto
+{
 	private static  int PROGRESS_ID=0;
-	
 	
 	private int id_progetto;
 	private String titolo;
@@ -24,8 +22,8 @@ public class Progetto {
 	}
 	
 	
-	public Progetto(String titolo, String descrizione, Blob file_modello, Blob immagine, String consigli,
-			String categoria, String username) {
+	public Progetto(String titolo, String descrizione, Blob file_modello, Blob immagine, String consigli, String categoria, String username)
+	{
 		super();
 		this.titolo = titolo;
 		this.descrizione = descrizione;
@@ -37,11 +35,6 @@ public class Progetto {
 		this.versione=1;
 		Progetto.PROGRESS_ID++;
 	}
-
-
-
-
-
 
 	public int getId_progetto() {
 		return id_progetto;
@@ -103,4 +96,10 @@ public class Progetto {
 		this.versione++;
 	}
 
+	@Override
+	public String toString() {
+		return "Progetto [id_progetto=" + id_progetto + ", titolo=" + titolo + ", descrizione=" + descrizione
+				+ ", file_modello=" + file_modello + ", immagine=" + immagine + ", consigli=" + consigli
+				+ ", categoria=" + categoria + ", versione=" + versione + ", username=" + username + "]";
+	}
 }

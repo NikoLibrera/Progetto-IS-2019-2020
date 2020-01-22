@@ -58,7 +58,7 @@
 	 		<br><br>
 	 		<button class="btn float-center login_btn"> Progetti Salvati</button>
 	 		<br><br>
-	 		<button class="btn float-center login_btn"> Upload Progetto</button>
+	 		<a href="UploadProgetto.jsp"><button class="btn float-center login_btn"> Upload Progetto</button></a>
 	 	</div>
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

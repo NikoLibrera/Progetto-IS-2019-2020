@@ -1,0 +1,17 @@
+/* INIZIO CSS PC NIKO */
+
+#cont{ margin-top:50px; margin-left: 150px;  height:600px; width: 1200px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border-width: 3px; }
+
+#containerfoto{margin-top:50px; margin-left:-550px; height:380px; width: 380px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border-width: 3px;}
+
+#containertesto{margin-top:-420px; margin-left:600px; height:450px; width: 500px; background-color: rgb(84,181,255); }
+
+.inserisci_btn{ color: black; background-color: #FFC312; width: 170px; border:none; border-radius: 5px; padding:15px;}
+
+.inserisci_btn:hover{ color: white; background-color: black; }
+
+#bottone{margin-left:55px;}
+
+#muovitastoimmagine{margin-top:150px;}
+
+/* FINE CSS PC NIKO */
