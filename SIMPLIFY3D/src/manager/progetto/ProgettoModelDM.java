@@ -309,7 +309,7 @@ public class ProgettoModelDM
 			preparedStatement.setString(1, utente.getUsername());
 			preparedStatement.setInt(2, progetto.getId_progetto());
 
-			System.out.println("download: "+ preparedStatement.toString());
+			System.out.println("aggiornaDownload: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -342,7 +342,7 @@ public class ProgettoModelDM
 
 	      preparedStatement.setInt(1, id);
 
-	      System.out.println("getProgettoById:" + preparedStatement.toString());
+	      System.out.println("getDownloadById:" + preparedStatement.toString());
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -370,4 +370,35 @@ public class ProgettoModelDM
 	    }
 	    return n;
 	  }
+	
+	public void removeFromPreferiti(Progetto progetto, Utente utente) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "DELETE FROM preferiti WHERE username=? AND id_progetto=?"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, utente.getUsername());
+			preparedStatement.setInt(2, progetto.getId_progetto());
+
+			System.out.println("removeFromPreferiti: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 }
