@@ -1,19 +1,23 @@
 /* INIZIO CSS PC NIKO */
 
-#cont{ margin-top:50px; margin-left: 90px;  height:500px; width: 1150px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border-width: 3px; }
+.contenitore{
+	background-color:aqua;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	border-style: solid;
+	border-color: black;
+	display: inline-flex;
+}
 
-#containerfoto{margin-top:50px; margin-left:-550px; height:380px; width: 380px; background-color: rgb(84,181,255); border-style: solid; border-color: black; border-width: 3px;}
+.contenitoreFoto
+{
+	width: 30%;
+}
 
-#containertesto{margin-top:-420px; margin-left:600px; height:450px; width: 500px; background-color: rgb(84,181,255); }
-
-.inserisci_btn{ color: black; background-color: #FFC312; width: 170px; border:none; border-radius: 5px; padding:15px;}
-
-.inserisci_btn:hover{ color: white; background-color: black; }
-
-#bottone{margin-left:55px;}
-
-#muovitastoimmagine{margin-top:150px;}
-
-textarea { resize: none; overflow:auto;}
+.informationiUpload
+{
+	width: 70%;
+}
 
 /* FINE CSS PC NIKO */

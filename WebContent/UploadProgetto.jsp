@@ -2,12 +2,12 @@
     pageEncoding="UTF-8" import="java.util.*,model.Utente" %>
     
     <%
-	Utente utente = (Utente) request.getSession().getAttribute("utente");
+	/*Utente utente = (Utente) request.getSession().getAttribute("utente");
 	if(utente == null)
 	{	
 		response.sendRedirect("./HomePage.jsp");
 		return;
-	}
+	}*/
 
 	%>          
 <!DOCTYPE html>
@@ -19,17 +19,18 @@
     </head>
 	<body>
 
-	<div><%@ include file="Header.jsp" %></div>
+	<%@ include file="Header.jsp" %>
         
-        <div id="cont" align="center">	
+        <div id="contenitore">	
 			
-			<div id="containertesto" align="left">
-			<form action="Upload" method="post" enctype="multipart/form-data">
-			<div id="containerfoto" align="center">
-				<div id="muovitastoimmagine">
-					<p style='font-size:1.2em;'>Inserisci immagine:<br><br><input type="file" name="immagine" required><br></p>
-				</div>	
+			<div class="contenitoreFoto">
+			
+			
 			</div>
+			
+			<div class="informationiUpload">
+				<form action="Upload" method="post" enctype="multipart/form-data">
+				<p style='font-size:1.2em;'>Inserisci immagine:<br><br><input type="file" name="immagine" required><br></p>
 				<p style='font-size:1.2em;'>Titolo:<br> <input type="text" size="43" name="titolo" required><br></p>
 				<p style='font-size:1.2em;'>Descrizione: <br><textarea cols="40" rows="4" name="descrizione" required></textarea><br></p>
 				<p style='font-size:1.2em;'>Consigli di stampa: <br><textarea cols="40" rows="4" name="consigli" required></textarea><br></p>
@@ -47,13 +48,14 @@
 					<option value="Tools">Tools</option>
 				</select>
 				<br>
-				</p>
-				
-				<div id="bottone">
+				</p>	
 					<input type="submit" value="Upload progetto" class="inserisci_btn">
-				</div>
-			</form>	
-			</div>		
-	     </div>	
+				
+				</form>	
+			</div>
+		</div>		
+	     
+	     
+	     <div><%@ include file="footer.jsp" %></div>
 	</body>
 </html>
