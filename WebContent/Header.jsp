@@ -37,7 +37,7 @@
 		<ul>
 		  <li><a href="HomePage.jsp">Home</a></li>
 		  <li><a href="#news">Categorie</a></li>
-		  <li><a href="#contact">Upload</a></li>
+		  <li><a href="UploadProgetto.jsp">Upload</a></li>
 		</ul>
 		</div>
 </header>

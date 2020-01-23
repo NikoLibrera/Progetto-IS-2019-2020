@@ -36,16 +36,17 @@
         <div class="diritti">
 			<img id="copyright" src="images/copyright.png" height="20px" width="20px"><h6>2020 Simplify3D Inc. Tutti i diritti riservati</h6>
 		</div>
-	</div>
 	
+		<div class="blocco1">
 	 	<div class="infoutente float-left">
-		 	<h6>Nome: &nbsp;<%= utente.getNome()%></h6>
-		 	<h6>Cognome: &nbsp;<%= utente.getCognome() %></h6>
-		 	<h6>Username: &nbsp;<%= utente.getUsername() %></h6>
-		 	<h6>Password: &nbsp;<%= utente.getPassword() %></h6>
-		 	<h6>Nazionalità: &nbsp;<%= utente.getNazionalita() %></h6>
-		 	<h6>E-Mail: &nbsp;<%= utente.getEmail() %></h6>
-		 	<h6>Data di nascita: &nbsp;<%= utente.getData_nascita() %></h6>
+		 	<p style='font-size:1.2em; font-weight: bold'>Nome: &nbsp;<%= utente.getNome()%></p>
+		 	<p style='font-size:1.2em; font-weight: bold'>Cognome: &nbsp;<%= utente.getCognome() %></p>
+		 	<p style='font-size:1.2em; font-weight: bold'>Username: &nbsp;<%= utente.getUsername() %></p>
+		 	<p style='font-size:1.2em; font-weight: bold'>Password: &nbsp;<%= utente.getPassword() %></p>
+		 	<p style='font-size:1.2em; font-weight: bold'>Nazionalità: &nbsp;<%= utente.getNazionalita() %></p>
+		 	<p style='font-size:1.2em; font-weight: bold'>E-Mail: &nbsp;<%= utente.getEmail() %></p>
+		 	<p style='font-size:1.2em; font-weight: bold'>Data di nascita: &nbsp;<%= utente.getData_nascita() %></p>
+	 	</div>
 	 	</div>
 	 	
 	 	<div class="blocco3">

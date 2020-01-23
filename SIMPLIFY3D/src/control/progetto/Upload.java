@@ -41,15 +41,19 @@ public class Upload extends HttpServlet
 		String descrizione = request.getParameter("descrizione");
 		String consigli = request.getParameter("consigli");
 		String categoria = request.getParameter("categoria");
-		Part file_modello = request.getPart("progetto");
-		Part immagine = request.getPart("immagine");
+		//Part file_modello = request.getPart("progetto");
+		//Part immagine = request.getPart("immagine");
+		String file_modello = request.getParameter("progetto");
+		String immagine = request.getParameter("immagine");
 		
 		Progetto p = new Progetto();
 		p.setId_progetto(1);
 		p.setTitolo(titolo);
 		p.setDescrizione(descrizione);
-		model.caricaModello(p,file_modello.getInputStream());//.setFile_modello(file_modello);
-		model.caricaImmagine(p,immagine.getInputStream());//p.setImmagine(immagine);
+		//model.caricaModello(p,file_modello.getInputStream());
+		//model.caricaImmagine(p,immagine.getInputStream());
+		p.setFile_modello(null);
+		p.setImmagine(null);
 		p.setConsigli(consigli);
 		p.setCategoria(categoria);
 		p.setVersione(1);
