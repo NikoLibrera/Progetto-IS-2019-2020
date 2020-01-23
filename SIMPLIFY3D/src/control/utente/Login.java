@@ -27,7 +27,7 @@ public class Login extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		UtenteModelDM model = new UtenteModelDM();
-		Utente utente = new Utente();
+		Utente utente = null;
 		PrintWriter out = response.getWriter();
 		
 		String username = request.getParameter("username");		

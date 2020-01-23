@@ -1,22 +1,31 @@
+<%@page import="manager.progetto.ProgettoModelDM"%>
 <%@ page language="java" contentType="text/html"
-    pageEncoding="UTF-8" import="java.util.*,model.Utente" %>
+    pageEncoding="UTF-8" import="java.util.*,model.Utente,model.Progetto,java.sql.*" %>
     
     <%
 	Utente utente = (Utente) request.getSession().getAttribute("utente");
-	if(utente == null)
-	{	
+		
+    Integer id=0;
+	try{
+	id=Integer.parseInt(request.getParameter("id"));
+	} catch (NumberFormatException e) {
 		response.sendRedirect("./HomePage.jsp");
 		return;
+	} 
+	
+	ProgettoModelDM model = new ProgettoModelDM();
+	Progetto p = model.getProgettoById(id);
+	if(p == null)
+	{
+		response.sendRedirect("./HomePage.jsp");
 	}
-
 	%>          
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Simplify3D: ModificaPassword</title>
+        <title>Simplify3D: Progetto view</title>
         <link rel="stylesheet" type="text/css" href="css/styleProgettoView.css">
-        <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
 	<body>
 
@@ -25,32 +34,28 @@
 		<div id="cont" align="center">
 		
 			<div id="containerfoto" align="left">
-			
+			<div class="immagine">
+				<%	Blob image=p.getImmagine();
+					byte [] img=image.getBytes(1, (int) image.length()); 
+					String encode = Base64.getEncoder().encodeToString(img); %>
+				<p id="imm"><img src="data:image/jpeg;base64,<%=encode %>"></p>
+			</div>
 				<div id="divbottonedownload" align="center">
-					<h3 id="testograssetto">Autore:</h3><h3>Giovanni75</h3>
+					<p style='font-size:1.2em;'><b>Autore:</b></p><%= p.getUsername() %></p>
 					<input type="submit" value="Download" class="download_btn">
 				</div>
 			</div>
 			
 			<div id="containertesto" align="left">
-				<h1>Guitar Picks</h1>
+				<p style='font-size:1.2em;'><b><%= p.getTitolo() %></b></p>
 				<br>
-				<h3 id="testograssetto">Descrizione:</h3>
-				<h3>Questo supporto per plettro per chiatarra ha due scomparti:<br>
-				uno profondo per riporlo e uno poco profondo per un rapido<br>
-				accesso al tuo preferito. Il design è abbastanza semplice<br>
-				ma tiene  al tuo preferito. Il design è abbastanza semplice<br>
-				ma contiene abbastanza scelte per rimanere organizzato e non<br>
-				dover cercare in giro per la casa.</h3>
+				<p style='font-size:1.2em;'><b>Descrizione:</b></p><%= p.getDescrizione() %>
 				<br>
-				<h3 id="testograssetto">Consigli di stampa</h3>
-				<h3>Imposta una temperatura di 200 gradi all'estrusore e di<br>
-				50 gradi al piatto di stampa. Imposta una velocità di 60<br>
-				millimetri al secondo.</h3>
+				<p style='font-size:1.2em;'><b>Consigli di stampa</b></p><%= p.getConsigli() %>
 				<br>
-				<h3 id="testograssetto">Download: </h3><h3>12</h3>
+				<p style='font-size:1.2em;'><b>Download: </b>12
 				<br>
-				<h3 id="testograssetto">Versione: </h3><h3>V1</h3>
+				<p style='font-size:1.2em;'><b>Versione: </b><%= p.getVersione() %></p>
 				
 				<div align="right">
 					<input type="submit" value="Aggiungi ai Preferiti" class="preferiti_btn">
@@ -60,9 +65,9 @@
 	     
 	     <div align="center">
 	     	<br><br>
-	     	<h3 id="testograssetto">Valutazione:(2)</h3>
+	     	<p style='font-size:1.2em;'>Valutazione:(2)</p>
 	     	<br>
-	     	<h3 id="testograssetto">Commenti:(1)</h3>
+	     	<p style='font-size:1.2em;'>Commenti:(1)</p>
 	     </div>
 	</body>
 </html>

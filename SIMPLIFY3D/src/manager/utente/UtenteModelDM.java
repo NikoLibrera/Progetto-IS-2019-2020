@@ -111,7 +111,8 @@ public class UtenteModelDM
 				System.out.println("doLogin: "+ preparedStatement.toString());
 				connection.commit();
 			}
-		} 
+		}
+		
 		finally 
 		{
 			try 

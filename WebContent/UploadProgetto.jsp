@@ -27,7 +27,7 @@
 			<form action="Upload" method="post" enctype="multipart/form-data">
 			<div id="containerfoto" align="center">
 				<div id="muovitastoimmagine">
-					<p style='font-size:1.2em;'>Modifica immagine:<br><br><input type="file" name="immagine" required><br></p>
+					<p style='font-size:1.2em;'>Inserisci immagine:<br><br><input type="file" name="immagine" required><br></p>
 				</div>	
 			</div>
 				<p style='font-size:1.2em;'>Titolo:<br> <input type="text" size="43" name="titolo" required><br></p>

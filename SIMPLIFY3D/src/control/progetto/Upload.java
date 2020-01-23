@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.mysql.cj.jdbc.Blob;
-
 import manager.progetto.ProgettoModelDM;
 import model.Progetto;
 import model.Utente;
@@ -45,17 +43,11 @@ public class Upload extends HttpServlet
 		String categoria = request.getParameter("categoria");
 		Part file_modello = request.getPart("progetto");
 		Part immagine = request.getPart("immagine");
-		//String file_modello = request.getParameter("progetto");
-		//String immagine = request.getParameter("immagine");
 		
 		Progetto p = new Progetto();
-		p.setId_progetto(1);
+		p.setId_progetto(model.getLastId()+1);
 		p.setTitolo(titolo);
 		p.setDescrizione(descrizione);
-		//model.doUpload(p,file_modello.getInputStream());
-		//model.doUploas(p,immagine.getInputStream());
-		//p.setFile_modello(file_modello.getInputStream());
-		//p.setImmagine(null);
 		p.setConsigli(consigli);
 		p.setCategoria(categoria);
 		p.setVersione(1);
@@ -70,10 +62,13 @@ public class Upload extends HttpServlet
 		{
 			e.printStackTrace();
 		}
-		
+		finally
+		{
 			out.println("<script>");
+			out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+p.getId_progetto()+"','_self')");
 			out.println("alert('Upload effettuato con successo')");
 			out.println("</script>");
+		}
 	}
 			
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 

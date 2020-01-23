@@ -4,7 +4,6 @@ import java.sql.Blob;
 
 public class Progetto
 {
-	private static  int PROGRESS_ID=0;
 	
 	private int id_progetto;
 	private String titolo;
@@ -22,7 +21,24 @@ public class Progetto
 	}
 	
 	
-	public Progetto(String titolo, String descrizione, Blob file_modello, Blob immagine, String consigli, String categoria, String username)
+	
+	public Progetto(int id_progetto, String titolo, String descrizione, Blob file_modello, Blob immagine,
+			String consigli, String categoria, int versione, String username) {
+		super();
+		this.id_progetto = id_progetto;
+		this.titolo = titolo;
+		this.descrizione = descrizione;
+		this.file_modello = file_modello;
+		this.immagine = immagine;
+		this.consigli = consigli;
+		this.categoria = categoria;
+		this.versione = versione;
+		this.username = username;
+	}
+
+
+
+	public Progetto(String titolo, String descrizione, Blob file_modello, Blob immagine, String consigli, String categoria, String username, int versione)
 	{
 		super();
 		this.titolo = titolo;
@@ -32,8 +48,7 @@ public class Progetto
 		this.consigli = consigli;
 		this.categoria = categoria;
 		this.username = username;
-		this.versione=1;
-		Progetto.PROGRESS_ID++;
+		this.versione=versione;
 	}
 
 	public int getId_progetto() {
