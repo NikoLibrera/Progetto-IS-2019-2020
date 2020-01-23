@@ -264,4 +264,110 @@ public class ProgettoModelDM
 			}
 		}	
 	}
+	
+	public void addToPreferiti(Progetto progetto, Utente utente) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "INSERT INTO preferiti (username,id_progetto) VALUES (? ,?)"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, utente.getUsername());
+			preparedStatement.setInt(2, progetto.getId_progetto());
+
+			System.out.println("addToPreferiti: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public void aggiornaDownload(Progetto progetto, Utente utente) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		String insertSQL = "INSERT INTO download (username,id_progetto) VALUES (? ,?)"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setString(1, utente.getUsername());
+			preparedStatement.setInt(2, progetto.getId_progetto());
+
+			System.out.println("download: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public Integer getDownloadById(int id) throws SQLException 
+	{
+	    Connection connection = null;
+	    Integer n=null;
+	    PreparedStatement preparedStatement = null;
+
+	    final String select_sql = "SELECT count(*)as n FROM download WHERE id_progetto= ?";
+
+	    try 
+	    {
+	      connection = DriverManagerConnectionPool.getConnection();
+	      preparedStatement = connection.prepareStatement(select_sql);
+
+	      preparedStatement.setInt(1, id);
+
+	      System.out.println("getProgettoById:" + preparedStatement.toString());
+
+	      ResultSet rs = preparedStatement.executeQuery();
+
+	      if (rs.next())
+	      {
+	    	  n=rs.getInt("n");
+	      }
+	    } 
+	    catch(Exception e){
+	    	e.printStackTrace();
+	    }
+	    finally 
+	    {
+	      try 
+	      {
+	        if (preparedStatement != null) 
+	        {
+	          preparedStatement.close();
+	        }
+	      } 
+	      finally 
+	      {
+	        DriverManagerConnectionPool.releaseConnection(connection);
+	      }
+	    }
+	    return n;
+	  }
 }
