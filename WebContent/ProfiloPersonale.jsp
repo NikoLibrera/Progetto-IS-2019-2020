@@ -39,13 +39,13 @@
 	
 		<div class="blocco1">
 	 	<div class="infoutente float-left">
-		 	<p style='font-size:1.2em; font-weight: bold'>Nome: &nbsp;<%= utente.getNome()%></p>
-		 	<p style='font-size:1.2em; font-weight: bold'>Cognome: &nbsp;<%= utente.getCognome() %></p>
-		 	<p style='font-size:1.2em; font-weight: bold'>Username: &nbsp;<%= utente.getUsername() %></p>
-		 	<p style='font-size:1.2em; font-weight: bold'>Password: &nbsp;<%= utente.getPassword() %></p>
-		 	<p style='font-size:1.2em; font-weight: bold'>Nazionalità: &nbsp;<%= utente.getNazionalita() %></p>
-		 	<p style='font-size:1.2em; font-weight: bold'>E-Mail: &nbsp;<%= utente.getEmail() %></p>
-		 	<p style='font-size:1.2em; font-weight: bold'>Data di nascita: &nbsp;<%= utente.getData_nascita() %></p>
+		 	<p style='font-size:1.2em;'><b>Nome:</b> &nbsp;<%= utente.getNome()%></p>
+		 	<p style='font-size:1.2em;'><b>Cognome:</b> &nbsp;<%= utente.getCognome() %></p>
+		 	<p style='font-size:1.2em;'><b>Username:</b> &nbsp;<%= utente.getUsername() %></p>
+		 	<p style='font-size:1.2em;'><b>Password:</b> &nbsp;<%= utente.getPassword() %></p>
+		 	<p style='font-size:1.2em;'><b>Nazionalità:</b> &nbsp;<%= utente.getNazionalita() %></p>
+		 	<p style='font-size:1.2em;'><b>E-Mail:</b> &nbsp;<%= utente.getEmail() %></p>
+		 	<p style='font-size:1.2em;'><b>Data di nascita:</b> &nbsp;<%= utente.getData_nascita() %></p>
 	 	</div>
 	 	</div>
 	 	

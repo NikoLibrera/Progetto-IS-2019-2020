@@ -1,13 +1,15 @@
 package manager.progetto;
 
 import model.*;
+
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class ProgettoModelDM 
 {
-	public static void doUpload(Progetto progetto) throws SQLException
+	public void doUpload(Progetto progetto, InputStream file_modello, InputStream immagine) throws SQLException
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -20,8 +22,8 @@ public class ProgettoModelDM
 			preparedStatement.setInt(1, progetto.getId_progetto());
 			preparedStatement.setString(2, progetto.getTitolo());
 			preparedStatement.setString(3, progetto.getDescrizione());
-			preparedStatement.setBlob(4, progetto.getFile_modello());
-			preparedStatement.setBlob(5, progetto.getImmagine());
+			preparedStatement.setBlob(4, file_modello);
+			preparedStatement.setBlob(5, immagine);
 			preparedStatement.setString(6, progetto.getConsigli());
 			preparedStatement.setString(7, progetto.getCategoria());
 			preparedStatement.setInt(8, progetto.getVersione());

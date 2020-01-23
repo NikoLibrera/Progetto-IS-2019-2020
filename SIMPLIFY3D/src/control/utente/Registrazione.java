@@ -42,7 +42,7 @@ public class Registrazione extends HttpServlet
         u.setUsername(request.getParameter("username"));
         u.setCognome(request.getParameter("cognome"));
         u.setNome(request.getParameter("nome"));
-        u.setData_nascita(request.getParameter("data_nascita"));
+        u.setData_nascita(request.getParameter("datanascita"));
         u.setPassword(request.getParameter("password"));
         String confermapassword=request.getParameter("confermapassword");
         u.setEmail(request.getParameter("email"));
