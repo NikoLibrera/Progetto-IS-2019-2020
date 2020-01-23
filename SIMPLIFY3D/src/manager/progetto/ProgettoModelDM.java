@@ -401,4 +401,49 @@ public class ProgettoModelDM
 			}
 		}
 	}
+	
+	public boolean isPreferito(Progetto progetto, Utente utente) throws SQLException 
+	{
+	    Connection connection = null;
+	    boolean n=false;
+	    PreparedStatement preparedStatement = null;
+
+	    final String select_sql = "SELECT * FROM progetto WHERE username=? AND id_progetto=?";
+
+	    try 
+	    {
+	      connection = DriverManagerConnectionPool.getConnection();
+	      preparedStatement = connection.prepareStatement(select_sql);
+
+		  preparedStatement.setString(1, utente.getUsername());
+		  preparedStatement.setInt(2, progetto.getId_progetto());
+
+	      System.out.println("isPreferito:" + preparedStatement.toString());
+
+	      ResultSet rs = preparedStatement.executeQuery();
+
+	      if (rs.next())
+	      {
+	    	  n=true;
+	      }
+	    } 
+	    catch(Exception e){
+	    	e.printStackTrace();
+	    }
+	    finally 
+	    {
+	      try 
+	      {
+	        if (preparedStatement != null) 
+	        {
+	          preparedStatement.close();
+	        }
+	      } 
+	      finally 
+	      {
+	        DriverManagerConnectionPool.releaseConnection(connection);
+	      }
+	    }
+	    return n;
+	  }
 }
