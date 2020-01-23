@@ -50,7 +50,6 @@ public class UtenteModelDM
 				System.out.println("doRegistrazione: "+ preparedStatement.toString());
 				preparedStatement.executeUpdate();
 				
-				ResultSet rs1 = preparedStatement.getGeneratedKeys();
 
 				connection.commit();
 				return true;
@@ -285,7 +284,6 @@ public class UtenteModelDM
 	public static int verificaCodice(String username) throws SQLException
 	{
 	    Connection connection = null;
-	    Utente utente = new Utente();
 	    PreparedStatement preparedStatement = null;
 
 	    final String select_sql = "SELECT codice FROM utente WHERE username= ?";
