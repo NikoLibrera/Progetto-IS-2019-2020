@@ -2,41 +2,21 @@ body{ padding-top: 50px; }
 
 html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
 
-.blocco{ height: 420px; margin-top: 150px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255) !important; 
-		 margin-left: -680px; border-style: solid; border-color: black; border-width: 3px; }
+.racchiudi{ display: inline-flex; width: 100%;}
 
-.blocco1 { height: 530px; margin-top: -44%; margin-bottom: auto; width: 240px; margin-left: 5%; background-color: rgb(84,181,255) !important;
+.blocco1 { height: 530px; margin-bottom: auto; padding: 0 20px; margin-top:5px; margin-left: 5%; background-color: rgb(84,181,255);
 			border-style: solid; border-color: black; border-width: 3px;}
 			
-.blocco2{ height: 530px; margin-top: -39.7%; margin-bottom: auto; width: 70%; background-color: rgb(84,181,255) !important;
- 		  margin-left: 25%; border-style: solid; border-color: black; border-width: 3px; overflow:auto; }
+.blocco2{ height: 530px; margin-bottom: auto; width: 70%; margin-top:5px; background-color: rgb(84,181,255);
+ 		  margin-left: 5%; border-style: solid; border-color: black; border-width: 3px; overflow:auto; }
 
 .input-group-prepend span{ width: 50px; background-color: #FFC312; color: black; border:0 !important; }
 
 input:focus{ outline: 0 0 0 0  !important; box-shadow: 0 0 0 0 !important; }
 
-.container{ height: 100%; align-content: center; }
+.bottoni{  color: black; background-color: #FFC312; width: 170px; border:none; border-radius: 5px; padding:15px; transition: all 0.5s}
 
-.foto{ margin-top: 60px; margin-left: -1100px;}
-
-.profilo_btn{ width: 100px; height:80px; margin-top:-135px; margin-left:1050px;}
-
-.profiloblocco_btn{ width: 200px; height:80px; margin-top:10px;}
-
-.logout_btn{ width: 100px; height:80px; margin-top:-135px; margin-left:1150px;}
-
-.diritti { margin-top: 20px;}
-
-.diritti h6 { font-size: 13px; margin-left: 25px; margin-top:-27px;}
-
-#copyright { margin-left:-290px; margin-top:-20px;}
-
-
-
-
-.bottoni{  color: black; background-color: #FFC312; width: 170px; border:none; border-radius: 5px; padding:15px;}
-
-.bottoni:hover{ color: white; background-color: black; }
+.bottoni:hover{ color: white; background-color: black; cursor: pointer; transition: all 0.5s}
 
 #tabella{width: 100%;}
 
@@ -44,16 +24,26 @@ input:focus{ outline: 0 0 0 0  !important; box-shadow: 0 0 0 0 !important; }
 
 #tabella tr{padding:15px; height: 50px;}
 
-.img{padding:15px}
+.img{ width: 150px; height:150px;padding:15px}
 
-.titolo{vertical-align: bottom; }
+.titolo{vertical-align: bottom;}
+
+.ancoraTitolo{color:black;}
+
+.ancoraTitolo:hover{color:#FFC312;}
 
 .valutazione{vertical-align: bottom; }
 
 .versione{vertical-align: bottom; }
 
-.commenti{vertical-align: bottom; }
+.commenti{vertical-align: bottom; width: 30px; padding: 0 15px;}
 
 .descrizione{vertical-align: top;}
 
-#imgtabella { width: 150px; height:150px; border-style: solid; border-color: black; border-width: 3px;}
+#imgtabella {width: 150px; height:150px; border-style: solid; border-color: black; border-width: 3px; transition: all 0.5s;}
+
+#imgtabella:hover {
+	transition: all 0.5s;
+	cursor: pointer;
+	opacity: 0.6;	
+}

@@ -119,8 +119,8 @@ public class ProgettoModelDM
 		Connection conn = DriverManagerConnectionPool.getConnection();
 		try {
 			Statement st=conn.createStatement();
-			 System.out.println("getByCategoria:" + "select * from progetto where categoria=\"+categoria");
-			ResultSet result =st.executeQuery("select * from progetto where categoria="+categoria);
+			 System.out.println("getByCategoria:" + "select * from progetto where categoria="+categoria);
+			ResultSet result =st.executeQuery("select * from progetto where categoria='"+categoria+"'");
 			while(result.next())
 			{
 				int id=result.getInt("id_progetto");
@@ -134,6 +134,40 @@ public class ProgettoModelDM
 				String c=result.getString("categoria");
 				
 				p=new Progetto(id, titolo, descrizione, file_modello, immagine, consigli, c, versione, username);
+				progetti.add(p);
+			}
+			DriverManagerConnectionPool.releaseConnection(conn);
+			return progetti;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return null;
+	}
+	
+	public static ArrayList<Progetto> getByUsername(String username) throws SQLException
+	{
+		Progetto p=null;
+		ArrayList<Progetto> progetti=new ArrayList<Progetto>();
+		Connection conn = DriverManagerConnectionPool.getConnection();
+		try {
+			Statement st=conn.createStatement();
+			 System.out.println("getByUsername:" + "select * from progetto where username="+username);
+			ResultSet result =st.executeQuery("select * from progetto where username='"+username+"'");
+			while(result.next())
+			{
+				int id=result.getInt("id_progetto");
+				String titolo=result.getString("titolo");
+				String descrizione=result.getString("descrizione");
+				Blob file_modello=result.getBlob("file_modello");
+				Blob immagine=result.getBlob("immagine");
+				String consigli=result.getString("consigli");
+				int versione=result.getInt("versione");
+				String u=result.getString("username");
+				String categoria=result.getString("categoria");
+				
+				p=new Progetto(id, titolo, descrizione, file_modello, immagine, consigli, categoria, versione, u);
 				progetti.add(p);
 			}
 			DriverManagerConnectionPool.releaseConnection(conn);

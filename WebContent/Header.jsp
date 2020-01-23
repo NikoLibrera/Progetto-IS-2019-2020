@@ -21,7 +21,6 @@
 			<% 	
 		Utente u=(Utente)session.getAttribute("utente");
 		if(u==null){%>
-				
 			  <form action="LoginPage.jsp" class="formAccedi">
 				<button class="button_accedi">Accedi o Registrati</button>
 			</form>
@@ -36,7 +35,7 @@
 	<div class="nav">
 		<ul>
 		  <li><a href="HomePage.jsp">Home</a></li>
-		  <li><a href="#news">Categorie</a></li>
+		  <li><a href="RicercaCategoria.jsp">Categorie</a></li>
 		  <li><a href="UploadProgetto.jsp">Upload</a></li>
 		</ul>
 		</div>

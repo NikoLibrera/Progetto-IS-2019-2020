@@ -32,83 +32,74 @@
 	<body>
 
 	<div><%@ include file="Header.jsp" %></div>
-        
-        <div class="blocco" >
-        	<div class="bottoneprofilonelblocco" align="center">
-			 	<button class="btn float-center profiloblocco_btn"><img src="images/utente_profilo.png" height= "70px" width="70px"></button>
-			 </div>
-		</div>
-
-        <div class="diritti">
-			<img id="copyright" src="images/copyright.png" height="20px" width="20px"><h6>2020 Simplify3D Inc. Tutti i diritti riservati</h6>
-		</div>
-	 	
-	 	<div class="blocco1" align="center">
-	 		<br>
-	 		<button class="btn bottoni"> Art</button>
-	 		<br><br>
-	 		<a href="ModificaPassword.jsp"><button class="btn bottoni">Fashion</button></a>
-	 		<br><br>
-	 		<button class="btn bottoni">Toys</button>
-	 		<br><br>
-	 		<button class="btn bottoni"> House</button>
-	 		<br><br>
-	 		<a href="UploadProgetto.jsp"><button class="btn bottoni">Office</button></a>
-	 		<br><br>
-	 		<button class="btn bottoni">Gadget</button>
-	 		<br><br>
-	 		<a href="RicercaCategoria.jsp?categoria=Hobby"><button class="btn bottoni">Hobby</button></a>
-	 		<br><br>
-	 		<button class="btn bottoni">Tools</button>
-	 	</div>
-	 	
-	 	<div class="blocco2">
-	 			<p style='font-size:1.2em;'>&nbsp;&nbsp;&nbsp;<b><%= categoria %></b></p>
-	 			<%
-	 			if(progetti == null || progetti.size()==0)
-				{
-	 			%>
-	 				<p style='font-size:1.2em;'><b>Non è stato ancora caricato nessun progetto in questa categoria.</b></p>
-	 			<%
-					
-	 			}
-	 			else
-	 			{%>
-	 				<table id="tabella">
-	 			<%	for(Progetto prog : progetti) 
-	   				{
-	 			%>	
-	 				
-						<tr>
-							<td rowspan="3" class="img"><%	
-									Blob image=prog.getImmagine();
-									byte [] img=image.getBytes(1, (int) image.length()); 
-									String encode = Base64.getEncoder().encodeToString(img); 
-								 %>
-								<img id="imgtabella" src="data:image/jpeg;base64,<%=encode %>">
-							</td>
-							<td class="titolo"><% String titolo=prog.getTitolo();
-									if(titolo.length()>30)
-										titolo= prog.getTitolo().substring(0, 30)+"...";%>
-										<%=titolo %></td>
-							<td class="valutazione">valutazione</td>
-							<td class="versione"><%= prog.getVersione()%></td>
-							<td class="commenti">Commenti</td>
-						</tr>
-						<tr></tr>
-						<tr>
-							<td class="descrizione"><% String descrizione=prog.getDescrizione();
-									if(descrizione.length()>30)
-										descrizione= prog.getDescrizione().substring(0, 30)+"...";%>
-										<%=descrizione %></td>		
-						</tr>
+	 	<div class="racchiudi">
+		 	<div class="blocco1" align="center">
+		 		<br>
+		 		<a href="RicercaCategoria.jsp?categoria=Art"><button class="btn bottoni"> Art</button></a>
+		 		<br><br>
+		 		<a href="RicercaCategoria.jsp?categoria=Fashion"><button class="btn bottoni">Fashion</button></a>
+		 		<br><br>
+		 		<a href="RicercaCategoria.jsp?categoria=Toys"><button class="btn bottoni">Toys</button></a>
+		 		<br><br>
+		 		<a href="RicercaCategoria.jsp?categoria=House"><button class="btn bottoni"> House</button></a>
+		 		<br><br>
+		 		<a href="RicercaCategoria.jsp?categoria=Office"><button class="btn bottoni">Office</button></a>
+		 		<br><br>
+		 		<a href="RicercaCategoria.jsp?categoria=Gadget"><button class="btn bottoni">Gadget</button></a>
+		 		<br><br>
+		 		<a href="RicercaCategoria.jsp?categoria=Hobby"><button class="btn bottoni">Hobby</button></a>
+		 		<br><br>
+		 		<a href="RicercaCategoria.jsp?categoria=Tools"><button class="btn bottoni">Tools</button></a>
+		 	</div>
+		 	
+		 	<div class="blocco2">
+		 			<p style='font-size:1.4em; color:#FFC312;'>&nbsp;&nbsp;&nbsp;<b><%= categoria %></b></p>
+		 			<%
+		 			if(progetti == null || progetti.size()==0)
+					{
+		 			%>
+		 				<p style='font-size:1.2em;'><b>Non è stato ancora caricato nessun progetto in questa categoria.</b></p>
+		 			<%
+						
+		 			}
+		 			else
+		 			{%>
+		 				<table id="tabella">
+		 			<%	for(Progetto prog : progetti) 
+		   				{
+		 			%>	
+		 				
+							<tr>
+								<td rowspan="3" class="img"><%	
+										Blob image=prog.getImmagine();
+										byte [] img=image.getBytes(1, (int) image.length()); 
+										String encode = Base64.getEncoder().encodeToString(img); 
+									 %>
+									<a href="ProgettoView.jsp?id=<%=prog.getId_progetto() %>"><img id="imgtabella" src="data:image/jpeg;base64,<%=encode %>"></a>
+								</td>
+								<td class="titolo" style='font-size:1.1em;'><% String titolo=prog.getTitolo();
+										if(titolo.length()>30)
+											titolo= prog.getTitolo().substring(0, 30)+"...";%>
+											<b><a href="ProgettoView.jsp?id=<%=prog.getId_progetto() %>" class="ancoraTitolo"><%=titolo %></a></b></td>
+								<td class="valutazione">valutazione</td>
+								<td class="versione">Versione: <%= prog.getVersione()%></td>
+								<td class="commenti">Commenti</td>
+							</tr>
+							<tr></tr>
+							<tr>
+								<td class="descrizione" style='font-size:0.9em;'><% String descrizione=prog.getDescrizione();
+										if(descrizione.length()>30)
+											descrizione= prog.getDescrizione().substring(0, 50)+"...";%>
+											<%=descrizione %></td>		
+							</tr>
+						<%
+		   				}
+						%>
+						</table>
 					<%
-	   				}
+		   			}
 					%>
-					</table>
-				<%
-	   			}
-				%>
-			</div>	
+				</div>	
+			</div>
 	</body>
 </html>
