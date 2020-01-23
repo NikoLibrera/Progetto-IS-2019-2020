@@ -131,7 +131,9 @@ public class ProgettoModelDM
 				String consigli=result.getString("consigli");
 				int versione=result.getInt("versione");
 				String username=result.getString("username");
-				p=new Progetto(id, titolo, descrizione, file_modello, immagine, consigli, categoria, versione, username);
+				String c=result.getString("categoria");
+				
+				p=new Progetto(id, titolo, descrizione, file_modello, immagine, consigli, c, versione, username);
 				progetti.add(p);
 			}
 			DriverManagerConnectionPool.releaseConnection(conn);

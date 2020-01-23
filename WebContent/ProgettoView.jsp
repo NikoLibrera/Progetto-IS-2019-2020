@@ -4,7 +4,7 @@
     
     <%
 	Utente utente = (Utente) request.getSession().getAttribute("utente");
-		
+	int isAdmin=0,isAuthor=0;
     Integer id=0;
 	try{
 	id=Integer.parseInt(request.getParameter("id"));
@@ -18,6 +18,14 @@
 	if(p == null)
 	{
 		response.sendRedirect("./HomePage.jsp");
+		return;
+	}
+	if(utente != null)
+	{
+		if(utente.getIsAdmin()==1)
+			isAdmin=1;
+		if(utente.getUsername().equalsIgnoreCase(p.getUsername()))
+			isAuthor=1;
 	}
 	%>          
 <!DOCTYPE html>
@@ -42,7 +50,11 @@
 			</div>
 				<div id="divbottonedownload" align="center">
 					<p style='font-size:1.2em;'><b>Autore:</b></p><%= p.getUsername() %></p>
-					<input type="submit" value="Download" class="download_btn">
+					<% if(utente==null) {%>
+						<button value="Download" class="download_btn_disabled" disabled>Download</button>
+					<% } else { %>
+						<button value="Download" class="download_btn">Download</button>
+					<% } %>
 				</div>
 			</div>
 			
@@ -58,7 +70,18 @@
 				<p style='font-size:1.2em;'><b>Versione: </b><%= p.getVersione() %></p>
 				
 				<div align="right">
-					<input type="submit" value="Aggiungi ai Preferiti" class="preferiti_btn">
+				<% if(isAuthor==1) {%>
+					<button value="Cancella Progetto" class="preferiti_btn">Cancella Progetto</button>
+					<button value="Modifica Progetto" class="preferiti_btn">Modifica Progetto</button>
+				<% } %>
+				<% if(isAdmin==1 && isAuthor==0) {%>
+					<button value="Cancella Progetto" class="preferiti_btn">Cancella Progetto</button>
+				<% } %>
+					<% if(utente==null) {%>
+						<button value="Aggiungi ai Preferiti" class="preferiti_btn_disabled" disabled>Aggiungi ai preferiti</button>
+					<% } else { %>
+						<button value="Aggiungi ai Preferiti" class="preferiti_btn">Aggiungi ai preferiti</button>
+					<% } %>
 				</div>	
 			</div>		
 	     </div>

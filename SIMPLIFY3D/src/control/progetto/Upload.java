@@ -33,9 +33,14 @@ public class Upload extends HttpServlet
 		PrintWriter out = response.getWriter();
 		
 		
-		Utente u = (Utente) request.getSession().getAttribute("utente");
+		Utente utente = (Utente) request.getSession().getAttribute("utente");
+		if(utente == null)
+		{	
+			response.sendRedirect("./HomePage.jsp");
+			return;
+		}
 		
-		String username = u.getUsername();
+		String username = utente.getUsername();
 		
 		String titolo = request.getParameter("titolo");		
 		String descrizione = request.getParameter("descrizione");

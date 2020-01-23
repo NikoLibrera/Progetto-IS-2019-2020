@@ -28,6 +28,11 @@ public class ModificaPassword extends HttpServlet
 	{
 		PrintWriter out = response.getWriter();
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
+		if(utente == null)
+		{	
+			response.sendRedirect("./HomePage.jsp");
+			return;
+		}
 		UtenteModelDM model = new UtenteModelDM();
 		
 		String vecchiapassword = request.getParameter("password");
