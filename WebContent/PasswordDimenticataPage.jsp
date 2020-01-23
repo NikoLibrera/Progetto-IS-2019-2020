@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Simplify3D Password Dimenticata</title>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="stylePasswordDimenticata.css">
+        <link rel="stylesheet" type="text/css" href="css/stylePasswordDimenticata.css">
         <script type="text/javascript" src = "js/formValidationUtente.js"></script>
     </head>
     
@@ -62,6 +62,7 @@
 	
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-	
+		
+		<%@ include file="footer.jsp" %>
 	</body>
 </html>

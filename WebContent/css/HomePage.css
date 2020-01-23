@@ -19,13 +19,15 @@
 
 #textgiallo{
 	font-size:30px;
-	color:yellow;
+	color:#FFC312;
+	font-weight: bold;
 	
 }
 
 #textnero{
 	
 	font-size:20px;
+	font-weight: bold;
 }
 
 .progetti{

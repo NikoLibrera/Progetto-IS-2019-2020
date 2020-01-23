@@ -2,14 +2,16 @@
 .contenitore{
 	
 	background-color:rgb(84,181,255);
-	width: 90%;
-	margin-left: 5%;
+	width: 97%;
+	margin-left: 1.5%;
 	margin-right: 5%;
 	border-style: solid;
 	border-color: black;
 	display:inline-flex;
-	margin-top: 30px;
+	margin-top: 10px;
 	display: inline-flex;
+	height: 530px;
+	overflow: auto;
 }
 
 .caricaFoto{

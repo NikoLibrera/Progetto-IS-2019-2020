@@ -60,6 +60,6 @@
 	 		<br><br>
 	 		<a href="UploadProgetto.jsp"><button class="btn float-center login_btn"> Upload Progetto</button></a>
 	 	</div>
-	
+		<%@ include file="footer.jsp" %>
 	</body>
 </html>
