@@ -21,16 +21,15 @@
 
 	<div><%@ include file="Header.jsp" %></div>
         
-        <div id="cont" align="center">
-		
+        <div id="cont" align="center">	
+			
+			<div id="containertesto" align="left">
+			<form action="Upload" method="post" enctype="multipart/form-data">
 			<div id="containerfoto" align="center">
 				<div id="muovitastoimmagine">
 					<p style='font-size:1.2em;'>Modifica immagine:<br><br><input type="file" name="immagine" required><br></p>
 				</div>	
 			</div>
-			
-			<div id="containertesto" align="left">
-			<form name="Upload" action="Upload" method="post">
 				<p style='font-size:1.2em;'>Titolo:<br> <input type="text" size="43" name="titolo" required><br></p>
 				<p style='font-size:1.2em;'>Descrizione: <br><textarea cols="40" rows="4" name="descrizione" required></textarea><br></p>
 				<p style='font-size:1.2em;'>Consigli di stampa: <br><textarea cols="40" rows="4" name="consigli" required></textarea><br></p>
