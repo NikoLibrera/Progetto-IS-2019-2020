@@ -1,23 +1,41 @@
-/* INIZIO CSS PC NIKO */
 
 .contenitore{
-	background-color:aqua;
+	
+	background-color:rgb(84,181,255);
 	width: 90%;
 	margin-left: 5%;
 	margin-right: 5%;
 	border-style: solid;
 	border-color: black;
+	display:inline-flex;
+	margin-top: 30px;
 	display: inline-flex;
 }
 
-.contenitoreFoto
+.caricaFoto{
+	
+	width: 200px;
+	border-style: solid;
+	border-color: black;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	height: 200px;
+	
+}
+.infoUpload input
 {
-	width: 30%;
+	padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-.informationiUpload
-{
-	width: 70%;
+.caricaFoto img{
+	
+	width: 200px;
+	height: 200px;
 }
-
-/* FINE CSS PC NIKO */
