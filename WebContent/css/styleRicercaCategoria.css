@@ -1,0 +1,59 @@
+body{ padding-top: 50px; }
+
+html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
+
+.blocco{ height: 420px; margin-top: 150px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255) !important; 
+		 margin-left: -680px; border-style: solid; border-color: black; border-width: 3px; }
+
+.blocco1 { height: 530px; margin-top: -44%; margin-bottom: auto; width: 240px; margin-left: 5%; background-color: rgb(84,181,255) !important;
+			border-style: solid; border-color: black; border-width: 3px;}
+			
+.blocco2{ height: 530px; margin-top: -39.7%; margin-bottom: auto; width: 70%; background-color: rgb(84,181,255) !important;
+ 		  margin-left: 25%; border-style: solid; border-color: black; border-width: 3px; overflow:auto; }
+
+.input-group-prepend span{ width: 50px; background-color: #FFC312; color: black; border:0 !important; }
+
+input:focus{ outline: 0 0 0 0  !important; box-shadow: 0 0 0 0 !important; }
+
+.container{ height: 100%; align-content: center; }
+
+.foto{ margin-top: 60px; margin-left: -1100px;}
+
+.profilo_btn{ width: 100px; height:80px; margin-top:-135px; margin-left:1050px;}
+
+.profiloblocco_btn{ width: 200px; height:80px; margin-top:10px;}
+
+.logout_btn{ width: 100px; height:80px; margin-top:-135px; margin-left:1150px;}
+
+.diritti { margin-top: 20px;}
+
+.diritti h6 { font-size: 13px; margin-left: 25px; margin-top:-27px;}
+
+#copyright { margin-left:-290px; margin-top:-20px;}
+
+
+
+
+.bottoni{  color: black; background-color: #FFC312; width: 170px; border:none; border-radius: 5px; padding:15px;}
+
+.bottoni:hover{ color: white; background-color: black; }
+
+#tabella{width: 100%;}
+
+#tabella td{text-align: left;}
+
+#tabella tr{padding:15px; height: 50px;}
+
+.img{padding:15px}
+
+.titolo{vertical-align: bottom; }
+
+.valutazione{vertical-align: bottom; }
+
+.versione{vertical-align: bottom; }
+
+.commenti{vertical-align: bottom; }
+
+.descrizione{vertical-align: top;}
+
+#imgtabella { width: 150px; height:150px; border-style: solid; border-color: black; border-width: 3px;}
