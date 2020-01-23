@@ -96,7 +96,7 @@ public class ProgettoModelDM
 				String categoria=result.getString("categoria");
 				int versione=result.getInt("versione");
 				String username=result.getString("username");
-				p=new Progetto(titolo, descrizione, file_modello, immagine, consigli, categoria, username, versione);
+				p=new Progetto(id, titolo, descrizione, file_modello, immagine, consigli, categoria, versione, username);
 				slide.add(p);
 				i++;
 				if(i==6)
