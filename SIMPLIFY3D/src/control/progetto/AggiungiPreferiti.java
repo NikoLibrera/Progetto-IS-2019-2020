@@ -61,5 +61,4 @@ public class AggiungiPreferiti extends HttpServlet
 	{
 		doGet(request, response);
 	}
-
 }

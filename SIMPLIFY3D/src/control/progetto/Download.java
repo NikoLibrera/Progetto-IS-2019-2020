@@ -20,29 +20,31 @@ import model.Progetto;
  * Servlet implementation class Download
  */
 @WebServlet("/Download")
-public class Download extends HttpServlet {
+public class Download extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
-       
-    
-    public Download() {
+
+    public Download()
+{
         super();
         
     }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 			String id_progetto=request.getParameter("download");
 			int id=Integer.parseInt(id_progetto);
 			ProgettoModelDM dao=new ProgettoModelDM();
 			Progetto p=null;
-			try {
+			try 
+			{
 				p = dao.getProgettoById(id);
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+			} 
+			catch (SQLException e1) 
+			{
 				e1.printStackTrace();
 			}
+			
 			int off=1;
 			String mime=getServletContext().getMimeType("application/zip");
 			response.setContentType(mime);
@@ -51,39 +53,35 @@ public class Download extends HttpServlet {
 			response.setHeader("Content-Disposition", "attachment; filename=\""+p.getTitolo()+".zip\"");
 			
 			
-				Blob file=p.getFile_modello();
-				String nome=p.getTitolo();
+			Blob file=p.getFile_modello();
+			String nome=p.getTitolo();
+			
+			try 
+			{
+				zip.putNextEntry(new ZipEntry(nome+".stl"));
 				
-				try {
-					zip.putNextEntry(new ZipEntry(nome+".stl"));
+				byte[] b=file.getBytes(1,(int)file.length());
+				
+				zip.write(b);
+				
+				off=off+(int)file.length()+1;
+				
+				zip.closeEntry();
+				
+			} 
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+			}
 					
-					byte[] b=file.getBytes(1,(int)file.length());
-					
-							zip.write(b);
-					
-					off=off+(int)file.length()+1;
-					zip.closeEntry();
-					
-				} catch (SQLException e) {
-					
-					e.printStackTrace();
-				}
-						
-			
-			
 			zip.close();
-			
-			
 			
 			response.setContentType("text/html");
 			response.sendRedirect("ProgettoView.jsp");
-		
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doGet(request, response);
 	}
-
 }

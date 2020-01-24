@@ -52,9 +52,11 @@ public class ProgettoModelDM
 		}
 	}
 	
-	public int getLastId() {
+	public int getLastId() 
+	{
 		int idProgetto=0;
-		try {
+		try 
+		{
 	        Connection connection=DriverManagerConnectionPool.getConnection();
 	        
 	        Statement statement=connection.createStatement();
@@ -66,7 +68,9 @@ public class ProgettoModelDM
 			
 			connection.close();				
 	
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) 
+		{
 			System.out.println("Errore durante la connessione." + e.getMessage());
 		}
 		return idProgetto;
@@ -77,7 +81,8 @@ public class ProgettoModelDM
 		Progetto p=null;
 		ArrayList<Progetto>slide=new ArrayList<Progetto>();
 		Connection conn = DriverManagerConnectionPool.getConnection();
-		try {
+		try 
+		{
 			Statement st=conn.createStatement();
 			ResultSet result =st.executeQuery("select id_progetto, titolo,descrizione,file_modello,immagine,consigli,categoria,versione,username,valutazione.id_progetto, valutazione.voto\r\n" + 
 					"from progetto,valutazione where id_progetto=valutazione.id_progetto \r\n" + 
@@ -104,10 +109,10 @@ public class ProgettoModelDM
 			}
 			DriverManagerConnectionPool.releaseConnection(conn);
 			return slide;
-		} catch (SQLException e) {
-			
+		} 
+		catch (SQLException e)
+		{
 			e.printStackTrace();
-			
 		}
 		return null;
 	}
@@ -117,7 +122,8 @@ public class ProgettoModelDM
 		Progetto p=null;
 		ArrayList<Progetto> progetti=new ArrayList<Progetto>();
 		Connection conn = DriverManagerConnectionPool.getConnection();
-		try {
+		try 
+		{
 			Statement st=conn.createStatement();
 			 System.out.println("getByCategoria:" + "select * from progetto where categoria="+categoria);
 			ResultSet result =st.executeQuery("select * from progetto where categoria='"+categoria+"'");
@@ -138,10 +144,10 @@ public class ProgettoModelDM
 			}
 			DriverManagerConnectionPool.releaseConnection(conn);
 			return progetti;
-		} catch (SQLException e) {
-			
+		} 
+		catch (SQLException e)
+		{
 			e.printStackTrace();
-			
 		}
 		return null;
 	}
@@ -151,7 +157,8 @@ public class ProgettoModelDM
 		Progetto p=null;
 		ArrayList<Progetto> progetti=new ArrayList<Progetto>();
 		Connection conn = DriverManagerConnectionPool.getConnection();
-		try {
+		try 
+		{
 			Statement st=conn.createStatement();
 			 System.out.println("getByUsername:" + "select * from progetto where username="+username);
 			ResultSet result =st.executeQuery("select * from progetto where username='"+username+"'");
@@ -172,10 +179,10 @@ public class ProgettoModelDM
 			}
 			DriverManagerConnectionPool.releaseConnection(conn);
 			return progetti;
-		} catch (SQLException e) {
-			
+		} 
+		catch (SQLException e)
+		{
 			e.printStackTrace();
-			
 		}
 		return null;
 	}
@@ -202,18 +209,19 @@ public class ProgettoModelDM
 	      if (rs.next())
 	      {
 	    	  progetto=new Progetto();
-	    	progetto.setId_progetto(rs.getInt(1));
-	        progetto.setTitolo(rs.getString(2));
-	        progetto.setDescrizione(rs.getString(3));
-	        progetto.setFile_modello(rs.getBlob(4));
-	        progetto.setImmagine(rs.getBlob(5));
-	        progetto.setConsigli(rs.getString(6));
-	        progetto.setCategoria(rs.getString(7));
-	        progetto.setVersione(rs.getInt(8));
-	        progetto.setUsername(rs.getString(9));
+	    	  progetto.setId_progetto(rs.getInt(1));
+	          progetto.setTitolo(rs.getString(2));
+	          progetto.setDescrizione(rs.getString(3));
+	          progetto.setFile_modello(rs.getBlob(4));
+	          progetto.setImmagine(rs.getBlob(5));
+	          progetto.setConsigli(rs.getString(6));
+	          progetto.setCategoria(rs.getString(7));
+	          progetto.setVersione(rs.getInt(8));
+	          progetto.setUsername(rs.getString(9));
 	      }
 	    } 
-	    catch(Exception e){
+	    catch(Exception e)
+	    {
 	    	e.printStackTrace();
 	    }
 	    finally 
@@ -454,7 +462,8 @@ public class ProgettoModelDM
 		ProgettoModelDM model=new ProgettoModelDM();
 		ArrayList<Progetto> progetti=new ArrayList<Progetto>();
 		Connection conn = DriverManagerConnectionPool.getConnection();
-		try {
+		try 
+		{
 			Statement st=conn.createStatement();
 			System.out.println("getPreferitiByUsername:" + "select * from preferiti where username="+username);
 			ResultSet result =st.executeQuery("select * from preferiti where username='"+username+"'");
@@ -476,10 +485,10 @@ public class ProgettoModelDM
 			}
 			DriverManagerConnectionPool.releaseConnection(conn);
 			return progetti;
-		} catch (SQLException e) {
-			
+		} 
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
-			
 		}
 		return null;
 	}
@@ -547,7 +556,6 @@ public class ProgettoModelDM
 			catch (SQLException e) 
 			{
 				e.printStackTrace();
-				
 			}
 		return progetti;
 	}
@@ -585,5 +593,4 @@ public class ProgettoModelDM
 			}
 		}	
 	}
-	
 }

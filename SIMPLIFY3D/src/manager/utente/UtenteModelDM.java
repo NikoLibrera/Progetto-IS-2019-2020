@@ -34,8 +34,7 @@ public class UtenteModelDM
 			//stessa email e quindi si passa all inserimento dell'utente nel DB
 			if(rs.next() == false)   
 			{
-				preparedStatement =
-			            connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+				preparedStatement = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
 				preparedStatement.setString(1, utente.getUsername());
 				preparedStatement.setString(2, utente.getCognome());
 				preparedStatement.setString(3, utente.getNome());
@@ -49,7 +48,6 @@ public class UtenteModelDM
 				
 				System.out.println("doRegistrazione: "+ preparedStatement.toString());
 				preparedStatement.executeUpdate();
-				
 
 				connection.commit();
 				return true;
@@ -111,7 +109,6 @@ public class UtenteModelDM
 				connection.commit();
 			}
 		}
-		
 		finally 
 		{
 			try 
@@ -124,13 +121,14 @@ public class UtenteModelDM
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}	
-		if(find == true) return u;
-		else return null;
+		if(find == true) 
+			return u;
+		else 
+			return null;
 	}
 	
 	public Utente doPasswordDimenticata(Utente utente,String nuovapassword) throws SQLException
 	{
-		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		Utente u = new Utente();
@@ -176,10 +174,10 @@ public class UtenteModelDM
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}	
-		
-			if(find == true) return u;
-		else return null;
-		
+		if(find == true) 
+			return u;
+		else 
+			return null;
 	}
 	
 	public Utente doModificaPassword(Utente utente,String nuovapassword) throws SQLException
@@ -228,8 +226,10 @@ public class UtenteModelDM
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}	
-		if(find == true) return utente;
-		else return null;
+		if(find == true) 
+			return utente;
+		else 
+			return null;
 	}
 	
 	public static Utente getUtenteByUsername(String username) throws SQLException 
@@ -240,7 +240,8 @@ public class UtenteModelDM
 
 	    final String select_sql = "SELECT * FROM utente WHERE username= ?";
 
-	    try {
+	    try 
+	    {
 	      connection = DriverManagerConnectionPool.getConnection();
 	      preparedStatement = connection.prepareStatement(select_sql);
 
@@ -253,16 +254,16 @@ public class UtenteModelDM
 	      if (rs.next())
 	      {
 	    	  utente=new Utente();
-	        utente.setUsername(rs.getString(1));
-	        utente.setCognome(rs.getString(2));
-	        utente.setNome(rs.getString(3));
-	        utente.setData_nascita(rs.getString(4));
-	        utente.setIsAdmin(rs.getInt(5));
-	        utente.setPassword(rs.getString(6));
-	        utente.setEmail(rs.getString(7));
-	        utente.setNazionalita(rs.getString(8));
-	        utente.setConfermato(rs.getInt(9));
-	        utente.setCodice(rs.getInt(10));
+	    	  utente.setUsername(rs.getString(1));
+	          utente.setCognome(rs.getString(2));
+	          utente.setNome(rs.getString(3));
+	          utente.setData_nascita(rs.getString(4));
+	          utente.setIsAdmin(rs.getInt(5));
+	          utente.setPassword(rs.getString(6));
+	          utente.setEmail(rs.getString(7));
+	          utente.setNazionalita(rs.getString(8));
+	          utente.setConfermato(rs.getInt(9));
+	          utente.setCodice(rs.getInt(10));
 	      }
 	    } 
 	    finally 
@@ -290,7 +291,8 @@ public class UtenteModelDM
 	    final String select_sql = "SELECT codice FROM utente WHERE username= ?";
 	    int codice_conferma = 0;
 
-	    try {
+	    try 
+	    {
 	      connection = DriverManagerConnectionPool.getConnection();
 	      preparedStatement = connection.prepareStatement(select_sql);
 
@@ -300,19 +302,25 @@ public class UtenteModelDM
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
-	      while (rs.next()) {
+	      while (rs.next()) 
+	      {
 	        codice_conferma = rs.getInt(1);
 	      }
-	    } finally {
-	      try {
-	        if (preparedStatement != null) {
+	    } 
+	    finally 
+	    {
+	      try 
+	      {
+	        if (preparedStatement != null) 
+	        {
 	          preparedStatement.close();
 	        }
-	      } finally {
+	      } 
+	      finally 
+	      {
 	        DriverManagerConnectionPool.releaseConnection(connection);
 	      }
 	    }
-
 	    return codice_conferma;
 	  }
 	

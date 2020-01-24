@@ -48,7 +48,8 @@ public class Registrazione extends HttpServlet
         u.setEmail(request.getParameter("email"));
         u.setNazionalita(request.getParameter("nazionalita"));
         
-        if(!confermapassword.equals(u.getPassword())) {
+        if(!confermapassword.equals(u.getPassword()))
+        {
 			System.out.println("La due passord non coincidono");
 			out.println("<script>");
 			out.println("window.history.back()");
@@ -125,8 +126,10 @@ public class Registrazione extends HttpServlet
                    Session session =
                        Session.getInstance(
                            props,
-                           new javax.mail.Authenticator() {
-                             protected PasswordAuthentication getPasswordAuthentication() {
+                           new javax.mail.Authenticator() 
+                           {
+                             protected PasswordAuthentication getPasswordAuthentication() 
+                             {
                                return new PasswordAuthentication(email_gmail, password_gmail);
                              }
                            });

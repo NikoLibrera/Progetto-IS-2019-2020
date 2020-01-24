@@ -32,7 +32,6 @@ public class Upload extends HttpServlet
 		ProgettoModelDM model = new ProgettoModelDM();
 		PrintWriter out = response.getWriter();
 		
-		
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 		if(utente == null)
 		{	
@@ -57,7 +56,6 @@ public class Upload extends HttpServlet
 		p.setCategoria(categoria);
 		p.setVersione(1);
 		p.setUsername(username);
-		
 		
 		try 
 		{

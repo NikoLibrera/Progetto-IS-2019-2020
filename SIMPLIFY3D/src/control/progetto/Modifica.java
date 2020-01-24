@@ -19,20 +19,20 @@ import model.Utente;
 
 @WebServlet("/Modifica")
 @MultipartConfig(maxFileSize=16177216)
-public class Modifica extends HttpServlet {
+public class Modifica extends HttpServlet
+{
 	private static final long serialVersionUID = 1L;
        
-    
-    public Modifica() {
+    public Modifica() 
+    {
         super();
        
     }
-
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		ProgettoModelDM model = new ProgettoModelDM();
 		PrintWriter out = response.getWriter();
-		
 		
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 		if(utente == null)
@@ -59,7 +59,6 @@ public class Modifica extends HttpServlet {
 		p.setVersione(1);
 		p.setUsername(username);
 		
-		
 		try 
 		{
 			model.modificaProgetto(p, file_modello.getInputStream(), immagine.getInputStream());
@@ -77,10 +76,8 @@ public class Modifica extends HttpServlet {
 		}
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doGet(request, response);
 	}
-
 }

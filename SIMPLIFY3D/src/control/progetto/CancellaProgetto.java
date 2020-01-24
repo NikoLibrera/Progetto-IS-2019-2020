@@ -32,7 +32,6 @@ public class CancellaProgetto extends HttpServlet
 		ProgettoModelDM model = new ProgettoModelDM();
 		PrintWriter out = response.getWriter();
 		
-		
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
 		if(utente == null)
 		{	
@@ -42,7 +41,6 @@ public class CancellaProgetto extends HttpServlet
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		String username = utente.getUsername();
-		
 		
 		try 
 		{

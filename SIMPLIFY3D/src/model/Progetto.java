@@ -5,15 +5,9 @@ import java.sql.Blob;
 public class Progetto
 {
 	
-	private int id_progetto;
-	private String titolo;
-	private String descrizione;
-	private Blob file_modello;
-	private Blob immagine;
-	private String consigli;
-	private String categoria;
-	private int versione;
-	private String username;
+	private int id_progetto, versione;
+	private String titolo, descrizione, consigli, categoria, username;
+	private Blob file_modello, immagine;
 	
 	public Progetto()
 	{
@@ -23,7 +17,8 @@ public class Progetto
 	
 	
 	public Progetto(int id_progetto, String titolo, String descrizione, Blob file_modello, Blob immagine,
-			String consigli, String categoria, int versione, String username) {
+			String consigli, String categoria, int versione, String username) 
+	{
 		super();
 		this.id_progetto = id_progetto;
 		this.titolo = titolo;
@@ -35,8 +30,6 @@ public class Progetto
 		this.versione = versione;
 		this.username = username;
 	}
-
-
 
 	public Progetto(String titolo, String descrizione, Blob file_modello, Blob immagine, String consigli, String categoria, String username, int versione)
 	{
@@ -51,58 +44,93 @@ public class Progetto
 		this.versione=versione;
 	}
 
-	public int getId_progetto() {
+	public int getId_progetto()
+	{
 		return id_progetto;
 	}
-	public void setId_progetto(int id_progetto) {
+	
+	public void setId_progetto(int id_progetto)
+	{
 		this.id_progetto = id_progetto;
 	}
-	public String getTitolo() {
+	
+	public String getTitolo() 
+	{
 		return titolo;
 	}
-	public void setTitolo(String titolo) {
+	
+	public void setTitolo(String titolo) 
+	{
 		this.titolo = titolo;
 	}
-	public String getDescrizione() {
+	
+	public String getDescrizione()
+	{
 		return descrizione;
 	}
-	public void setDescrizione(String descrizione) {
+	
+	public void setDescrizione(String descrizione) 
+	{
 		this.descrizione = descrizione;
 	}
-	public Blob getFile_modello() {
+	
+	public Blob getFile_modello() 
+	{
 		return file_modello;
 	}
-	public void setFile_modello(Blob file_modello) {
+	
+	public void setFile_modello(Blob file_modello)
+	{
 		this.file_modello = file_modello;
 	}
-	public Blob getImmagine() {
+	
+	public Blob getImmagine()
+	{
 		return immagine;
 	}
-	public void setImmagine(Blob immagine) {
+	
+	public void setImmagine(Blob immagine) 
+	{
 		this.immagine = immagine;
 	}
-	public String getConsigli() {
+	
+	public String getConsigli() 
+	{
 		return consigli;
 	}
-	public void setConsigli(String consigli) {
+	
+	public void setConsigli(String consigli) 
+	{
 		this.consigli = consigli;
 	}
-	public String getCategoria() {
+	
+	public String getCategoria() 
+	{
 		return categoria;
 	}
-	public void setCategoria(String categoria) {
+	
+	public void setCategoria(String categoria)
+	{
 		this.categoria = categoria;
 	}
-	public int getVersione() {
+	
+	public int getVersione()
+	{
 		return versione;
 	}
-	public void setVersione(int versione) {
+	
+	public void setVersione(int versione) 
+	{
 		this.versione = versione;
 	}
-	public String getUsername() {
+	
+	public String getUsername()
+	{
 		return username;
 	}
-	public void setUsername(String username) {
+	
+	public void setUsername(String username)
+	{
 		this.username = username;
 	}
 	
@@ -112,7 +140,8 @@ public class Progetto
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "Progetto [id_progetto=" + id_progetto + ", titolo=" + titolo + ", descrizione=" + descrizione
 				+ ", file_modello=" + file_modello + ", immagine=" + immagine + ", consigli=" + consigli
 				+ ", categoria=" + categoria + ", versione=" + versione + ", username=" + username + "]";

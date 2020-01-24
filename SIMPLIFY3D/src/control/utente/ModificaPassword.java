@@ -39,7 +39,8 @@ public class ModificaPassword extends HttpServlet
 		String nuovapassword = request.getParameter("nuovapassword");
 		String ripetinuovapassword = request.getParameter("ripetinuovapassword");
 		
-		if(!nuovapassword.equals(ripetinuovapassword)) {
+		if(!nuovapassword.equals(ripetinuovapassword)) 
+		{
 			System.out.println("Le password non combaciano");
 			out.println("<script>");
 			out.println("window.history.back()");
@@ -47,7 +48,8 @@ public class ModificaPassword extends HttpServlet
 			out.println("</script>");
 			return;
     	}
-		else if(nuovapassword.equals(vecchiapassword)) {
+		else if(nuovapassword.equals(vecchiapassword)) 
+		{
 			System.out.println("La nuova password non può essere uguale alla vecchia");
 			out.println("<script>");
 			out.println("window.history.back()");
@@ -72,6 +74,7 @@ public class ModificaPassword extends HttpServlet
 		{
 			e.printStackTrace();
 		}
+		
 		if(u != null)
 		{
 			request.getSession().setAttribute("utente", utente);

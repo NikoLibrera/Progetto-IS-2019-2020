@@ -69,8 +69,10 @@ public class PasswordDimenticata extends HttpServlet
 	         Session session =
 		            Session.getInstance(
 		                props,
-		                new javax.mail.Authenticator() {
-		                  protected PasswordAuthentication getPasswordAuthentication() {
+		                new javax.mail.Authenticator() 
+		                {
+		                  protected PasswordAuthentication getPasswordAuthentication() 
+		                  {
 		                    return new PasswordAuthentication(email_platform, pass_word);
 		                  }
 		                });
@@ -85,8 +87,6 @@ public class PasswordDimenticata extends HttpServlet
         
 	        String generatedPassword1 = CryptWithMD5.cryptWithMD5(password);
 
-	   
-	        
 	        utente = model.doPasswordDimenticata(user,generatedPassword1);
 	        
 	        Transport.send(message);
@@ -101,7 +101,7 @@ public class PasswordDimenticata extends HttpServlet
 	    {
 	      e.printStackTrace();
 	    } 
-    	
+ 
 		if(utente != null)
 		{
 			request.getSession().setAttribute("utente", utente);
