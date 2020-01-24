@@ -24,6 +24,12 @@ header
 {
 	width: 20%;	
 }
+
+.logo:hover
+{
+	cursor: pointer;	
+}
+
 .imgLogo
 {
 	width: 80%;
@@ -67,6 +73,7 @@ header
   	outline: none;
   	height: 50px;
   	font-size: 18px;
+  	transition: all 0.5s;
 }
 
 .button_accedi:hover
@@ -74,6 +81,7 @@ header
 	color: white; 
 	background-color: black; 
 	border-color: black;
+	transition: all 0.5s;
 }
 
 .button_cerca:hover
@@ -81,6 +89,7 @@ header
 	color: white; 
 	background-color: black; 
 	border-color: black;
+	transition: all 0.5s;
 }
 
 .button_cerca
@@ -97,6 +106,7 @@ header
   	outline: none;
   	height: 50px;
   	font-size: 18px;	
+  	transition: all 0.5s;
 }
 
 .nav
@@ -146,6 +156,14 @@ li a:hover:not(.active)
 	margin-left: 15px;
 }
 
+.profilo:hover{
+	cursor: pointer;
+}
+
+.logout:hover{
+	cursor: pointer;
+}
+
 .imgProfilo
 {
 	background-color: transparent;
@@ -156,17 +174,4 @@ li a:hover:not(.active)
 {
 	background-color: transparent;
 	border: none;
-}
-
-.diritti 
-{
-	display: inline-flex;
-}
-
-.diritti p 
-{
-	font-size:20px;
-	margin: 0;
-	margin-left: 10px;
-	font-stretch: ultra-expanded;
 }

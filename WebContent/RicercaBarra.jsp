@@ -46,7 +46,7 @@
 		 			if(progetti == null || progetti.size()==0)
 					{
 		 			%>
-		 				<p style='font-size:1.2em;'><b>Non è stato ancora caricato nessun progetto.</b></p>
+		 				<p style='font-size:1.2em;'>&nbsp;&nbsp;&nbsp;<b>Non è stato ancora caricato nessun progetto.</b></p>
 		 			<%
 						
 		 			}

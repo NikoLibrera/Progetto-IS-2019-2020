@@ -1,17 +1,16 @@
-
 html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
 
 .all{ display: inline-flex;margin-top:5px; width:100%; margin-left: 5%; margin-right: 5%; padding: 0 1%;}
 
 .pubblicati{ height: 460px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255);
-	 border-style: solid; border-color: black; border-width: 3px; padding:0 20px;margin: 0 1%;}
+	 border-style: solid; border-color: black; border-width: 3px; padding:0 20px;margin: 0 1%; overflow:auto;}
 
 .input-group-prepend span{ width: 50px; background-color: #FFC312; color: black; border:0; }
 
 input:focus{ outline: 0 0 0 0; box-shadow: 0 0 0 0; }
 
-.infoutente {height: 420px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255);
-	margin: 0 1%; border-style: solid; border-color: black; border-width: 3px; padding:20px;}
+.infoutente {height: 460px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255);
+	margin: 0 1%; border-style: solid; border-color: black; border-width: 3px; padding:0 20px;}
 
 .bott { height: 420px; margin-bottom: auto; width: auto; margin: 3% 4%;}
 
@@ -19,3 +18,25 @@ input:focus{ outline: 0 0 0 0; box-shadow: 0 0 0 0; }
 .bott .bottoni{  color: black; background-color: #FFC312; width: 170px; border:none; border-radius: 5px; padding:15px; transition: all 0.5s}
 
 .bott .bottoni:hover{ color: white; background-color: black; cursor: pointer; transition: all 0.5s}
+
+#tabella{width: 100%;}
+
+#tabella td{text-align: left;}
+
+#tabella tr{padding:15px; height: 50px;}
+
+#imgtabella {width: 150px; height:150px; border-style: solid; border-color: black; border-width: 3px; transition: all 0.5s;}
+
+#imgtabella:hover {
+	transition: all 0.5s;
+	cursor: pointer;
+	opacity: 0.6;	
+}
+
+.img{ width: 150px; height:150px;padding:15px}
+
+.titolo{vertical-align: bottom;}
+
+.ancoraTitolo{color:black;}
+
+.descrizione{vertical-align: top;}
