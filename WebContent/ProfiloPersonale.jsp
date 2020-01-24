@@ -22,18 +22,10 @@
 
 	<div><%@ include file="Header.jsp" %></div>
         
-      
-		<div class="blocco2">
-			<br>
-			<h2>Progetti pubblicati</h2>
-		</div>
+      <div class="all">
+		
 
-        <div class="diritti">
-			<img id="copyright" src="images/copyright.png" height="20px" width="20px"><h6>2020 Simplify3D Inc. Tutti i diritti riservati</h6>
-		</div>
-	
-		<div class="blocco1">
-	 	<div class="infoutente float-left">
+	 	<div class="infoutente">
 		 	<p style='font-size:1.2em;'><b>Nome:</b> &nbsp;<%= utente.getNome()%></p>
 		 	<p style='font-size:1.2em;'><b>Cognome:</b> &nbsp;<%= utente.getCognome() %></p>
 		 	<p style='font-size:1.2em;'><b>Username:</b> &nbsp;<%= utente.getUsername() %></p>
@@ -42,19 +34,25 @@
 		 	<p style='font-size:1.2em;'><b>E-Mail:</b> &nbsp;<%= utente.getEmail() %></p>
 		 	<p style='font-size:1.2em;'><b>Data di nascita:</b> &nbsp;<%= utente.getData_nascita() %></p>
 	 	</div>
+
+	 	
+	 	<div class="bott">
+	 		<button class="bottoni"> Notifiche (0)</button>
+	 		<br><br>
+	 		<a href="ModificaPassword.jsp"><button class="bottoni"> Modifica Password</button></a>
+	 		<br><br>
+	 		<button class="bottoni"> Progetti Pubblicati</button>
+	 		<br><br>
+	 		<button class="bottoni"> Progetti Salvati</button>
+	 		<br><br>
+	 		<a href="UploadProgetto.jsp"><button class="bottoni"> Upload Progetto</button></a>
 	 	</div>
 	 	
-	 	<div class="blocco3">
-	 		<button class="btn float-center login_btn"> Notifiche (0)</button>
-	 		<br><br>
-	 		<a href="ModificaPassword.jsp"><button class="btn float-center login_btn"> Modifica Password</button></a>
-	 		<br><br>
-	 		<button class="btn float-center login_btn"> Progetti Pubblicati</button>
-	 		<br><br>
-	 		<button class="btn float-center login_btn"> Progetti Salvati</button>
-	 		<br><br>
-	 		<a href="UploadProgetto.jsp"><button class="btn float-center login_btn"> Upload Progetto</button></a>
-	 	</div>
-		<%@ include file="footer.jsp" %>
+	 	<div class="pubblicati">
+			<h2>Progetti pubblicati</h2>
+		</div>
+	 	
+	  </div>
+	  <div class="footer"><%@ include file="footer.jsp" %></div>
 	</body>
 </html>
