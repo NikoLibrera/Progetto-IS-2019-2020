@@ -22,12 +22,7 @@
 
 	<div><%@ include file="Header.jsp" %></div>
         
-        <div class="blocco" >
-        	<div class="bottoneprofilonelblocco" align="center">
-			 	<button class="btn float-center profiloblocco_btn"><img src="images/utente_profilo.png" height= "70px" width="70px"></button>
-			 </div>
-		</div>
-		
+      
 		<div class="blocco2">
 			<br>
 			<h2>Progetti pubblicati</h2>

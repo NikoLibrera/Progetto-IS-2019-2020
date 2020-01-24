@@ -52,12 +52,12 @@
 			</div>
 			
 			<div class="informazioni">
-				<p style='font-size:1.2em;'><b><%= p.getTitolo() %></b></p>
+				<p style='font-size:1.8em;'><b><%= p.getTitolo() %></b></p>
 				<p style='font-size:1.2em;'><b>Descrizione:</b></p><%= p.getDescrizione() %>
 				<p style='font-size:1.2em;'><b>Consigli di stampa</b></p><%= p.getConsigli() %>
 				<p style='font-size:1.2em;'><b>Download: </b>12
 				<p style='font-size:1.2em;'><b>Versione: </b><%= p.getVersione() %></p>
-				<a style="font-size:1.2em;" href="#">Autore:<%= p.getUsername() %></a>
+				<a style="font-size:1.2em;" href="#">Autore: <%= p.getUsername() %></a>
 			
 			</div>
 			
@@ -78,17 +78,24 @@
 				<% } %>
 					<% if(utente==null) {%>
 						<form action="#" method="post">
-						<p><input type="submit" value="Aggiungi ai Preferiti" disabled="disabled">
+						<p><input type="submit" class="disab" value="Aggiungi ai Preferiti" disabled="disabled">
 						</form>
-					<% } else { %>
-						<form action="#" method="post">
-						<p><input type="submit" value="Aggiungi ai Preferiti">
-						</form>
-					<% } %>
+					<% } else {
+							if(!model.isPreferito(p, utente)){%>
+								<form action="AggiungiPreferiti" method="post">
+								<input type="hidden" name="id" value="<%=p.getId_progetto()%>">
+								<p><input type="submit" value="Aggiungi ai Preferiti">
+								</form>
+					<% 		}else{%>
+								<form action="RimuoviPreferiti" method="post">
+								<input type="hidden" name="id" value="<%=p.getId_progetto()%>">
+								<p><input type="submit" value="Rimuovi dai preferiti">
+								</form>
+					<% 	}} %>
 					
 					<% if(utente==null) {%>
 					<form action="Download" method="post" id="form1">
-						<p><input type="submit" value="Download" disabled="disabled">
+						<p><input type="submit" class="disab" value="Download" disabled="disabled">
 						</form>
 					<% } else { %>
 						<form action="Download" method="post">

@@ -6,6 +6,8 @@
 	display: inline-flex;
 	margin-left:1.5%;
 	margin-top:5px; 
+	border-style: solid;
+	border-color: black;
 }
 
 .immagineCont
@@ -35,9 +37,8 @@
 	width: 20%;
 }
 
-button
+.button input
 {
-	cursor: pointer;
 	text-align: center;
   	text-decoration: none;
   	outline: none;
@@ -49,6 +50,24 @@ button
   	outline: none;
   	height: 50px;
   	font-size: 18px;
+  	transition: all 0.5s
+}
+
+.button input:hover{ color: white; background-color: black; cursor: pointer; transition: all 0.5s}
+
+.contenitore .disab
+{
+	cursor: not-allowed;
+ 	background-color: #808080 ; 
+  	border-color:#FFC312;
+}
+
+.contenitore .disab:hover
+{
+	cursor: not-allowed;
+ 	background-color: #808080 ; 
+  	border-color:#FFC312;
+  	color:black;
 }
 
 .valCommenti

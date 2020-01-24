@@ -2,9 +2,6 @@ body{ padding-top: 50px; }
 
 html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
 
-.blocco{ height: 420px; margin-top: 150px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255) !important; 
-		 margin-left: -680px; border-style: solid; border-color: black; border-width: 3px; }
-
 .blocco1{ height: 420px; margin-top: -480px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255) !important;
 		  margin-left: 80px; border-style: solid; border-color: black; border-width: 3px; }
 

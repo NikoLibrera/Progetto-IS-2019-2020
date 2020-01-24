@@ -51,6 +51,7 @@ public class AggiungiPreferiti extends HttpServlet
 		finally
 		{
 			out.println("<script>");
+			out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+id+"','_self')");
 			out.println("alert('Progetto aggiunto ai preferiti.')");
 			out.println("</script>");
 		}	

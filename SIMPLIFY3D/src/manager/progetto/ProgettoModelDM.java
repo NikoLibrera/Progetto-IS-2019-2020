@@ -408,7 +408,7 @@ public class ProgettoModelDM
 	    boolean n=false;
 	    PreparedStatement preparedStatement = null;
 
-	    final String select_sql = "SELECT * FROM progetto WHERE username=? AND id_progetto=?";
+	    final String select_sql = "SELECT * FROM preferiti WHERE username=? AND id_progetto=?";
 
 	    try 
 	    {
@@ -444,6 +444,7 @@ public class ProgettoModelDM
 	        DriverManagerConnectionPool.releaseConnection(connection);
 	      }
 	    }
+	    System.out.println("isPreferito: " +n);
 	    return n;
 	  }
 }
