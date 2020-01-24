@@ -49,7 +49,7 @@
 	 	</div>
 	 	
 	 	<div class="pubblicati">
-			<h2>Progetti pubblicati</h2>
+			<p style='font-size:1.4em; color:#FFC312;'>&nbsp;&nbsp;&nbsp;<b>Progetti pubblicati</b></p>
 		</div>
 	 	
 	  </div>
