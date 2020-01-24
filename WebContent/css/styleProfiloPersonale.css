@@ -1,6 +1,6 @@
 html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
 
-.all{ display: inline-flex;margin-top:5px; width:100%; margin-left: 5%; margin-right: 5%; padding: 0 1%;}
+.all{ display: inline-flex;margin-top:5px; width:78%;padding: 0 11%;}
 
 .pubblicati{ height: 460px; margin-bottom: auto; width: 450px; background-color: rgb(84,181,255);
 	 border-style: solid; border-color: black; border-width: 3px; padding:0 20px;margin: 0 1%; overflow:auto;}
