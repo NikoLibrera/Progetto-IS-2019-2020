@@ -41,19 +41,19 @@
 	
 	
 	<div class="infoUpload">
-		<form action="Upload" method="post" id="formUpload" enctype="multipart/form-data">
+	<form action="Modifica" method="post" id="formUpload" enctype="multipart/form-data">
 		<%System.out.println(p.getId_progetto()); %>
-		<input type="hidden" value="7" name="id">
-		<p style='font-size:1.2em;' class="InputImage"><input type="file" name="immagine" required onchange="readURL(this);" id="image">
+		<input type="hidden" value="<%=p.getId_progetto() %>" name="id">
+		<p style='font-size:1.2em;' class="InputImage"><input type="file" name="immagine"  onchange="readURL(this);" id="image">
 			<label for="image">Inserisci Immagine</label>
-				<p style='font-size:1.2em;'><input type="text" size="43" name="titolo" required placeholder="Titolo" id="titolo" value="<%=p.getTitolo()%>">
-				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="descrizione" required placeholder="Descrizione"><%=p.getDescrizione()%></textarea>
-				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="consigli" required placeholder="Consigli di Stampa"><%=p.getConsigli()%></textarea>
-				<p style='font-size:1.2em;' class="inputFile"><input type="file" name="progetto" required placeholder="File" id="caricaFile" title="Seleziona un nuovo file ">
+				<p style='font-size:1.2em;'><input type="text" size="43" name="titolo"  placeholder="Titolo" id="titolo" value="<%=p.getTitolo()%>">
+				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="descrizione"  placeholder="Descrizione"><%=p.getDescrizione()%></textarea>
+				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="consigli"  placeholder="Consigli di Stampa"><%=p.getConsigli()%></textarea>
+				<p style='font-size:1.2em;' class="inputFile"><input type="file" name="progetto"  placeholder="File" id="caricaFile" title="Seleziona un nuovo file ">
 				<p style='font-size:1.2em;'>Versione:<input type="text" id="version" name="versione" value="<%=p.getVersione()%>">
 				<p style='font-size:1.2em;'>Categoria: 
 				<select name="categoria" class="form-control">
-					<option value="Seleziona" selected="selected"><%=p.getCategoria()%></option>
+					<option value="<%=p.getCategoria()%>" selected="selected"><%=p.getCategoria()%></option>
 					<option value="Art">Art</option>
 					<option value="Fashion">Fashion</option>
 					<option value="Toys">Toys</option>
@@ -63,7 +63,7 @@
 					<option value="Hobby">Hobby</option>
 					<option value="Tools">Tools</option>
 				</select>
-					
+
 					<p><input type="submit" value="Modifica Progetto" class="inserisci_btn">
 		</form>
 	</div>

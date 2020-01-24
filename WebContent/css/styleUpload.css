@@ -1,13 +1,13 @@
 .contenitore{
 	
 	background-color:rgb(84,181,255);
-	width: 96%;
-	margin-left: 2%;
-	margin-right: 2%;
+	width: 88%;
+	margin-left: 5%;
+	margin-right: 5%;
 	border-style: solid;
 	border-color: black;
 	display:inline-flex;
-	margin-top: 10px;
+	margin-top: 5px;
 	
 }
 

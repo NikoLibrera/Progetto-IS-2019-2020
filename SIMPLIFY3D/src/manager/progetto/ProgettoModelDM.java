@@ -558,7 +558,7 @@ public class ProgettoModelDM
 		PreparedStatement preparedStatement = null;
 		
 		String updateSQL = "UPDATE progetto SET titolo ='"+p.getTitolo()+"',descrizione ='"+p.getDescrizione()+"',"+
-		"file_modello ='?',immagine ='?',consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"',"+
+		"file_modello =?,immagine =?,consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"' "+
 		" WHERE id_progetto = ?";
 		try 
 		{
