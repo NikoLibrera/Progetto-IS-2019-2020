@@ -515,4 +515,41 @@ public class ProgettoModelDM
 			}
 		}
 	}
+
+	public ArrayList<Progetto> ricercaBarra(String contenuto) throws SQLException
+	{
+		Progetto p=null;
+		ArrayList<Progetto> progetti=new ArrayList<Progetto>();
+		Connection conn = DriverManagerConnectionPool.getConnection();
+		try 
+		{
+			Statement st=conn.createStatement();
+			System.out.println("getBarraDiRicerca:" + "SELECT * FROM progetto where titolo LIKE '%"+contenuto+"%' OR username LIKE '%"+contenuto+"%' OR categoria='"+contenuto+"' OR descrizione LIKE '%"+contenuto+"%'");
+			ResultSet result = st.executeQuery("SELECT * FROM progetto where titolo LIKE '%"+contenuto+"%' OR username LIKE '%"+contenuto+"%' OR categoria='"+contenuto+"' OR descrizione LIKE '%"+contenuto+"%'");
+		
+				while(result.next())
+				{
+					int id=result.getInt("id_progetto");
+					String titolo=result.getString("titolo");
+					String descrizione=result.getString("descrizione");
+					Blob file_modello=result.getBlob("file_modello");
+					Blob immagine=result.getBlob("immagine");
+					String consigli=result.getString("consigli");
+					int versione=result.getInt("versione");
+					String username=result.getString("username");
+					String c=result.getString("categoria");
+					
+					p=new Progetto(id, titolo, descrizione, file_modello, immagine, consigli, c, versione, username);
+					progetti.add(p);
+				}
+				DriverManagerConnectionPool.releaseConnection(conn);
+			} 
+			catch (SQLException e) 
+			{
+				e.printStackTrace();
+				
+			}
+		return progetti;
+	}
+	
 }

@@ -13,9 +13,9 @@
 	
 		
 		 <a class="logo" href="HomePage.jsp"><img  class="imgLogo" src="images/logo.PNG" ></a>
-			<form action="#" class="formRicerca">
+			<form action="RicercaBarra.jsp" class="formRicerca" method="get">
 				
-				<input class="ricerca" type="search" placeholder="Digita qui per ricercare un progetto...">
+				<input class="ricerca" type="search" name="contenuto" placeholder="Digita qui per ricercare un progetto...">
 				<button class="button_cerca" type="submit">Cerca</button>
 				</form>
 			<% 	
