@@ -1,4 +1,3 @@
-
 .contenitore
 {
 	width: 97%;
@@ -53,7 +52,13 @@
   	transition: all 0.5s
 }
 
-.button input:hover{ color: white; background-color: black; cursor: pointer; transition: all 0.5s}
+.button input:hover
+{ 
+	color: white; 
+	background-color: black; 
+	cursor: pointer; 
+	transition: all 0.5s;
+}
 
 .contenitore .disab
 {
@@ -97,7 +102,3 @@
   	font-size: 18px;
   	width: 170px;
 }
-
-
-
-

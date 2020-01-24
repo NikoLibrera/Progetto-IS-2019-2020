@@ -1,5 +1,5 @@
-.contenitore{
-	
+.contenitore
+{
 	background-color:rgb(84,181,255);
 	width: 96%;
 	margin-left: 2%;
@@ -8,11 +8,10 @@
 	border-color: black;
 	display:inline-flex;
 	margin-top: 10px;
-	
 }
 
-.caricaFoto{
-	
+.caricaFoto
+{
 	width: 200px;
 	border-style: solid;
 	border-color: black;
@@ -21,34 +20,35 @@
 	margin-top: 5%;
 	margin-bottom: 5%;
 	height: 200px;
-	
 }
+
 .infoUpload
 {
 	margin-left: 100px;
 }
+
 .infoUpload #titolo
 {
 	padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-#version{
+#version
+{
 	padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-
-.caricaFoto img{
-	
+.caricaFoto img
+{
 	width: 200px;
 	height: 200px;
 }
@@ -72,30 +72,15 @@
 	  vertical-align: middle;
 }
 
-
-/*#image {
-	padding: 0;
-  margin: 0;
-  border:none;
-  height: 0;
-  overflow: hidden;
-  width: 0;
-
-  }*/
-  
  .InputImage [type="file"] 
 {
   height: 0;
   overflow: hidden;
   width: 0;
-  
 }
 
-
-  
-
-
-.inserisci_btn{
+.inserisci_btn
+{
 	 background: #FFC312;
 	  border: none;
 	  border-radius: 5px;
@@ -113,17 +98,20 @@
 	  vertical-align: middle;
 }
 
-textarea {
+textarea 
+{
 	width: 400px;
 	height: 70px;
 }
 
-
-select {
+select 
+{
   border: none;
   height: 30px;
 }
-select:hover {
+
+select:hover 
+{
 	background: #FFC312;
 }
 

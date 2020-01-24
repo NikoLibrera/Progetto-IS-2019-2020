@@ -1,5 +1,5 @@
-.contenitore{
-	
+.contenitore
+{
 	background-color:rgb(84,181,255);
 	width: 88%;
 	margin-left: 5%;
@@ -8,11 +8,12 @@
 	border-color: black;
 	display:inline-flex;
 	margin-top: 5px;
-	
+	height: 580px;
+	overflow:auto;	
 }
 
-.caricaFoto{
-	
+.caricaFoto
+{
 	width: 200px;
 	border-style: solid;
 	border-color: black;
@@ -21,26 +22,25 @@
 	margin-top: 5%;
 	margin-bottom: 5%;
 	height: 200px;
-	
 }
+
 .infoUpload
 {
 	margin-left: 100px;
 }
+
 .infoUpload #titolo
 {
 	padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    width:405px;
 }
 
-
-
-.caricaFoto img{
-	
+.caricaFoto img
+{
 	width: 200px;
 	height: 200px;
 }
@@ -64,31 +64,16 @@
 	  vertical-align: middle;
 }
 
-
-/*#image {
-	padding: 0;
-  margin: 0;
-  border:none;
-  height: 0;
-  overflow: hidden;
-  width: 0;
-
-  }*/
-  
  .InputImage [type="file"] 
 {
-  height: 0;
-  overflow: hidden;
-  width: 0;
-  
+	height: 0;
+	overflow: hidden;
+	width: 0;
 }
 
-
-  
-
-
-.inserisci_btn{
-	 background: #FFC312;
+.inserisci_btn
+{
+	  background: #FFC312;
 	  border: none;
 	  border-radius: 5px;
 	  color: black;
@@ -99,44 +84,49 @@
 	  font-weight: 600;
 	  margin-bottom: 1rem;
 	  outline: none;
-	  padding: 1rem 50px;
+	  padding: 1rem 72px;
 	  position: relative;
 	  transition: all 0.3s;
 	  vertical-align: middle;
 }
 
-textarea {
+textarea 
+{
 	width: 400px;
 	height: 70px;
 }
 
-
-select {
-  border: none;
-  height: 30px;
+select 
+{
+	width:405px;
+	height: 30px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
-select:hover {
+
+select:hover 
+{
 	background: #FFC312;
 }
 
  .inputFile [type="file"]
  {
  	background: #FFC312;
-	  border: none;
-	  border-radius: 5px;
-	  color: black;
-	  cursor: pointer;
-	  display: inline-block;
-	  font-family: 'Poppins', sans-serif;
-	  font-size: inherit;
-	  font-weight: 100;
-	  margin-bottom: 1rem;
-	  outline: none;
-	  padding: 1rem 50px;
-	  position: relative;
-	  transition: all 0.3s;
-	  vertical-align: middle;
+    border: none;
+ 	border-radius: 5px;
+	color: black;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'Poppins', sans-serif;
+	font-size: inherit;
+	font-weight: 100;
+	margin-bottom: 1rem;
+	outline: none;
+	padding: 1rem 24px;
+	position: relative;
+	transition: all 0.3s;
+	vertical-align: middle;
+	
  }
-
-
-

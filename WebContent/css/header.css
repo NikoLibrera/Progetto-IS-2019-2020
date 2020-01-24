@@ -156,11 +156,13 @@ li a:hover:not(.active)
 	margin-left: 15px;
 }
 
-.profilo:hover{
+.profilo:hover
+{
 	cursor: pointer;
 }
 
-.logout:hover{
+.logout:hover
+{
 	cursor: pointer;
 }
 

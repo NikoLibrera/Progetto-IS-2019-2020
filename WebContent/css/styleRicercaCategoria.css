@@ -1,48 +1,154 @@
-body{ padding-top: 50px; }
+body
+{ 
+	padding-top: 50px; 
+}
 
-html,body { background-size: cover; background-repeat: no-repeat; height: 100%; font-family: 'Numans', sans-serif; }
+html,body 
+{ 
+	background-size: cover; 
+	background-repeat: no-repeat; 
+	height: 100%; 
+	font-family: 'Numans', sans-serif; 
+}
 
-.racchiudi{ display: inline-flex; width: 100%;}
+.racchiudi
+{ 
+	display: inline-flex; 
+	width: 100%;
+}
 
-.blocco1 { height: 530px; margin-bottom: auto; padding: 0 20px; margin-top:5px; margin-left: 5%; background-color: rgb(84,181,255);
-			border-style: solid; border-color: black; border-width: 3px;}
+.blocco1 
+{ 
+	height: 530px; 
+	margin-bottom: auto;
+	padding: 0 20px; 
+	margin-top:5px; 
+	margin-left: 5%; 
+	background-color: rgb(84,181,255);
+	border-style: solid; 
+	border-color: black; 
+	border-width: 3px;
+}
 			
-.blocco2{ height: 530px; margin-bottom: auto; width: 70%; margin-top:5px; background-color: rgb(84,181,255);
- 		  margin-left: 5%; border-style: solid; border-color: black; border-width: 3px; overflow:auto; }
+.blocco2
+{ 
+	height: 530px; 
+	margin-bottom: auto; 
+	width: 70%; 
+	margin-top:5px; 
+	background-color: rgb(84,181,255);
+    margin-left: 5%; 
+    border-style: solid; 
+    border-color: black; 
+    border-width: 3px; 
+    overflow:auto; 
+}
 
-.input-group-prepend span{ width: 50px; background-color: #FFC312; color: black; border:0 !important; }
+.input-group-prepend span
+{ 
+	width: 50px; 
+	background-color: #FFC312; 
+	color: black; 
+	border:0 !important; 
+}
 
-input:focus{ outline: 0 0 0 0  !important; box-shadow: 0 0 0 0 !important; }
+input:focus
+{ 
+	outline: 0 0 0 0  !important; 
+	box-shadow: 0 0 0 0 !important; 
+}
 
-.bottoni{  color: black; background-color: #FFC312; width: 170px; border:none; border-radius: 5px; padding:15px; transition: all 0.5s}
+.bottoni
+{  
+	color: black; 
+	background-color: #FFC312; 
+	width: 170px; 
+	border:none; 
+	border-radius: 5px; 
+	padding:15px; 
+	transition: all 0.5s;
+}
 
-.bottoni:hover{ color: white; background-color: black; cursor: pointer; transition: all 0.5s}
+.bottoni:hover
+{ 
+	color: white; 
+	background-color: black; 
+	cursor: pointer; 
+	transition: all 0.5s;
+}
 
-#tabella{width: 100%;}
+#tabella
+{
+	width: 100%;
+}
 
-#tabella td{text-align: left;}
+#tabella td
+{
+	text-align: left;
+}
 
-#tabella tr{padding:15px; height: 50px;}
+#tabella tr
+{
+	padding:15px; 
+	height: 50px;
+}
 
-.img{ width: 150px; height:150px;padding:15px}
+.img
+{ 
+	width: 150px; 
+	height:150px;
+	padding:15px;
+}
 
-.titolo{vertical-align: bottom;}
+.titolo
+{
+	vertical-align: bottom;
+}
 
-.ancoraTitolo{color:black;}
+.ancoraTitolo
+{
+	color:black;
+}
 
-.ancoraTitolo:hover{color:#FFC312;}
+.ancoraTitolo:hover
+{
+	color:#FFC312;
+}
 
-.valutazione{vertical-align: bottom; }
+.valutazione
+{
+	vertical-align: bottom; 
+}
 
-.versione{vertical-align: bottom; }
+.versione
+{
+	vertical-align: bottom;
+}
 
-.commenti{vertical-align: bottom; width: 30px; padding: 0 15px;}
+.commenti
+{
+	vertical-align: bottom; 
+	width: 30px; 
+	padding: 0 15px;
+}
 
-.descrizione{vertical-align: top;}
+.descrizione
+{
+	vertical-align: top;
+}
 
-#imgtabella {width: 150px; height:150px; border-style: solid; border-color: black; border-width: 3px; transition: all 0.5s;}
+#imgtabella 
+{
+	width: 150px; 
+	height:150px; 
+	border-style: solid; 
+	border-color: black; 
+	border-width: 3px; 
+	transition: all 0.5s;
+}
 
-#imgtabella:hover {
+#imgtabella:hover 
+{
 	transition: all 0.5s;
 	cursor: pointer;
 	opacity: 0.6;	

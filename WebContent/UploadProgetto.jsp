@@ -31,18 +31,16 @@
 			<img alt="CARICA FOTO" src="images/caricaFoto.jpg" id="immagine">
 		</div>
 	
-	
-	
 	<div class="infoUpload">
 		<form action="Upload" method="post" id="formUpload" enctype="multipart/form-data">
-		<p style='font-size:1.2em;' class="InputImage"><input type="file" name="immagine" required onchange="readURL(this);" id="image">
+		<p style='font-size:1.2em;' class="InputImage " align="center"><input type="file" name="immagine" required onchange="readURL(this);" id="image">
 			<label for="image">Inserisci Immagine</label>
-				<p style='font-size:1.2em;'><input type="text" size="43" name="titolo" required placeholder="Titolo" id="titolo">
-				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="descrizione" required placeholder="Descrizione"></textarea>
-				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="consigli" required placeholder="Consigli di Stampa"></textarea>
-				<p style='font-size:1.2em;' class="inputFile"><input type="file" name="progetto" required placeholder="File" id="caricaFile">
-				<p style='font-size:1.2em;'>Categoria: 
-				<select name="categoria" class="form-control">
+				<p style='font-size:1.2em;' align="center"><input type="text" size="43" name="titolo" required placeholder="Titolo" id="titolo">
+				<p style='font-size:1.2em;' align="center"><textarea cols="40" rows="4" name="descrizione" required placeholder="Descrizione"></textarea>
+				<p style='font-size:1.2em;' align="center"><textarea cols="40" rows="4" name="consigli" required placeholder="Consigli di Stampa"></textarea>
+				<p style='font-size:1.2em;' class="inputFile" align="center"><input type="file" name="progetto" required placeholder="File" id="caricaFile">
+				<p style='font-size:1.2em;' align="center">
+				<select name="categoria" class="form-control" align="center">
 					<option value="Seleziona" selected="selected">Seleziona la categoria</option>
 					<option value="Art">Art</option>
 					<option value="Fashion">Fashion</option>
@@ -54,7 +52,7 @@
 					<option value="Tools">Tools</option>
 				</select>
 					
-					<p><input type="submit" value="Upload progetto" class="inserisci_btn">
+					<p align="center"><input type="submit" value="Upload progetto" class="inserisci_btn">
 		</form>
 	</div>
 	</div>

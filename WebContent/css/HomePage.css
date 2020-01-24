@@ -1,4 +1,5 @@
-.contenitore{
+.contenitore
+{
 	width:100%;
 	display: inline-flex;
 }
@@ -13,25 +14,24 @@
 	border-style: ridge;
 	border-color: black;
 	margin-left: 20px; 
-	margin-right: 20px;
-	
+	margin-right: 20px;	
 }
 
-#textgiallo{
+#textgiallo
+{
 	font-size:30px;
 	color:#FFC312;
 	font-weight: bold;
-	
 }
 
-#textnero{
-	
+#textnero
+{
 	font-size:20px;
 	font-weight: bold;
 }
 
-.progetti{
-	
+.progetti
+{
 	margin-top:25px;
 	width:50%
 	margin-right: 20px;
@@ -41,42 +41,31 @@
 	margin-left: 20px;
 }
 
-
-
-table.featured{
+table.featured
+{
 	
 	width:100%;
 	border-spacing: 10px;
-  border-collapse: separate;
+    border-collapse: separate;
 }
 
-table.featured img{
-	
+table.featured img
+{
 	width:120px;
 	height:120x;
 	margin-left: 3px;
 	margin-right: 3px;
 	margin-top: 3px;
-	
 }
 
-table.featured img:hover{
+table.featured img:hover
+{
 	opacity:0.5;
 }
 
-table.featured td{
-	
+table.featured td
+{
 	border-radius:10px;
 	border-style:ridge;
 	border-color: black;
-	
 }
-
-
-
-
-
-
-
-
-
