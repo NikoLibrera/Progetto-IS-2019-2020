@@ -18,6 +18,7 @@
         
         <link rel="stylesheet" type="text/css" href="css/styleUpload.css">
         <script type="text/javascript" src = "js/caricaImage.js"></script>
+        <script type="text/javascript" src = "js/caricaFile.js"></script>
     </head>
     
 	<body>
@@ -27,17 +28,19 @@
 	<div class="contenitore">
 	
 		<div class="caricaFoto">
-			<img alt="CARICA FOTO" src="" id="immagine">
+			<img alt="CARICA FOTO" src="images/caricaFoto.jpg" id="immagine">
 		</div>
 	
 	
 	
 	<div class="infoUpload">
-		<p style='font-size:1.2em;'>Inserisci immagine:<input type="file" name="immagine" required onchange="readURL(this);" >
-				<p style='font-size:1.2em;'><input type="text" size="43" name="titolo" required placeholder="Titolo">
+		<form action="Upload" method="post" id="formUpload" enctype="multipart/form-data">
+		<p style='font-size:1.2em;' class="InputImage"><input type="file" name="immagine" required onchange="readURL(this);" id="image">
+			<label for="image">Inserisci Immagine</label>
+				<p style='font-size:1.2em;'><input type="text" size="43" name="titolo" required placeholder="Titolo" id="titolo">
 				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="descrizione" required placeholder="Descrizione"></textarea>
 				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="consigli" required placeholder="Consigli di Stampa"></textarea>
-				<p style='font-size:1.2em;'>File: <input type="file" name="progetto" required placeholder="File">
+				<p style='font-size:1.2em;' class="inputFile"><input type="file" name="progetto" required placeholder="File" id="caricaFile">
 				<p style='font-size:1.2em;'>Categoria: 
 				<select name="categoria" class="form-control">
 					<option value="Seleziona" selected="selected">Seleziona la categoria</option>
@@ -52,6 +55,7 @@
 				</select>
 					
 					<p><input type="submit" value="Upload progetto" class="inserisci_btn">
+		</form>
 	</div>
 	</div>
 	

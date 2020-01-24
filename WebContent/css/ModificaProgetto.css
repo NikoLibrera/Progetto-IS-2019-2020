@@ -37,6 +37,14 @@
   box-sizing: border-box;
 }
 
+#version{
+	padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
 
 
 .caricaFoto img{
@@ -137,6 +145,3 @@ select:hover {
 	  transition: all 0.3s;
 	  vertical-align: middle;
  }
-
-
-
