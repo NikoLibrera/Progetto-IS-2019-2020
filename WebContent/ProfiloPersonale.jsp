@@ -31,6 +31,7 @@
 
 	 	<div class="infoutente">
 	 	<p style='font-size:1.4em; color:#FFC312;'>&nbsp;&nbsp;&nbsp;<b>Dati utente</b></p>
+	 		<p align="center"><img src="images/utente_profilo.png" ></p>
 		 	<p style='font-size:1.2em;'><b>Nome:</b> &nbsp;<%= utente.getNome()%></p>
 		 	<p style='font-size:1.2em;'><b>Cognome:</b> &nbsp;<%= utente.getCognome() %></p>
 		 	<p style='font-size:1.2em;'><b>Username:</b> &nbsp;<%= utente.getUsername() %></p>

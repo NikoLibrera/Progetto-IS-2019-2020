@@ -552,4 +552,38 @@ public class ProgettoModelDM
 		return progetti;
 	}
 	
+	public void modificaProgetto(Progetto p,InputStream immagine,InputStream file) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String updateSQL = "UPDATE progetto SET titolo ='"+p.getTitolo()+"',descrizione ='"+p.getDescrizione()+"',"+
+		"file_modello ='?',immagine ='?',consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"',"+
+		" WHERE id_progetto = ?";
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setBlob(1, file);
+			preparedStatement.setBlob(2, immagine);
+			preparedStatement.setInt(3, p.getId_progetto());
+			
+			System.out.println("doModificaProgetto: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		} 
+		finally 
+		{
+			try 
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}	
+	}
+	
 }

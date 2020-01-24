@@ -76,7 +76,7 @@ public class Download extends HttpServlet {
 			
 			
 			response.setContentType("text/html");
-			response.sendRedirect("ProgView.jsp");
+			response.sendRedirect("ProgettoView.jsp");
 		
 	}
 

@@ -235,7 +235,7 @@ public class UtenteModelDM
 	public static Utente getUtenteByUsername(String username) throws SQLException 
 	{
 	    Connection connection = null;
-	    Utente utente = new Utente();
+	    Utente utente =null;
 	    PreparedStatement preparedStatement = null;
 
 	    final String select_sql = "SELECT * FROM utente WHERE username= ?";
@@ -250,8 +250,9 @@ public class UtenteModelDM
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
-	      while (rs.next())
+	      if (rs.next())
 	      {
+	    	  utente=new Utente();
 	        utente.setUsername(rs.getString(1));
 	        utente.setCognome(rs.getString(2));
 	        utente.setNome(rs.getString(3));
