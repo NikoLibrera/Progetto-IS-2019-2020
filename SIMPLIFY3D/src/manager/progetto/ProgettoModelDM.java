@@ -483,4 +483,36 @@ public class ProgettoModelDM
 		}
 		return null;
 	}
+
+	public void doCancellaProgetto(int id, String username) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String deleteSQL = "DELETE FROM progetto WHERE id_progetto = ? AND username = ?";
+		try
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+		
+			preparedStatement.setInt(1, id);
+			preparedStatement.setString(2, username);
+		
+			preparedStatement.executeUpdate();
+			System.out.println("doCancellaProgetto: "+ preparedStatement.toString());
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 }
