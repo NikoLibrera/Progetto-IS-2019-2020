@@ -41,9 +41,9 @@
 	 		<br><br>
 	 		<a href="ModificaPassword.jsp"><button class="bottoni"> Modifica Password</button></a>
 	 		<br><br>
-	 		<button class="bottoni"> Progetti Pubblicati</button>
+	 		<a href="ProgettiPubblicati.jsp"><button class="bottoni"> Progetti Pubblicati</button></a>
 	 		<br><br>
-	 		<button class="bottoni"> Progetti Salvati</button>
+	 		<a href="ProgettiSalvati.jsp"><button class="bottoni"> Progetti Salvati</button></a>
 	 		<br><br>
 	 		<a href="UploadProgetto.jsp"><button class="bottoni"> Upload Progetto</button></a>
 	 	</div>

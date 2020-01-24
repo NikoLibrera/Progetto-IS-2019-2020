@@ -447,4 +447,40 @@ public class ProgettoModelDM
 	    System.out.println("isPreferito: " +n);
 	    return n;
 	  }
+	
+	public static ArrayList<Progetto> getPreferitiByUsername(String username) throws SQLException
+	{
+		Progetto p=null;
+		ProgettoModelDM model=new ProgettoModelDM();
+		ArrayList<Progetto> progetti=new ArrayList<Progetto>();
+		Connection conn = DriverManagerConnectionPool.getConnection();
+		try {
+			Statement st=conn.createStatement();
+			System.out.println("getPreferitiByUsername:" + "select * from preferiti where username="+username);
+			ResultSet result =st.executeQuery("select * from preferiti where username='"+username+"'");
+			while(result.next())
+			{
+				int id=result.getInt("id_progetto");
+				p=model.getProgettoById(id);
+				String titolo=p.getTitolo();
+				String descrizione=p.getDescrizione();
+				Blob file_modello=p.getFile_modello();
+				Blob immagine=p.getImmagine();
+				String consigli=p.getConsigli();
+				int versione=p.getVersione();
+				String u=p.getUsername();
+				String categoria=p.getCategoria();
+				
+				p=new Progetto(id, titolo, descrizione, file_modello, immagine, consigli, categoria, versione, u);
+				progetti.add(p);
+			}
+			DriverManagerConnectionPool.releaseConnection(conn);
+			return progetti;
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+			
+		}
+		return null;
+	}
 }
