@@ -1,3 +1,5 @@
+<%@page import="model.Valutazione"%>
+<%@page import="manager.valcom.ValcomModelDM"%>
 <%@page import="manager.progetto.ProgettoModelDM"%>
 <%@ page language="java" contentType="text/html"
     pageEncoding="UTF-8" import="java.util.*,model.Utente,model.Progetto,java.sql.*" %>
@@ -69,9 +71,56 @@
 										if(titolo.length()>30)
 											titolo= prog.getTitolo().substring(0, 30)+"...";%>
 											<b><a href="ProgettoView.jsp?id=<%=prog.getId_progetto() %>" class="ancoraTitolo"><%=titolo %></a></b></td>
-								<td class="valutazione">valutazione</td>
+								<td class="valutazione">
+								<% 
+								ValcomModelDM modelValCom = new ValcomModelDM();
+								int v = modelValCom.getMediaValutazioniById(prog.getId_progetto());
+								switch(v){
+						    	case 5:%>
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <%  break;
+							    case 4:%>
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <%  break;
+							    case 3:%>
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <%  break;
+							    case 2:%>
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <%  break;
+							    case 1:%>
+							    <img id="idimg" src="images/StarPiena.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <%  break;
+							    case 0:%>
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <img id="idimg" src="images/StarVuota.png">
+							    <% }%>
+								</td>
 								<td class="versione">Versione: <%= prog.getVersione()%></td>
-								<td class="commenti">Commenti</td>
+								<td class="commenti">Commenti: (<%=modelValCom.getNumeroCommentiByIdProgetto(prog.getId_progetto()) %>)</td>
 							</tr>
 							<tr></tr>
 							<tr>

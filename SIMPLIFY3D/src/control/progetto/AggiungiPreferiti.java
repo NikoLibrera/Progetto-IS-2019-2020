@@ -39,7 +39,7 @@ public class AggiungiPreferiti extends HttpServlet
 		
 		Integer idProgetto=0;
 		try{
-			idProgetto=Integer.parseInt(request.getParameter("id_proge"));
+			idProgetto=Integer.parseInt(request.getParameter("id"));
 		} catch (NumberFormatException e) {
 			response.sendRedirect("./HomePage.jsp");
 			return;

@@ -70,14 +70,17 @@
 			
 				<% if(isAuthor==1) {%>
 					<form action="CancellaProgetto" method="post">
+					<input type="hidden" name="id" value="<%=p.getId_progetto()%>">
 					<p><input type="submit" value="Cancella Progetto">
 					</form>
 					<form action="Modifica" method="post">
+					<input type="hidden" name="id" value="<%=p.getId_progetto()%>">
 					<p><input type="submit" value="Modifica Progetto">
 					</form>
 				<% } %>
 				<% if(isAdmin==1 && isAuthor==0) {%>
 					<form action="CancellaProgetto" method="post">
+					<input type="hidden" name="id" value="<%=p.getId_progetto()%>">
 					<p><input type="submit" value="Cancella Progetto">
 					</form>
 				<% } %>

@@ -128,8 +128,7 @@ input:focus
 .commenti
 {
 	vertical-align: bottom; 
-	width: 30px; 
-	padding: 0 15px;
+	padding-right: 50px;
 }
 
 .descrizione
@@ -152,4 +151,10 @@ input:focus
 	transition: all 0.5s;
 	cursor: pointer;
 	opacity: 0.6;	
+}
+
+#idimg
+{
+	width:25px;
+	height: 25px;
 }

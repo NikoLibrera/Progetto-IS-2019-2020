@@ -644,21 +644,33 @@ public class ValcomModelDM {
 		PreparedStatement preparedStatement = null;
 		ValcomModelDM model=new ValcomModelDM();
 		ProgettoModelDM progettoModel=new ProgettoModelDM();
-		Notifica notifica=null;
+		Notifica notifica=new Notifica();
 		Progetto progetto=progettoModel.getProgettoById(commento.getId_progetto());
-		if(progetto.getUsername().equals(anObject))
+		if(progetto.getUsername().equalsIgnoreCase(commento.getUsername()))
+			return null;
+		notifica.setId_commento(commento.getId_commento());
+		notifica.setId_notifica(model.getLastIdNotifica()+1);
+		notifica.setTipo("commento");
+		notifica.setId_progetto(progetto.getId_progetto());
+		notifica.setUsername(progetto.getUsername());
+		notifica.setTitolo(commento.getUsername()+" ha lasciato un commento al progetto: "+progetto.getTitolo());
+		notifica.setImmagine(progetto.getImmagine());
 
-		String insertSQL = "INSERT INTO commento (id_commento, contenuto, username, id_progetto) VALUES (?, ?, ?, ?)"; 
+		String insertSQL = "INSERT INTO notifica (id_notifica,immagine,titolo,tipo,isClicked,id_commento, id_progetto, username ) VALUES (?,?,?,?,?, ?, ?, ?)"; 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, model.getLastIdCommento()+1);
-			preparedStatement.setString(2, commento.getContenuto());
-			preparedStatement.setString(3, commento.getUsername());
-			preparedStatement.setInt(4, idProgetto);
+			preparedStatement.setInt(1,notifica.getId_notifica());
+			preparedStatement.setBlob(2, notifica.getImmagine());
+			preparedStatement.setString(3, notifica.getTitolo());
+			preparedStatement.setString(4, notifica.getTipo());
+			preparedStatement.setInt(5, notifica.isClicked());
+			preparedStatement.setInt(6, notifica.getId_commento());
+			preparedStatement.setInt(7, notifica.getId_progetto());
+			preparedStatement.setString(8, notifica.getUsername());
 
-			System.out.println("inserisciCommento: "+ preparedStatement.toString());
+			System.out.println("creaNotificaCommento: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -674,6 +686,31 @@ public class ValcomModelDM {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+		return notifica;
+	}
+	
+	public int getLastIdNotifica() 
+	{
+		int idNotifica=0;
+		try 
+		{
+	        Connection connection=DriverManagerConnectionPool.getConnection();
+	        
+	        Statement statement=connection.createStatement();
+	        ResultSet r=statement.executeQuery("SELECT MAX(id_notifica) AS id FROM notifica");
+	        if(r.next())
+			{
+	        	idNotifica=r.getInt("id");
+			}
+			
+			connection.close();				
+	
+		}
+		catch (SQLException e) 
+		{
+			System.out.println("Errore durante la connessione." + e.getMessage());
+		}
+		return idNotifica;
 	}
 	
 }

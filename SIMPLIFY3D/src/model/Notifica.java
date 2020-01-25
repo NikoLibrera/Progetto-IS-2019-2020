@@ -7,14 +7,14 @@ public class Notifica
 	private int id_notifica, id_commento, id_risposta, id_progetto, id_valutazione;
 	private Blob immagine;
 	private String titolo, tipo, username;
-	private boolean isClicked;
+	private int isClicked;
 	
 	public Notifica()
 	{
-		
+		this.isClicked = 0;
 	}
 	
-	public Notifica(int id_notifica, Blob immagine, String titolo, String tipo, boolean isClicked,
+	public Notifica(int id_notifica, Blob immagine, String titolo, String tipo, int isClicked,
 					int id_commento, int id_risposta, int id_progetto, int id_valutazione, String username)
 	{
 		this.id_notifica = id_notifica;
@@ -32,10 +32,46 @@ public class Notifica
 	
 	
 	public Notifica(int id_commento, int id_risposta, int id_progetto, int id_valutazione, Blob immagine, String titolo,
-			String tipo, String username, boolean isClicked) {
+			String tipo, String username, int isClicked) {
 		super();
 		this.id_commento = id_commento;
 		this.id_risposta = id_risposta;
+		this.id_progetto = id_progetto;
+		this.id_valutazione = id_valutazione;
+		this.immagine = immagine;
+		this.titolo = titolo;
+		this.tipo = tipo;
+		this.username = username;
+		this.isClicked = isClicked;
+	}
+	
+	public Notifica(int id_commento,int id_progetto, Blob immagine, String titolo,
+			String tipo, String username, int isClicked) {
+		super();
+		this.id_commento = id_commento;
+		this.id_progetto = id_progetto;
+		this.immagine = immagine;
+		this.titolo = titolo;
+		this.tipo = tipo;
+		this.username = username;
+		this.isClicked = isClicked;
+	}
+	
+	public Notifica( int id_risposta,  Blob immagine, int id_progetto,String titolo,
+			String tipo, String username, int isClicked) {
+		super();
+		this.id_risposta = id_risposta;
+		this.id_progetto = id_progetto;
+		this.immagine = immagine;
+		this.titolo = titolo;
+		this.tipo = tipo;
+		this.username = username;
+		this.isClicked = isClicked;
+	}
+	
+	public Notifica( int id_progetto,  Blob immagine, String titolo,
+			String tipo, String username, int isClicked, int id_valutazione) {
+		super();
 		this.id_progetto = id_progetto;
 		this.id_valutazione = id_valutazione;
 		this.immagine = immagine;
@@ -135,12 +171,12 @@ public class Notifica
 		this.username = username;
 	}
 
-	public boolean isClicked() 
+	public int isClicked() 
 	{
 		return isClicked;
 	}
 
-	public void setClicked(boolean isClicked) 
+	public void setClicked(int isClicked) 
 	{
 		this.isClicked = isClicked;
 	}
