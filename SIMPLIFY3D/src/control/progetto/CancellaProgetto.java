@@ -41,21 +41,27 @@ public class CancellaProgetto extends HttpServlet
 		
 		int id = Integer.parseInt(request.getParameter("id"));
 		String username = utente.getUsername();
-		
-		try 
-		{
-			model.doCancellaProgetto(id, username);
-		} 
-		catch (SQLException e) 
-		{
+		try {
+			if(username.equalsIgnoreCase(model.getProgettoById(id).getUsername()) || utente.getIsAdmin()==1) {
+				try 
+				{
+					model.doCancellaProgetto(id, username);
+				} 
+				catch (SQLException e) 
+				{
+					e.printStackTrace();
+				}
+				finally
+				{
+					out.println("<script>");
+					out.println("window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')");
+					out.println("alert('Progetto eliminato con successo')");
+					out.println("</script>");
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally
-		{
-			out.println("<script>");
-			out.println("window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')");
-			out.println("alert('Progetto eliminato con successo')");
-			out.println("</script>");
 		}
 	}
 			

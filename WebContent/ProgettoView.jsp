@@ -64,15 +64,15 @@
 			<div class="button">
 			
 				<% if(isAuthor==1) {%>
-					<form action="#" method="post">
+					<form action="CancellaProgetto" method="post">
 					<p><input type="submit" value="Cancella Progetto">
 					</form>
-					<form action="#" method="post">
+					<form action="Modifica" method="post">
 					<p><input type="submit" value="Modifica Progetto">
 					</form>
 				<% } %>
 				<% if(isAdmin==1 && isAuthor==0) {%>
-					<form action="#" method="post">
+					<form action="CancellaProgetto" method="post">
 					<p><input type="submit" value="Cancella Progetto">
 					</form>
 				<% } %>

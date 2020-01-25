@@ -42,7 +42,12 @@ public class RimuoviPreferiti extends HttpServlet
 		try 
 		{
 			Progetto progetto = model.getProgettoById(id);
-			model.removeFromPreferiti(progetto,utente);
+			if(model.isPreferito(progetto, utente)) {
+				model.removeFromPreferiti(progetto,utente);
+			} else {
+				response.sendRedirect("http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+id);
+				return;
+			}
 		}
 		catch (SQLException e) 
 		{

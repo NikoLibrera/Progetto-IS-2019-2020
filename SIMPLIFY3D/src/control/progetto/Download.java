@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import manager.progetto.ProgettoModelDM;
 import model.Progetto;
+import model.Utente;
 
 /**
  * Servlet implementation class Download
@@ -33,6 +34,12 @@ public class Download extends HttpServlet
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 			String id_progetto=request.getParameter("download");
+			Utente utente = (Utente) request.getSession().getAttribute("utente");
+			if(utente == null)
+			{	
+				response.sendRedirect("./HomePage.jsp");
+				return;
+			}
 			int id=Integer.parseInt(id_progetto);
 			ProgettoModelDM dao=new ProgettoModelDM();
 			Progetto p=null;
@@ -44,7 +51,12 @@ public class Download extends HttpServlet
 			{
 				e1.printStackTrace();
 			}
-			
+			if(p!=null)
+				try {
+					dao.aggiornaDownload(p, utente);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
 			int off=1;
 			String mime=getServletContext().getMimeType("application/zip");
 			response.setContentType(mime);

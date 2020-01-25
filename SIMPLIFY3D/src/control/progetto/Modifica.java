@@ -43,6 +43,8 @@ public class Modifica extends HttpServlet
 		
 		String username = utente.getUsername();
 		
+	
+		
 		String titolo = request.getParameter("titolo");		
 		String descrizione = request.getParameter("descrizione");
 		String consigli = request.getParameter("consigli");
@@ -58,6 +60,13 @@ public class Modifica extends HttpServlet
 		p.setCategoria(categoria);
 		p.setVersione(1);
 		p.setUsername(username);
+		
+		
+		if(!username.equalsIgnoreCase(p.getUsername()))
+		{	
+			response.sendRedirect("./HomePage.jsp");
+			return;
+		}
 		
 		try 
 		{

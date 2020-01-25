@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="ISO-8859-1">
+		<meta charset="utf-8">
 			<title></title>
 			<link rel="stylesheet" type="text/css" href="css/footer.css">
 			
