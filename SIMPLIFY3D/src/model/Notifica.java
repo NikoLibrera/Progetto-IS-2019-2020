@@ -29,6 +29,22 @@ public class Notifica
 		this.username = username;
 	}
 
+	
+	
+	public Notifica(int id_commento, int id_risposta, int id_progetto, int id_valutazione, Blob immagine, String titolo,
+			String tipo, String username, boolean isClicked) {
+		super();
+		this.id_commento = id_commento;
+		this.id_risposta = id_risposta;
+		this.id_progetto = id_progetto;
+		this.id_valutazione = id_valutazione;
+		this.immagine = immagine;
+		this.titolo = titolo;
+		this.tipo = tipo;
+		this.username = username;
+		this.isClicked = isClicked;
+	}
+
 	public int getId_notifica() 
 	{
 		return id_notifica;

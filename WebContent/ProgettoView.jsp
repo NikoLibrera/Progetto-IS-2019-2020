@@ -221,12 +221,22 @@
 					    
 					</fieldset>
 					<input type="hidden" name="id_proge" value="<%=p.getId_progetto()%>">
-					<% if(modelValCom.isValutato(p, utente)) {%>
-						<p><input type="submit" value="Aggiorna Valutazione">
-					<% }else{ %>	
-						<p><input type="submit" value="Inserisci Valutazione">
-					<% } %>
+					<% 	if(utente!=null){
+							if(modelValCom.isValutato(p, utente)) {%>
+							<p><input type="submit" value="Aggiorna Valutazione">
+						<% }else{ %>	
+							<p><input type="submit" value="Inserisci Valutazione">
+						<% }
+						} %>
 				</form>
+				<% 	if(utente!=null){
+							if(modelValCom.isValutato(p, utente)) {%>
+								<form action="EliminaValutazione" method="post">
+								<input type="hidden" name="id_proge" value="<%=p.getId_progetto()%>">
+								<p><input type="submit" value="Elimina Valutazione">
+								</form>
+						<% } 
+						} %>
 			</div>
 			<br>
 			<p style='font-size:1.2em;'>Commenti:(1)</p>

@@ -7,8 +7,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import manager.progetto.ProgettoModelDM;
 import model.Commento;
 import model.DriverManagerConnectionPool;
+import model.Notifica;
 import model.Progetto;
 import model.RispostaCommento;
 import model.Utente;
@@ -603,5 +605,75 @@ public class ValcomModelDM {
 			}
 		}
 	}
+	
+	public void eliminaValutazione(int idProgetto, String username) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		String deleteSQL = "DELETE FROM valutazione WHERE id_progetto = ? AND username = ?";
+		try
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(deleteSQL);
+		
+			preparedStatement.setInt(1, idProgetto);
+			preparedStatement.setString(2, username);
+		
+			preparedStatement.executeUpdate();
+			System.out.println("eliminaValutazione: "+ preparedStatement.toString());
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if(preparedStatement != null)
+					preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 
+	public Notifica creaNotificaCommento(Commento commento) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ValcomModelDM model=new ValcomModelDM();
+		ProgettoModelDM progettoModel=new ProgettoModelDM();
+		Notifica notifica=null;
+		Progetto progetto=progettoModel.getProgettoById(commento.getId_progetto());
+		if(progetto.getUsername().equals(anObject))
+
+		String insertSQL = "INSERT INTO commento (id_commento, contenuto, username, id_progetto) VALUES (?, ?, ?, ?)"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setInt(1, model.getLastIdCommento()+1);
+			preparedStatement.setString(2, commento.getContenuto());
+			preparedStatement.setString(3, commento.getUsername());
+			preparedStatement.setInt(4, idProgetto);
+
+			System.out.println("inserisciCommento: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
 }
