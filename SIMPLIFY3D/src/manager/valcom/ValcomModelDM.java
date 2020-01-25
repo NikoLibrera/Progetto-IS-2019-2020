@@ -265,7 +265,8 @@ public class ValcomModelDM {
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, model.getLastIdCommento()+1);
+			commento.setId_commento(model.getLastIdCommento()+1);
+			preparedStatement.setInt(1, commento.getId_commento());
 			preparedStatement.setString(2, commento.getContenuto());
 			preparedStatement.setString(3, commento.getUsername());
 			preparedStatement.setInt(4, idProgetto);
@@ -273,6 +274,8 @@ public class ValcomModelDM {
 			System.out.println("inserisciCommento: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
+			
+			model.creaNotificaCommento(commento);
 		}
 		finally 
 		{
@@ -417,7 +420,7 @@ public class ValcomModelDM {
 		
 			preparedStatement.executeUpdate();
 			System.out.println("cancellaCommento: "+ preparedStatement.toString());
-			model.cancellaRisposteByIdCommento(idCommento);
+			//model.cancellaRisposteByIdCommento(idCommento);
 			connection.commit();
 		}
 		finally 

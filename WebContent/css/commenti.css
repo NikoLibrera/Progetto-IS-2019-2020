@@ -1,0 +1,111 @@
+.insert{
+	margin-left: 3%;
+}
+
+.insert textarea
+{
+	resize: none;
+}
+
+
+.commenti{
+	margin-top:50px;
+	margin-left: 25%;
+	
+}
+.commenti input
+{
+	cursor: pointer;
+	text-align: center;
+  	text-decoration: none;
+  	outline: none;
+  	border: none;
+  	background-color: #FFC312; 
+  	border-color:#FFC312;
+  	color:black;
+  	border-radius: 15px;
+  	outline: none;
+  	height: 50px;
+  	font-size: 18px;
+}
+#croce
+{
+	margin-left:0;
+	margin-top:10px;
+	cursor: pointer;
+	text-align: center;
+  	text-decoration: none;
+  	outline: none;
+  	border: none;
+  	background-color: #FFC312; 
+  	border-color:#FFC312;
+  	color:black;
+  	outline: none;
+  	width:30px;
+  	height: 30px;
+}
+#contElimina
+{
+	margin-left: 0;
+}
+
+.insertCom{
+	
+	cursor: pointer;
+	text-align: center;
+  	text-decoration: none;
+  	outline: none;
+  	border: none;
+  	background-color: #FFC312; 
+  	border-color:#FFC312;
+  	color:black;
+  	border-radius: 15px;
+  	outline: none;
+  	height: 50px;
+  	font-size: 18px;
+  	
+}
+.commento{
+	margin-top:20px;
+	width:75%;
+	border-style: solid;
+	border-color: rgb(84,181,255);
+	background-color: #f4f9ff;
+	border-width: thin;
+	border-radius: 2px;
+	display: inline-flex;
+}
+.contenitoreCommento
+{
+	width: 90%;
+}
+
+.commento textarea
+{
+	width: 90%;
+}
+
+.commento *{
+	margin-left: 3%;
+}
+
+.risposta
+{
+	margin-left:10%;
+	margin-top:20px;
+	width:75%;
+	border-style: solid;
+	border-color: rgb(84,181,255);
+	background-color: #f4f9ff;
+	border-width: thin;
+	border-radius: 2px;
+}
+.risposta textarea
+{
+	width: 90%;
+}
+.risposta *
+{
+	margin-left: 3%;
+}
+
