@@ -77,6 +77,23 @@
   	color:black;
 }
 
+.disab
+{
+	cursor: not-allowed;
+ 	background-color: #808080 ; 
+	text-align: center;
+  	text-decoration: none;
+  	outline: none;
+  	border: none;
+  	border-color:#FFC312;
+  	color:black;
+  	border-radius: 15px;
+  	outline: none;
+  	height: 50px;
+  	font-size: 18px;
+  	width: 170px;
+}
+
 .valCommenti
 {
 	width: 100%;
