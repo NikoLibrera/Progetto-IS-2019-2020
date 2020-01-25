@@ -19,7 +19,7 @@
 	if(username==null){
 		response.sendRedirect("./HomePage.jsp");
 		return;
-	}else if(username.equalsIgnoreCase(utente.getUsername())){
+	}else if(utente!=null && username.equalsIgnoreCase(utente.getUsername())){
 		response.sendRedirect("./ProfiloPersonale.jsp");
 		return;
 	}
