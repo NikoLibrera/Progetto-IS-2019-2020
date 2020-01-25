@@ -1,11 +1,16 @@
 package manager.valcom;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 
+import model.Commento;
 import model.DriverManagerConnectionPool;
+import model.Progetto;
 
 public class ValcomModelDM {
 	
@@ -142,4 +147,33 @@ public class ValcomModelDM {
 	    }
 	    return media;
 	  }
+
+	public static ArrayList<Commento> getCommentiById(int id) throws SQLException
+	{
+		Commento c=null;
+		ArrayList<Commento> commenti=new ArrayList<Commento>();
+		Connection conn = DriverManagerConnectionPool.getConnection();
+		try 
+		{
+			Statement st=conn.createStatement();
+			 System.out.println("getCommentiById:" + "select * from commento where id_progetto='"+id+"'");
+			ResultSet result =st.executeQuery("select * from commento where id_progetto='"+id+"'");
+			while(result.next())
+			{
+				int id_commento=result.getInt("id_commento");
+				String contenuto=result.getString("contenuto");
+				String username=result.getString("username");
+				
+				c=new Commento(id_commento, contenuto, username, id);
+				commenti.add(c);
+			}
+			DriverManagerConnectionPool.releaseConnection(conn);
+			return commenti;
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
