@@ -55,9 +55,9 @@
 				<p style='font-size:1.8em;'><b><%= p.getTitolo() %></b></p>
 				<p style='font-size:1.2em;'><b>Descrizione:</b></p><%= p.getDescrizione() %>
 				<p style='font-size:1.2em;'><b>Consigli di stampa</b></p><%= p.getConsigli() %>
-				<p style='font-size:1.2em;'><b>Download: </b>12
+				<p style='font-size:1.2em;'><b>Download: </b><%= model.getDownloadById(id) %></p>
 				<p style='font-size:1.2em;'><b>Versione: </b><%= p.getVersione() %></p>
-				<a style="font-size:1.2em;" href="#">Autore: <%= p.getUsername() %></a>
+				<a style="font-size:1.2em;" href="ProfiloUtente.jsp?username=<%= p.getUsername() %>">Autore: <%= p.getUsername() %></a>
 			
 			</div>
 			
