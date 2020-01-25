@@ -17,6 +17,13 @@ public class Commento
 		this.username = username;
 		this.id_progetto = id_progetto;
 	}
+	
+	public Commento(String contenuto, String username, int id_progetto)
+	{
+		this.contenuto = contenuto;
+		this.username = username;
+		this.id_progetto = id_progetto;
+	}
 
 	public int getId_commento()
 	{
