@@ -37,15 +37,34 @@ public class RimuoviPreferiti extends HttpServlet
 			return;
 		}
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		Integer idProgetto=0;
+		try{
+			idProgetto=Integer.parseInt(request.getParameter("id_proge"));
+		} catch (NumberFormatException e) {
+			response.sendRedirect("./HomePage.jsp");
+			return;
+		} 
+		
+		ProgettoModelDM model2 = new ProgettoModelDM();
+		Progetto progetto=null;
+		try {
+			progetto = model2.getProgettoById(idProgetto);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if(progetto == null)
+		{
+			response.sendRedirect("./HomePage.jsp");
+			return;
+		}
 
 		try 
 		{
-			Progetto progetto = model.getProgettoById(id);
 			if(model.isPreferito(progetto, utente)) {
 				model.removeFromPreferiti(progetto,utente);
 			} else {
-				response.sendRedirect("http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+id);
+				response.sendRedirect("http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+idProgetto);
 				return;
 			}
 		}
@@ -56,7 +75,7 @@ public class RimuoviPreferiti extends HttpServlet
 		finally
 		{
 			out.println("<script>");
-			out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+id+"','_self')");
+			out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+idProgetto+"','_self')");
 			out.println("alert('Progetto rimosso dai preferiti.')");
 			out.println("</script>");
 		}	

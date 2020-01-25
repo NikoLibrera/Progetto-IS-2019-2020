@@ -17,6 +17,15 @@ public class Valutazione
 		this.id_progetto = id_progetto;
 		this.username = username;
 	}
+	
+	
+
+	public Valutazione(int voto, int id_progetto, String username) {
+		super();
+		this.voto = voto;
+		this.id_progetto = id_progetto;
+		this.username = username;
+	}
 
 	public int getId_valutazione() 
 	{

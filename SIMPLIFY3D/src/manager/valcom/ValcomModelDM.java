@@ -9,7 +9,10 @@ import java.util.ArrayList;
 
 import model.Commento;
 import model.DriverManagerConnectionPool;
+import model.Progetto;
 import model.RispostaCommento;
+import model.Utente;
+import model.Valutazione;
 
 public class ValcomModelDM {
 	
@@ -260,7 +263,7 @@ public class ValcomModelDM {
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, model.getLastIdCommento(idProgetto)+1);
+			preparedStatement.setInt(1, model.getLastIdCommento()+1);
 			preparedStatement.setString(2, commento.getContenuto());
 			preparedStatement.setString(3, commento.getUsername());
 			preparedStatement.setInt(4, idProgetto);
@@ -283,7 +286,7 @@ public class ValcomModelDM {
 		}
 	}
 	
-	public int getLastIdCommento(int idProgetto) 
+	public int getLastIdCommento() 
 	{
 		int idCommento=0;
 		try 
@@ -291,7 +294,7 @@ public class ValcomModelDM {
 	        Connection connection=DriverManagerConnectionPool.getConnection();
 	        
 	        Statement statement=connection.createStatement();
-	        ResultSet r=statement.executeQuery("SELECT MAX(id_commento) AS id FROM commento WHERE id_progetto='"+idProgetto+"'");
+	        ResultSet r=statement.executeQuery("SELECT MAX(id_commento) AS id FROM commento");
 	        if(r.next())
 			{
 	        	idCommento=r.getInt("id");
@@ -318,7 +321,7 @@ public class ValcomModelDM {
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, model.getLastIdRisposta(idCommento)+1);
+			preparedStatement.setInt(1, model.getLastIdRisposta()+1);
 			preparedStatement.setString(2, risposta.getContenuto());
 			preparedStatement.setString(3, risposta.getUsername());
 			preparedStatement.setInt(4, idCommento);
@@ -341,7 +344,7 @@ public class ValcomModelDM {
 		}
 	}
 	
-	public int getLastIdRisposta(int idCommento) 
+	public int getLastIdRisposta() 
 	{
 		int idRisposta=0;
 		try 
@@ -349,7 +352,7 @@ public class ValcomModelDM {
 	        Connection connection=DriverManagerConnectionPool.getConnection();
 	        
 	        Statement statement=connection.createStatement();
-	        ResultSet r=statement.executeQuery("SELECT MAX(id_risposta_commento) AS id FROM risposta_commento WHERE id_commento='"+idCommento+"'");
+	        ResultSet r=statement.executeQuery("SELECT MAX(id_risposta_commento) AS id FROM risposta_commento");
 	        if(r.next())
 			{
 	        	idRisposta=r.getInt("id");
@@ -460,4 +463,145 @@ public class ValcomModelDM {
 		}
 	}
 	
+	public void inserisciValutazione(Valutazione valutazione,int idProgetto) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ValcomModelDM model=new ValcomModelDM();
+		
+		
+		String insertSQL = "INSERT INTO valutazione (id_valutazione, voto, id_progetto, username) VALUES (?, ?, ?, ?)"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setInt(1, model.getLastIdValutazione()+1);
+			preparedStatement.setInt(2, valutazione.getVoto());
+			preparedStatement.setInt(3, idProgetto);
+			preparedStatement.setString(4, valutazione.getUsername());
+			
+
+			System.out.println("inserisciValutazione: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public int getLastIdValutazione() 
+	{
+		int idValutazione=0;
+		try 
+		{
+	        Connection connection=DriverManagerConnectionPool.getConnection();
+	        
+	        Statement statement=connection.createStatement();
+	        ResultSet r=statement.executeQuery("SELECT MAX(id_valutazione) AS id FROM valutazione");
+	        if(r.next())
+			{
+	        	idValutazione=r.getInt("id");
+			}
+			
+			connection.close();				
+	
+		}
+		catch (SQLException e) 
+		{
+			System.out.println("Errore durante la connessione." + e.getMessage());
+		}
+		return idValutazione;
+	}
+	
+	public boolean isValutato(Progetto progetto, Utente utente) throws SQLException 
+	{
+	    Connection connection = null;
+	    boolean n=false;
+	    PreparedStatement preparedStatement = null;
+
+	    final String select_sql = "SELECT * FROM valutazione WHERE username=? AND id_progetto=?";
+
+	    try 
+	    {
+	      connection = DriverManagerConnectionPool.getConnection();
+	      preparedStatement = connection.prepareStatement(select_sql);
+
+		  preparedStatement.setString(1, utente.getUsername());
+		  preparedStatement.setInt(2, progetto.getId_progetto());
+
+	      System.out.println("isValutato:" + preparedStatement.toString());
+
+	      ResultSet rs = preparedStatement.executeQuery();
+
+	      if (rs.next())
+	      {
+	    	  n=true;
+	      }
+	    } 
+	    catch(Exception e){
+	    	e.printStackTrace();
+	    }
+	    finally 
+	    {
+	      try 
+	      {
+	        if (preparedStatement != null) 
+	        {
+	          preparedStatement.close();
+	        }
+	      } 
+	      finally 
+	      {
+	        DriverManagerConnectionPool.releaseConnection(connection);
+	      }
+	    }
+	    return n;
+	}
+
+	public void aggiornaValutazione(Valutazione valutazione,int idProgetto) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ValcomModelDM model=new ValcomModelDM();
+		
+		
+		String updateSQL = "UPDATE valutazione set id_valutazione=? , voto = ? , id_progetto = ? where username = ?"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setInt(1, model.getLastIdValutazione()+1);
+			preparedStatement.setInt(2, valutazione.getVoto());
+			preparedStatement.setInt(3, idProgetto);
+			preparedStatement.setString(4, valutazione.getUsername());
+			
+
+			System.out.println("aggiornaValutazione: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+
 }

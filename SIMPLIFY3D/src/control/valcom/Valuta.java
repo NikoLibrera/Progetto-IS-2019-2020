@@ -1,38 +1,38 @@
-package control.progetto;
+package control.valcom;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 
 import manager.progetto.ProgettoModelDM;
+import manager.valcom.ValcomModelDM;
 import model.Progetto;
 import model.Utente;
+import model.Valutazione;
 
-@WebServlet("/CancellaProgetto")
-@MultipartConfig(maxFileSize=16177216)
-public class CancellaProgetto extends HttpServlet 
+@WebServlet("/Valuta")
+public class Valuta extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
-	
-    public CancellaProgetto() 
+
+    public Valuta() 
     {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		ProgettoModelDM model = new ProgettoModelDM();
+		ValcomModelDM model = new ValcomModelDM();
 		PrintWriter out = response.getWriter();
 		
 		Utente utente = (Utente) request.getSession().getAttribute("utente");
+
 		if(utente == null)
 		{	
 			response.sendRedirect("./HomePage.jsp");
@@ -60,26 +60,44 @@ public class CancellaProgetto extends HttpServlet
 			response.sendRedirect("./HomePage.jsp");
 			return;
 		}
-		String username = utente.getUsername();
-		if(username.equalsIgnoreCase(progetto.getUsername()) || utente.getIsAdmin()==1) {
-			try 
-			{
-				model.doCancellaProgetto(idProgetto, username);
-			} 
-			catch (SQLException e) 
-			{
-				e.printStackTrace();
+		int voto=Integer.parseInt(request.getParameter("rating"));
+		
+		if(voto<1 || voto >5)
+		{	
+			response.sendRedirect("./ProgettoView.jsp?id="+idProgetto);
+			return;
+		}
+		Valutazione valutazione=new Valutazione(voto, idProgetto, utente.getUsername());
+		boolean presente=false;
+		try 
+		{
+			if(model.isValutato(progetto, utente)) {
+				model.aggiornaValutazione(valutazione, idProgetto);
+				presente=true;
 			}
-			finally
-			{
+			else
+				model.inserisciValutazione(valutazione, idProgetto);
+		}
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			if(presente) {
 				out.println("<script>");
-				out.println("window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')");
-				out.println("alert('Progetto eliminato con successo')");
+				out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+idProgetto+"','_self')");
+				out.println("alert('Valutazione aggiornata.')");
+				out.println("</script>");
+			} else {
+				out.println("<script>");
+				out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+idProgetto+"','_self')");
+				out.println("alert('Valutazione inserita.')");
 				out.println("</script>");
 			}
-		}
+		}	
 	}
-			
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		doGet(request, response);

@@ -1,3 +1,5 @@
+<%@page import="model.Valutazione"%>
+<%@page import="manager.valcom.ValcomModelDM"%>
 <%@page import="manager.progetto.ProgettoModelDM"%>
 <%@ page language="java" contentType="text/html"
     pageEncoding="UTF-8" import="java.util.*,model.Utente,model.Progetto,java.sql.*" %>
@@ -27,6 +29,9 @@
 		if(utente.getUsername().equalsIgnoreCase(p.getUsername()))
 			isAuthor=1;
 	}
+	
+	ValcomModelDM modelValCom = new ValcomModelDM();
+	int v = modelValCom.getMediaValutazioniById(id);
 	%>          
 <!DOCTYPE html>
 <html>
@@ -109,10 +114,122 @@
 		</div>
 	
 		<div class="valCommenti">
-		
-		<p style='font-size:1.2em;'>Valutazione:(2)</p>
-		<p style='font-size:1.2em;'>Commenti:(1)</p>
-		
+			<div class ="valutazione">
+				<form action="Valuta" method="post">
+					<fieldset class="rating">
+					
+					    Valutazione: (<%=modelValCom.getNumeroValutazioniByIdProgetto(id) %>)
+					    <% switch(v){
+					    	case 5:%>
+						    <input type="radio" id="star5" name="rating" value="5"  checked="checked"/>
+						    <label class = "full" for="star5"></label>
+						    
+						    <input type="radio" id="star4" name="rating" value="4"/>
+						    <label class = "full" for="star4"></label>
+						    
+						    <input type="radio" id="star3" name="rating" value="3" />
+						    <label class = "full" for="star3"></label>
+						    
+						    <input type="radio" id="star2" name="rating" value="2"/>
+						    <label class = "full" for="star2"></label>
+						    
+						    <input type="radio" id="star1" name="rating" value="1"/>
+						    <label class = "full" for="star1"></label>
+						    <%  break;
+						    case 4:%>
+						    <input type="radio" id="star5" name="rating" value="5"  />
+						    <label class = "full" for="star5"></label>
+						    
+						    <input type="radio" id="star4" name="rating" value="4"checked="checked"/>
+						    <label class = "full" for="star4"></label>
+						    
+						    <input type="radio" id="star3" name="rating" value="3" />
+						    <label class = "full" for="star3"></label>
+						    
+						    <input type="radio" id="star2" name="rating" value="2"/>
+						    <label class = "full" for="star2"></label>
+						    
+						    <input type="radio" id="star1" name="rating" value="1"/>
+						    <label class = "full" for="star1"></label>
+						    <%  break;
+						    case 3:%>
+						    <input type="radio" id="star5" name="rating" value="5"  />
+						    <label class = "full" for="star5"></label>
+						    
+						    <input type="radio" id="star4" name="rating" value="4"/>
+						    <label class = "full" for="star4"></label>
+						    
+						    <input type="radio" id="star3" name="rating" value="3" checked="checked" />
+						    <label class = "full" for="star3"></label>
+						    
+						    <input type="radio" id="star2" name="rating" value="2"/>
+						    <label class = "full" for="star2"></label>
+						    
+						    <input type="radio" id="star1" name="rating" value="1"/>
+						    <label class = "full" for="star1"></label>
+						    <%  break;
+						    case 2:%>
+						    <input type="radio" id="star5" name="rating" value="5"  />
+						    <label class = "full" for="star5"></label>
+						    
+						    <input type="radio" id="star4" name="rating" value="4"/>
+						    <label class = "full" for="star4"></label>
+						    
+						    <input type="radio" id="star3" name="rating" value="3" />
+						    <label class = "full" for="star3"></label>
+						    
+						    <input type="radio" id="star2" name="rating" value="2" checked="checked"/>
+						    <label class = "full" for="star2"></label>
+						    
+						    <input type="radio" id="star1" name="rating" value="1"/>
+						    <label class = "full" for="star1"></label>
+						    <%  break;
+						    case 1:%>
+						    <input type="radio" id="star5" name="rating" value="5"  />
+						    <label class = "full" for="star5"></label>
+						    
+						    <input type="radio" id="star4" name="rating" value="4"/>
+						    <label class = "full" for="star4"></label>
+						    
+						    <input type="radio" id="star3" name="rating" value="3" />
+						    <label class = "full" for="star3"></label>
+						    
+						    <input type="radio" id="star2" name="rating" value="2"/>
+						    <label class = "full" for="star2"></label>
+						    
+						    <input type="radio" id="star1" name="rating" value="1" checked="checked"/>
+						    <label class = "full" for="star1"></label>
+						    <%  break;
+						    case 0:%>
+						    <input type="radio" id="star5" name="rating" value="5"  />
+						    <label class = "full" for="star5"></label>
+						    
+						    <input type="radio" id="star4" name="rating" value="4"/>
+						    <label class = "full" for="star4"></label>
+						    
+						    <input type="radio" id="star3" name="rating" value="3" />
+						    <label class = "full" for="star3"></label>
+						    
+						    <input type="radio" id="star2" name="rating" value="2"/>
+						    <label class = "full" for="star2"></label>
+						    
+						    <input type="radio" id="star1" name="rating" value="1"/>
+						    <label class = "full" for="star1"></label>
+						   
+						    
+						    <% }%>
+					    
+					</fieldset>
+					<input type="hidden" name="id_proge" value="<%=p.getId_progetto()%>">
+					<% if(modelValCom.isValutato(p, utente)) {%>
+						<p><input type="submit" value="Aggiorna Valutazione">
+					<% }else{ %>	
+						<p><input type="submit" value="Inserisci Valutazione">
+					<% } %>
+				</form>
+			</div>
+			<br>
+			<p style='font-size:1.2em;'>Commenti:(1)</p>
 		</div>
 	
 		<div><%@ include file="footer.jsp" %></div>

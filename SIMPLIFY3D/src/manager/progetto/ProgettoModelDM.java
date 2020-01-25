@@ -452,7 +452,6 @@ public class ProgettoModelDM
 	        DriverManagerConnectionPool.releaseConnection(connection);
 	      }
 	    }
-	    System.out.println("isPreferito: " +n);
 	    return n;
 	  }
 	

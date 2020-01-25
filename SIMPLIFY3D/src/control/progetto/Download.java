@@ -40,20 +40,39 @@ public class Download extends HttpServlet
 				response.sendRedirect("./HomePage.jsp");
 				return;
 			}
-			int id=Integer.parseInt(id_progetto);
 			ProgettoModelDM dao=new ProgettoModelDM();
-			Progetto p=null;
+			Integer idProgetto=0;
+			try{
+				idProgetto=Integer.parseInt(request.getParameter("id_proge"));
+			} catch (NumberFormatException e) {
+				response.sendRedirect("./HomePage.jsp");
+				return;
+			} 
+			
+			ProgettoModelDM model2 = new ProgettoModelDM();
+			Progetto progetto=null;
+			try {
+				progetto = model2.getProgettoById(idProgetto);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			if(progetto == null)
+			{
+				response.sendRedirect("./HomePage.jsp");
+				return;
+			}
 			try 
 			{
-				p = dao.getProgettoById(id);
+				progetto = dao.getProgettoById(idProgetto);
 			} 
 			catch (SQLException e1) 
 			{
 				e1.printStackTrace();
 			}
-			if(p!=null)
+			if(progetto!=null)
 				try {
-					dao.aggiornaDownload(p, utente);
+					dao.aggiornaDownload(progetto, utente);
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
@@ -62,11 +81,11 @@ public class Download extends HttpServlet
 			response.setContentType(mime);
 			OutputStream out=response.getOutputStream();
 			ZipOutputStream zip=new ZipOutputStream(out);
-			response.setHeader("Content-Disposition", "attachment; filename=\""+p.getTitolo()+".zip\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\""+progetto.getTitolo()+".zip\"");
 			
 			
-			Blob file=p.getFile_modello();
-			String nome=p.getTitolo();
+			Blob file=progetto.getFile_modello();
+			String nome=progetto.getTitolo();
 			
 			try 
 			{
