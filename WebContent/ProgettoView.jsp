@@ -122,8 +122,8 @@
 		<div class ="valutazione">
 				<form action="Valuta" method="post">
 					<fieldset class="rating">
-					
-					    Valutazione: (<%=daoCom.getNumeroValutazioniByIdProgetto(id) %>)
+					<br>
+					   Valutazione: (<%=daoCom.getNumeroValutazioniByIdProgetto(id) %>)
 					    <% switch(v){
 					    	case 5:%>
 						    <input type="radio" id="star5" name="rating" value="5"  checked="checked"/>
@@ -223,12 +223,11 @@
 						   
 						    
 						    <% }%>
-					    
 					</fieldset>
 					<input type="hidden" name="id_proge" value="<%=p.getId_progetto()%>">
 					<% 	if(utente!=null){
 							if(daoCom.isValutato(p, utente)) {%>
-							<p><input type="submit" value="Aggiorna Valutazione">
+							<br><p><input type="submit" value="Aggiorna Valutazione">
 						<% }else{ %>	
 							<p><input type="submit" value="Inserisci Valutazione">
 						<% }
@@ -260,7 +259,6 @@
 		</div>
 		
 		<div class="commenti">
-			
 			<%
 			for(int i=0;i<commenti.size();i++)
 			{
