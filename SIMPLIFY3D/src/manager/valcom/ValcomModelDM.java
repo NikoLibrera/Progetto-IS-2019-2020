@@ -34,7 +34,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idProgetto);
 
-	      System.out.println("getNumeroValutazioniByIdProgetto: ");
+	      System.out.println("getNumeroValutazioniByIdProgetto: "+preparedStatement.toString());
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -78,7 +78,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idProgetto);
 
-	      System.out.println("getNumeroCommentiByIdProgetto: ");
+	      System.out.println("getNumeroCommentiByIdProgetto: "+preparedStatement.toString());
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -122,7 +122,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idCommento);
 
-	      System.out.println("getNumeroRisposteByIdCommento: ");
+	      System.out.println("getNumeroRisposteByIdCommento: "+preparedStatement.toString());
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -167,7 +167,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, id);
 
-	      System.out.println("getMediaValutazioniById: ");
+	      System.out.println("getMediaValutazioniById: "+preparedStatement.toString());
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -272,7 +272,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(3, commento.getUsername());
 			preparedStatement.setInt(4, idProgetto);
 
-			System.out.println("inserisciCommento: ");
+			System.out.println("inserisciCommento: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 			
@@ -334,7 +334,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(3, risposta.getUsername());
 			preparedStatement.setInt(4, idCommento);
 
-			System.out.println("inserisciRisposta: ");
+			System.out.println("inserisciRisposta: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 			
@@ -424,7 +424,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(1, idCommento);
 		
 			preparedStatement.executeUpdate();
-			System.out.println("cancellaCommento: ");
+			System.out.println("cancellaCommento: "+preparedStatement.toString());
 			//model.cancellaRisposteByIdCommento(idCommento);
 			connection.commit();
 		}
@@ -456,7 +456,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(1, idCommento);
 		
 			preparedStatement.executeUpdate();
-			System.out.println("cancellaRisposteByIdCommento: ");
+			System.out.println("cancellaRisposteByIdCommento: "+preparedStatement.toString());
 			connection.commit();
 		}
 		finally 
@@ -493,7 +493,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(4, valutazione.getUsername());
 			
 
-			System.out.println("inserisciValutazione: ");
+			System.out.println("inserisciValutazione: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 			
@@ -553,7 +553,7 @@ public class ValcomModelDM {
 		  preparedStatement.setString(1, utente.getUsername());
 		  preparedStatement.setInt(2, progetto.getId_progetto());
 
-	      System.out.println("isValutato: ");
+	      System.out.println("isValutato: "+preparedStatement.toString());
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -600,7 +600,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(4, valutazione.getUsername());
 			
 
-			System.out.println("aggiornaValutazione: ");
+			System.out.println("aggiornaValutazione: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -633,7 +633,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(2, username);
 		
 			preparedStatement.executeUpdate();
-			System.out.println("eliminaValutazione: ");
+			System.out.println("eliminaValutazione: "+preparedStatement.toString());
 			connection.commit();
 		}
 		finally 
@@ -682,7 +682,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(7, notifica.getId_progetto());
 			preparedStatement.setString(8, notifica.getUsername());
 
-			System.out.println("creaNotificaCommento: ");
+			System.out.println("creaNotificaCommento: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -761,7 +761,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(9, notifica.getId_progetto());
 			
 
-			System.out.println("creaNotificaRisposta: ");
+			System.out.println("creaNotificaRisposta: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -795,7 +795,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idCommento);
 
-	      System.out.println("getCommentoById: ");
+	      System.out.println("getCommentoById: "+preparedStatement.toString());
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -861,7 +861,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(7, notifica.getId_progetto());
 			preparedStatement.setString(8, notifica.getUsername());
 
-			System.out.println("creaNotificaValutazione: ");
+			System.out.println("creaNotificaValutazione: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -931,7 +931,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setString(1, username);
 	      
-	      System.out.println("getNumeroNotificheNonLette: ");
+	      System.out.println("getNumeroNotificheNonLette: "+preparedStatement.toString());
 	      ResultSet rs = preparedStatement.executeQuery();
 
 	      if (rs.next())
@@ -973,7 +973,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(1, notifica.getId_notifica());
 			
 
-			System.out.println("setClickedNotifica: ");
+			System.out.println("setClickedNotifica: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
