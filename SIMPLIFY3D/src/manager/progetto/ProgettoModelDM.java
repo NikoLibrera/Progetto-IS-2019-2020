@@ -249,7 +249,6 @@ public class ProgettoModelDM
 		String updateSQL = "UPDATE progetto SET titolo ='"+p.getTitolo()+"',descrizione ='"+p.getDescrizione()+"',"+
 		"file_modello ='"+p.getFile_modello()+"',immagine ='"+p.getImmagine()+"',consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"',"+
 		"versione='"+p.getVersione()+"' WHERE id_progetto = ?";
-		System.out.println("cazzo "+p.getVersione()); 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
@@ -566,8 +565,8 @@ public class ProgettoModelDM
 		PreparedStatement preparedStatement = null;
 		
 		String updateSQL = "UPDATE progetto SET titolo ='"+p.getTitolo()+"',descrizione ='"+p.getDescrizione()+"',"+
-		"file_modello =?,immagine =?,consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"' "+
-		" WHERE id_progetto = ?";
+		"file_modello =?,immagine =?,consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"', "+
+		"versione='"+p.getVersione()+"' WHERE id_progetto = ?";
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();

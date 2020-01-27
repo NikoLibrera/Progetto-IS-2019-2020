@@ -72,6 +72,7 @@ public class Modifica extends HttpServlet
 		Part file_modello = request.getPart("progetto");
 		Part immagine = request.getPart("immagine");
 		
+		
 		Progetto p = new Progetto();
 		p.setId_progetto(idProgetto);
 		p.setTitolo(titolo);
@@ -80,7 +81,7 @@ public class Modifica extends HttpServlet
 		p.setCategoria(categoria);
 		p.setVersione(progetto.getVersione()+1);
 		p.setUsername(username);
-		System.out.println("figa "+p.getVersione());
+		
 		if(!username.equalsIgnoreCase(p.getUsername()))
 		{	
 			response.sendRedirect("./HomePage.jsp");
@@ -89,7 +90,17 @@ public class Modifica extends HttpServlet
 		
 		try 
 		{
-			model.modificaProgetto(p, file_modello.getInputStream(), immagine.getInputStream());
+			if(file_modello.getSize()==0) {
+				if(immagine.getSize()==0) 
+					model.modificaProgetto(p, progetto.getImmagine().getBinaryStream(),progetto.getFile_modello().getBinaryStream());
+				else
+					model.modificaProgetto(p, immagine.getInputStream(),progetto.getFile_modello().getBinaryStream());
+			}else {
+				if(immagine.getSize()==0) 
+					model.modificaProgetto(p, progetto.getImmagine().getBinaryStream(),file_modello.getInputStream());
+				else
+					model.modificaProgetto(p, immagine.getInputStream(),file_modello.getInputStream());
+			}
 		} 
 		catch (SQLException e) 
 		{
