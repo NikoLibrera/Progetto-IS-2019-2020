@@ -34,7 +34,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idProgetto);
 
-	      System.out.println("getNumeroValutazioniByIdProgetto:" + preparedStatement.toString());
+	      System.out.println("getNumeroValutazioniByIdProgetto: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -78,7 +78,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idProgetto);
 
-	      System.out.println("getNumeroCommentiByIdProgetto:" + preparedStatement.toString());
+	      System.out.println("getNumeroCommentiByIdProgetto: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -122,7 +122,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idCommento);
 
-	      System.out.println("getNumeroRisposteByIdCommento:" + preparedStatement.toString());
+	      System.out.println("getNumeroRisposteByIdCommento: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -167,7 +167,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, id);
 
-	      System.out.println("getMediaValutazioniById:" + preparedStatement.toString());
+	      System.out.println("getMediaValutazioniById: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -205,7 +205,7 @@ public class ValcomModelDM {
 		try 
 		{
 			Statement st=conn.createStatement();
-			 System.out.println("getCommentiByIdProgetto:" + "select * from commento where id_progetto='"+idProgetto+"'");
+			System.out.println("getCommentiByIdProgetto: " + "select * from commento where id_progetto='"+idProgetto+"'");
 			ResultSet result =st.executeQuery("select * from commento where id_progetto='"+idProgetto+"'");
 			while(result.next())
 			{
@@ -272,7 +272,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(3, commento.getUsername());
 			preparedStatement.setInt(4, idProgetto);
 
-			System.out.println("inserisciCommento: "+ preparedStatement.toString());
+			System.out.println("inserisciCommento: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 			
@@ -334,7 +334,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(3, risposta.getUsername());
 			preparedStatement.setInt(4, idCommento);
 
-			System.out.println("inserisciRisposta: "+ preparedStatement.toString());
+			System.out.println("inserisciRisposta: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 			
@@ -424,7 +424,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(1, idCommento);
 		
 			preparedStatement.executeUpdate();
-			System.out.println("cancellaCommento: "+ preparedStatement.toString());
+			System.out.println("cancellaCommento: ");
 			//model.cancellaRisposteByIdCommento(idCommento);
 			connection.commit();
 		}
@@ -456,7 +456,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(1, idCommento);
 		
 			preparedStatement.executeUpdate();
-			System.out.println("cancellaRisposteByIdCommento: "+ preparedStatement.toString());
+			System.out.println("cancellaRisposteByIdCommento: ");
 			connection.commit();
 		}
 		finally 
@@ -493,7 +493,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(4, valutazione.getUsername());
 			
 
-			System.out.println("inserisciValutazione: "+ preparedStatement.toString());
+			System.out.println("inserisciValutazione: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 			
@@ -553,7 +553,7 @@ public class ValcomModelDM {
 		  preparedStatement.setString(1, utente.getUsername());
 		  preparedStatement.setInt(2, progetto.getId_progetto());
 
-	      System.out.println("isValutato:" + preparedStatement.toString());
+	      System.out.println("isValutato: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -600,7 +600,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(4, valutazione.getUsername());
 			
 
-			System.out.println("aggiornaValutazione: "+ preparedStatement.toString());
+			System.out.println("aggiornaValutazione: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -633,7 +633,7 @@ public class ValcomModelDM {
 			preparedStatement.setString(2, username);
 		
 			preparedStatement.executeUpdate();
-			System.out.println("eliminaValutazione: "+ preparedStatement.toString());
+			System.out.println("eliminaValutazione: ");
 			connection.commit();
 		}
 		finally 
@@ -682,7 +682,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(7, notifica.getId_progetto());
 			preparedStatement.setString(8, notifica.getUsername());
 
-			System.out.println("creaNotificaCommento: "+ preparedStatement.toString());
+			System.out.println("creaNotificaCommento: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -761,7 +761,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(9, notifica.getId_progetto());
 			
 
-			System.out.println("creaNotificaRisposta: "+ preparedStatement.toString());
+			System.out.println("creaNotificaRisposta: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -795,7 +795,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setInt(1, idCommento);
 
-	      System.out.println("getCommentoById:" + preparedStatement.toString());
+	      System.out.println("getCommentoById: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -861,7 +861,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(7, notifica.getId_progetto());
 			preparedStatement.setString(8, notifica.getUsername());
 
-			System.out.println("creaNotificaValutazione: "+ preparedStatement.toString());
+			System.out.println("creaNotificaValutazione: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -931,7 +931,7 @@ public class ValcomModelDM {
 
 	      preparedStatement.setString(1, username);
 	      
-	      System.out.println("getNumeroNotificheNonLette: "+ preparedStatement.toString());
+	      System.out.println("getNumeroNotificheNonLette: ");
 	      ResultSet rs = preparedStatement.executeQuery();
 
 	      if (rs.next())
@@ -973,7 +973,7 @@ public class ValcomModelDM {
 			preparedStatement.setInt(1, notifica.getId_notifica());
 			
 
-			System.out.println("setClickedNotifica: "+ preparedStatement.toString());
+			System.out.println("setClickedNotifica: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}

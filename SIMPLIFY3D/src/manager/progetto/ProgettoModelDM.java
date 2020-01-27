@@ -34,7 +34,7 @@ public class ProgettoModelDM
 			preparedStatement.setInt(8, progetto.getVersione());
 			preparedStatement.setString(9, progetto.getUsername());
 
-			System.out.println("doUpload: "+ preparedStatement.toString());
+			System.out.println("doUpload: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -202,7 +202,7 @@ public class ProgettoModelDM
 
 	      preparedStatement.setInt(1, id);
 
-	      System.out.println("getProgettoById:" + preparedStatement.toString());
+	      System.out.println("getProgettoById: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -255,7 +255,7 @@ public class ProgettoModelDM
 			preparedStatement = connection.prepareStatement(updateSQL);
 			preparedStatement.setInt(1, p.getId_progetto());
 			
-			System.out.println("doModificaProgetto: "+ preparedStatement.toString());
+			System.out.println("doModificaProgetto: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		} 
@@ -286,7 +286,7 @@ public class ProgettoModelDM
 			preparedStatement.setString(1, utente.getUsername());
 			preparedStatement.setInt(2, progetto.getId_progetto());
 
-			System.out.println("addToPreferiti: "+ preparedStatement.toString());
+			System.out.println("addToPreferiti: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -317,7 +317,7 @@ public class ProgettoModelDM
 			preparedStatement.setString(1, utente.getUsername());
 			preparedStatement.setInt(2, progetto.getId_progetto());
 
-			System.out.println("aggiornaDownload: "+ preparedStatement.toString());
+			System.out.println("aggiornaDownload: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -350,7 +350,7 @@ public class ProgettoModelDM
 
 	      preparedStatement.setInt(1, id);
 
-	      System.out.println("getDownloadById:" + preparedStatement.toString());
+	      System.out.println("getDownloadById: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -392,7 +392,7 @@ public class ProgettoModelDM
 			preparedStatement.setString(1, utente.getUsername());
 			preparedStatement.setInt(2, progetto.getId_progetto());
 
-			System.out.println("removeFromPreferiti: "+ preparedStatement.toString());
+			System.out.println("removeFromPreferiti: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		}
@@ -426,7 +426,7 @@ public class ProgettoModelDM
 		  preparedStatement.setString(1, utente.getUsername());
 		  preparedStatement.setInt(2, progetto.getId_progetto());
 
-	      System.out.println("isPreferito:" + preparedStatement.toString());
+	      System.out.println("isPreferito: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -507,7 +507,7 @@ public class ProgettoModelDM
 		
 			
 			preparedStatement.executeUpdate();
-			System.out.println("doCancellaProgetto: "+ preparedStatement.toString());
+			System.out.println("doCancellaProgetto: ");
 			connection.commit();
 		}
 		finally 
@@ -575,7 +575,7 @@ public class ProgettoModelDM
 			preparedStatement.setBlob(2, immagine);
 			preparedStatement.setInt(3, p.getId_progetto());
 			
-			System.out.println("doModificaProgetto: "+ preparedStatement.toString());
+			System.out.println("doModificaProgetto: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		} 

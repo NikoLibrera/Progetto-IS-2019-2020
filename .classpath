@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="SIMPLIFY3D/src"/>
+	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
@@ -16,5 +17,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="SIMPLIFY3D/WebContent/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="SIMPLIFY3D/WebContent/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

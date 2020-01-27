@@ -25,7 +25,7 @@ public class UtenteModelDM
 			
 			preparedStatement.setString(1, utente.getEmail());
 			
-			System.out.println("ControllaEmail:" + preparedStatement.toString());
+			System.out.println("ControllaEmail: ");
 			
 			//In RS finisce il risultato della query che è stata appena eseguita
 			ResultSet rs = preparedStatement.executeQuery();
@@ -46,7 +46,7 @@ public class UtenteModelDM
 				preparedStatement.setInt(9, utente.getConfermato());
 				preparedStatement.setInt(10, codice);
 				
-				System.out.println("doRegistrazione: "+ preparedStatement.toString());
+				System.out.println("doRegistrazione: ");
 				preparedStatement.executeUpdate();
 
 				connection.commit();
@@ -91,7 +91,7 @@ public class UtenteModelDM
 			preparedStatement.setString(1, username);
 			preparedStatement.setString(2, password);
 			
-			System.out.println("doControlSELECTLogin:" + preparedStatement.toString());
+			System.out.println("doControlSelectLogin: ");
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) 
@@ -105,7 +105,7 @@ public class UtenteModelDM
 				u.setPassword(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));
-				System.out.println("doLogin: "+ preparedStatement.toString());
+				System.out.println("doLogin: ");
 				connection.commit();
 			}
 		}
@@ -143,7 +143,7 @@ public class UtenteModelDM
 			preparedStatement.setString(1, utente.getUsername());
 			preparedStatement.setString(2, utente.getEmail());
 			
-			System.out.println("doControlSELECTresetPassword:" + preparedStatement.toString());
+			System.out.println("doControlSelectResetPassword: ");
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) 
@@ -157,7 +157,7 @@ public class UtenteModelDM
 				u.setPassword(rs.getString("password"));
 				u.setEmail(rs.getString("email"));
 				u.setNazionalita(rs.getString("nazionalita"));
-				System.out.println("utente trovato: "+ preparedStatement.toString());
+				System.out.println("Utente trovato: ");
 				connection.commit();
 				doModificaPassword(u,nuovapassword);		
 			}
@@ -196,7 +196,7 @@ public class UtenteModelDM
 			preparedStatement.setString(1, utente.getUsername());
 			preparedStatement.setString(2, utente.getPassword());
 			
-			System.out.println("doControlSELECTmodificaPassword:" + preparedStatement.toString());
+			System.out.println("doControlSelectModificaPassword: ");
 			
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) 
@@ -208,7 +208,7 @@ public class UtenteModelDM
 				preparedStatement.setString(1, nuovapassword);
 				preparedStatement.setString(2, utente.getUsername());
 				
-				System.out.println("doModificaPassword: "+ preparedStatement.toString());
+				System.out.println("doModificaPassword: ");
 				preparedStatement.executeUpdate();
 				connection.commit();
 				utente.setPassword(nuovapassword);
@@ -247,7 +247,7 @@ public class UtenteModelDM
 
 	      preparedStatement.setString(1, username);
 
-	      System.out.println("getUtenteByUsername:" + preparedStatement.toString());
+	      System.out.println("getUtenteByUsername: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -298,7 +298,7 @@ public class UtenteModelDM
 
 	      preparedStatement.setString(1, username);
 
-	      System.out.println("verificaCodice di: " + preparedStatement.toString());
+	      System.out.println("verificaCodice di: ");
 
 	      ResultSet rs = preparedStatement.executeQuery();
 
@@ -336,7 +336,7 @@ public class UtenteModelDM
 			preparedStatement = connection.prepareStatement(updateSQL);
 			preparedStatement.setString(1, utente.getUsername());
 			
-			System.out.println("doSetConfermato: "+ preparedStatement.toString());
+			System.out.println("doSetConfermato: ");
 			preparedStatement.executeUpdate();
 			connection.commit();
 		} 
