@@ -84,9 +84,9 @@ public class ProgettoModelDM
 		try 
 		{
 			Statement st=conn.createStatement();
-			ResultSet result =st.executeQuery("select id_progetto, titolo,descrizione,file_modello,immagine,consigli,categoria,versione,username,valutazione.id_progetto, valutazione.voto\r\n" + 
-					"from progetto,valutazione where id_progetto=valutazione.id_progetto \r\n" + 
-					"order by valutazione.voto;");
+			ResultSet result =st.executeQuery("select progetto.id_progetto, titolo,descrizione,file_modello,immagine,consigli,categoria,versione,progetto.username,valutazione.id_progetto, avg(valutazione.voto) as media " + 
+					"from progetto,valutazione where progetto.id_progetto=valutazione.id_progetto " + 
+					"group by progetto.id_progetto order by media desc");
 			System.out.println("getMostRated");
 			boolean v=true;
 			int i=0;
@@ -248,7 +248,8 @@ public class ProgettoModelDM
 		
 		String updateSQL = "UPDATE progetto SET titolo ='"+p.getTitolo()+"',descrizione ='"+p.getDescrizione()+"',"+
 		"file_modello ='"+p.getFile_modello()+"',immagine ='"+p.getImmagine()+"',consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"',"+
-		" WHERE id_progetto = ?";
+		"versione='"+p.getVersione()+"' WHERE id_progetto = ?";
+		System.out.println("cazzo "+p.getVersione()); 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
@@ -497,15 +498,15 @@ public class ProgettoModelDM
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String deleteSQL = "DELETE FROM progetto WHERE id_progetto = ? AND username = ?";
+		String deleteSQL = "DELETE FROM progetto WHERE id_progetto = ?";
 		try
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(deleteSQL);
 		
 			preparedStatement.setInt(1, id);
-			preparedStatement.setString(2, username);
 		
+			
 			preparedStatement.executeUpdate();
 			System.out.println("doCancellaProgetto: "+ preparedStatement.toString());
 			connection.commit();

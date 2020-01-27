@@ -32,7 +32,7 @@
 				</div>
 			
 				<div class="card-body">
-					<form name="Dimenticata" id="accedi_form" action="UtenteControl" method="post" onsubmit="return validateFormPassowordDimenticata()">
+					<form name="Dimenticata" id="accedi_form" action="LoginPage.jsp" method="post" onsubmit="return validateFormPassowordDimenticata()">
 						<input type="hidden" name="action" value="password_dimenticata">
 						
 						<div class="bloccotext">

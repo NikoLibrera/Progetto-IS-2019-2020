@@ -42,7 +42,27 @@ public class Modifica extends HttpServlet
 		}
 		
 		String username = utente.getUsername();
+		Integer idProgetto=0;
+		try{
+			idProgetto=Integer.parseInt(request.getParameter("id"));
+		} catch (NumberFormatException e) {
+			response.sendRedirect("./HomePage.jsp");
+			return;
+		} 
 		
+		ProgettoModelDM model2 = new ProgettoModelDM();
+		Progetto progetto=null;
+		try {
+			progetto = model2.getProgettoById(idProgetto);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		if(progetto == null)
+		{
+			response.sendRedirect("./HomePage.jsp");
+			return;
+		}
 	
 		
 		String titolo = request.getParameter("titolo");		
@@ -53,15 +73,14 @@ public class Modifica extends HttpServlet
 		Part immagine = request.getPart("immagine");
 		
 		Progetto p = new Progetto();
-		p.setId_progetto(Integer.parseInt(request.getParameter("id")));
+		p.setId_progetto(idProgetto);
 		p.setTitolo(titolo);
 		p.setDescrizione(descrizione);
 		p.setConsigli(consigli);
 		p.setCategoria(categoria);
-		p.setVersione(1);
+		p.setVersione(progetto.getVersione()+1);
 		p.setUsername(username);
-		
-		
+		System.out.println("figa "+p.getVersione());
 		if(!username.equalsIgnoreCase(p.getUsername()))
 		{	
 			response.sendRedirect("./HomePage.jsp");

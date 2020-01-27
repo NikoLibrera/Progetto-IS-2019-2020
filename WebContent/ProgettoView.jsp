@@ -31,8 +31,7 @@
 	ValcomModelDM daoCom=new ValcomModelDM();
 	int v=daoCom.getMediaValutazioniById(id);
 	
-	ArrayList<Commento> commenti=new ArrayList<Commento>();
-	commenti=ValcomModelDM.getCommentiByIdProgetto(id);
+	ArrayList<Commento> commenti=ValcomModelDM.getCommentiByIdProgetto(id);
 	ArrayList<RispostaCommento> risposte=new ArrayList<RispostaCommento>();
 	
 	%>          
@@ -74,14 +73,16 @@
 			
 				<% if(isAuthor==1) {%>
 					<form action="CancellaProgetto" method="post">
+					<input type="hidden" name="id" value="<%=p.getId_progetto()%>">
 					<p><input type="submit" value="Cancella Progetto">
 					</form>
-					<form action="Modifica" method="post">
+					<form action="ModificaProgetto.jsp?id=<%=id  %>" method="post">
 					<p><input type="submit" value="Modifica Progetto">
 					</form>
 				<% } %>
 				<% if(isAdmin==1 && isAuthor==0) {%>
 					<form action="CancellaProgetto" method="post">
+					<input type="hidden" name="id" value="<%=p.getId_progetto()%>">
 					<p><input type="submit" value="Cancella Progetto">
 					</form>
 				<% } %>
@@ -300,16 +301,17 @@
 			
 			<div class="risposta">
 				<div class="contenitoreCommento">
-				<form action="EliminaRisposta" method="post" id="deleteRisp"></form>
 				<p>IN RISPOSTA(<%=commenti.get(i).getUsername()%>) <%=risposte.get(k).getUsername() %>
 				<p><textarea rows="5" cols="50" disabled="disabled"><%=risposte.get(k).getContenuto() %></textarea>
 				</div>
 				<div id="contElimina">
 				<%if(u!=null)
 					if(u.getUsername().equals(risposte.get(k).getUsername())){ %>
-				<input type="submit" value="X"  style="color: white;" id="croce" form="deleteRisp">
+				<form action="EliminaRisposta" method="post" id="deleteRisp">
+				<input type="submit" value="X"  style="color: white;" id="croce">
 				<input type="hidden" value="<%=id%>" name="id">
 				<input type="hidden" value="<%= risposte.get(k).getId_risposta() %>" name="idrisposta">
+				</form>
 				<%} %>
 				
 				
@@ -318,6 +320,5 @@
 			<%}} %>
 		</div>
 	
-		<div><%@ include file="footer.jsp" %></div>
 	</body>
 </html>

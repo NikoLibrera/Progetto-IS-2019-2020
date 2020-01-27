@@ -18,6 +18,10 @@
 	} 
 	if(categoria==null){
 		categoria="Art";
+	} else if(!categoria.equalsIgnoreCase("Art") && !categoria.equalsIgnoreCase("Fashion") && !categoria.equalsIgnoreCase("Toys") 
+			&& !categoria.equalsIgnoreCase("House") && !categoria.equalsIgnoreCase("Office") && !categoria.equalsIgnoreCase("Gadget") 
+			&& !categoria.equalsIgnoreCase("Hobby") && !categoria.equalsIgnoreCase("Tools")){
+		categoria="Art";
 	}
 	ProgettoModelDM model = new ProgettoModelDM();
 	ArrayList<Progetto> progetti = model.getByCategoria(categoria);

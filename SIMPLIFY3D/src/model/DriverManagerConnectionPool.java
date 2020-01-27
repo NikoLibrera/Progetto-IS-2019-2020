@@ -8,11 +8,9 @@ import java.util.List;
 
 public class DriverManagerConnectionPool 
 {
-	private static List<Connection> freeDbConnections;
 
 	static 
 	{
-		freeDbConnections = new LinkedList<Connection>();
 		try 
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -34,41 +32,22 @@ public class DriverManagerConnectionPool
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useTimezone=true&serverTimezone=UTC", username, password);
 
-		System.out.println("Creazione di una nuova connessione al Database");
+		
 		newConnection.setAutoCommit(false);
 		return newConnection;
 	}	
 	
 	public static synchronized Connection getConnection() throws SQLException 
 	{
-		Connection connection;
+		Connection connection=null;
 
-		if (!freeDbConnections.isEmpty()) 
-		{
-			connection = (Connection) freeDbConnections.get(0);
-			freeDbConnections.remove(0);
-
-			try 
-			{
-				if (connection.isClosed())
-					connection = getConnection();
-			} 
-			catch (SQLException e) 
-			{
-				connection.close();
-				connection = getConnection();
-			}
-		} 
-		else 
-		{
-			connection = createDBConnection();		
-		}
+		connection = createDBConnection();
 
 		return connection;
 	}
 	
 	public static synchronized void releaseConnection(Connection connection) throws SQLException 
 	{
-		if(connection != null) freeDbConnections.add(connection);
+		connection.close();
 	}	
 }

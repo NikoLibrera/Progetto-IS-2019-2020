@@ -36,8 +36,8 @@
 		<p style='font-size:1.2em;' class="InputImage " align="center"><input type="file" name="immagine" required onchange="readURL(this);" id="image">
 			<label for="image">Inserisci Immagine</label>
 				<p style='font-size:1.2em;' align="center"><input type="text" size="43" name="titolo" required placeholder="Titolo" id="titolo">
-				<p style='font-size:1.2em;' align="center"><textarea cols="40" rows="4" name="descrizione" required placeholder="Descrizione"></textarea>
-				<p style='font-size:1.2em;' align="center"><textarea cols="40" rows="4" name="consigli" required placeholder="Consigli di Stampa"></textarea>
+				<p style='font-size:1.2em;' align="center"><textarea cols="40" rows="4" name="descrizione" required placeholder="Descrizione" maxlength="250"></textarea>
+				<p style='font-size:1.2em;' align="center"><textarea cols="40" rows="4" name="consigli" required placeholder="Consigli di Stampa" maxlength="250"></textarea>
 				<p style='font-size:1.2em;' class="inputFile" align="center"><input type="file" name="progetto" required placeholder="File" id="caricaFile">
 				<p style='font-size:1.2em;' align="center">
 				<select name="categoria" class="form-control" align="center">
@@ -57,7 +57,6 @@
 	</div>
 	</div>
 	
-	<%@ include file="footer.jsp" %>
 	
 	</body>
 </html>

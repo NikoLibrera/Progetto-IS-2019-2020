@@ -212,11 +212,11 @@ public class ValcomModelDM {
 				int id_commento=result.getInt("id_commento");
 				String contenuto=result.getString("contenuto");
 				String username=result.getString("username");
-				
 				c=new Commento(id_commento, contenuto, username, idProgetto);
 				commenti.add(c);
 			}
 			DriverManagerConnectionPool.releaseConnection(conn);
+			
 			return commenti;
 		} 
 		catch (SQLException e)
@@ -740,11 +740,12 @@ public class ValcomModelDM {
 		notifica.setId_notifica(model.getLastIdNotifica()+1);
 		notifica.setTipo("risposta");
 		notifica.setId_risposta(risposta.getId_risposta());
+		notifica.setId_progetto(progetto.getId_progetto());
 		notifica.setUsername(commento.getUsername());
 		notifica.setTitolo(risposta.getUsername()+" ha lasciato una risposta al tuo commento sul progetto: "+progetto.getTitolo());
 		notifica.setImmagine(progetto.getImmagine());
 
-		String insertSQL = "INSERT INTO notifica (id_notifica,immagine,titolo,tipo,isClicked,id_commento, id_risposta, username ) VALUES (?,?,?,?,?, ?, ?, ?)"; 
+		String insertSQL = "INSERT INTO notifica (id_notifica,immagine,titolo,tipo,isClicked,id_commento, id_risposta, username,id_progetto ) VALUES (?,?,?,?,?,?, ?, ?, ?)"; 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
@@ -757,6 +758,8 @@ public class ValcomModelDM {
 			preparedStatement.setInt(6, notifica.getId_commento());
 			preparedStatement.setInt(7, notifica.getId_risposta());
 			preparedStatement.setString(8, notifica.getUsername());
+			preparedStatement.setInt(9, notifica.getId_progetto());
+			
 
 			System.out.println("creaNotificaRisposta: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();

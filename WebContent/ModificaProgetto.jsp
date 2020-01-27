@@ -3,12 +3,12 @@
     pageEncoding="UTF-8" import="java.util.*,model.Utente,model.Progetto,java.sql.*"%>
     
     <%
-	/*Utente utente = (Utente) request.getSession().getAttribute("utente");
+	Utente utente = (Utente) request.getSession().getAttribute("utente");
 	if(utente == null)
 	{	
 		response.sendRedirect("./HomePage.jsp");
 		return;
-	}*/
+	}
 		String idProgetto=request.getParameter("id");
 		ProgettoModelDM dao=new ProgettoModelDM();
 		int id=Integer.parseInt(idProgetto);
@@ -47,10 +47,9 @@
 		<p style='font-size:1.2em;' class="InputImage"><input type="file" name="immagine"  onchange="readURL(this);" id="image">
 			<label for="image">Inserisci Immagine</label>
 				<p style='font-size:1.2em;'><input type="text" size="43" name="titolo"  placeholder="Titolo" id="titolo" value="<%=p.getTitolo()%>">
-				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="descrizione"  placeholder="Descrizione"><%=p.getDescrizione()%></textarea>
-				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="consigli"  placeholder="Consigli di Stampa"><%=p.getConsigli()%></textarea>
+				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="descrizione"  placeholder="Descrizione" maxlength="250"><%=p.getDescrizione()%></textarea>
+				<p style='font-size:1.2em;'><textarea cols="40" rows="4" name="consigli"  placeholder="Consigli di Stampa" maxlength="250"><%=p.getConsigli()%></textarea>
 				<p style='font-size:1.2em;' class="inputFile"><input type="file" name="progetto"  placeholder="File" id="caricaFile" title="Seleziona un nuovo file ">
-				<p style='font-size:1.2em;'>Versione:<input type="text" id="version" name="versione" value="<%=p.getVersione()%>">
 				<p style='font-size:1.2em;'>Categoria: 
 				<select name="categoria" class="form-control">
 					<option value="<%=p.getCategoria()%>" selected="selected"><%=p.getCategoria()%></option>
@@ -69,7 +68,6 @@
 	</div>
 	</div>
 	
-	<%@ include file="footer.jsp" %>
 	
 	</body>
 </html>
