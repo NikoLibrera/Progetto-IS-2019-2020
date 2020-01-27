@@ -11,39 +11,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.valcom.ValcomModelDM;
-import model.Commento;
 import model.Utente;
 
 /**
- * Servlet implementation class EliminaCommento
+ * Servlet implementation class EliminaRisposta
  */
-@WebServlet("/EliminaCommento")
-public class EliminaCommento extends HttpServlet {
+@WebServlet("/EliminaRisposta")
+public class EliminaRisposta extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     
-    public EliminaCommento() {
+    public EliminaRisposta() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		PrintWriter out = response.getWriter();
 		Utente u=(Utente) request.getSession().getAttribute("utente");
 		
 		if(u!=null)
 		{
-			
 		String id=request.getParameter("id");
 		
-		String idC=request.getParameter("idcommento");
-		int idCommento=Integer.parseInt(idC);
+		String idC=request.getParameter("idrisposta");
+		int idRisposta=Integer.parseInt(idC);
 		
 		ValcomModelDM daoCom=new ValcomModelDM();
 		try {
-			daoCom.cancellaCommento(idCommento);
+
+			daoCom.cancellaRisposta(idRisposta);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

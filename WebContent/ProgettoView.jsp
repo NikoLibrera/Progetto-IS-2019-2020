@@ -286,7 +286,7 @@
 					<input type="submit" value="X"  style="color: white;" id="croce">
 				<%} %>
 					<input type="hidden" value="<%=id%>" name="id">
-					<input type="hidden" name="idcommento" value="<%=commenti.get(i).getId_progetto()%>">
+					<input type="hidden" name="idcommento" value="<%=commenti.get(i).getId_commento()%>">
 				</form>
 				</div>
 			</div>
@@ -299,15 +299,21 @@
 			%>
 			
 			<div class="risposta">
-				<form action="#" method="post">
+				<div class="contenitoreCommento">
+				<form action="EliminaRisposta" method="post" id="deleteRisp"></form>
 				<p>IN RISPOSTA(<%=commenti.get(i).getUsername()%>) <%=risposte.get(k).getUsername() %>
-				<p><textarea rows="5" cols="50" disabled="disabled"><%=risposte.get(i).getContenuto() %></textarea>
+				<p><textarea rows="5" cols="50" disabled="disabled"><%=risposte.get(k).getContenuto() %></textarea>
+				</div>
+				<div id="contElimina">
 				<%if(u!=null)
-					if(u.getUsername().equals(risposte.get(i).getUsername())){ %>
-				<p><input type="submit" value="ELIMINA COMMENTO">
+					if(u.getUsername().equals(risposte.get(k).getUsername())){ %>
+				<input type="submit" value="X"  style="color: white;" id="croce" form="deleteRisp">
+				<input type="hidden" value="<%=id%>" name="id">
+				<input type="hidden" value="<%= risposte.get(k).getId_risposta() %>" name="idrisposta">
 				<%} %>
-				</form>
 				
+				
+			</div>
 			</div>
 			<%}} %>
 		</div>
