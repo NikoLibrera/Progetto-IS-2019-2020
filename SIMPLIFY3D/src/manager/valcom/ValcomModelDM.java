@@ -1,5 +1,6 @@
 package manager.valcom;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -326,7 +327,9 @@ public class ValcomModelDM {
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, model.getLastIdRisposta()+1);
+			risposta.setId_risposta(model.getLastIdRisposta()+1);
+			risposta.setId_commento(idCommento);
+			preparedStatement.setInt(1, risposta.getId_risposta());
 			preparedStatement.setString(2, risposta.getContenuto());
 			preparedStatement.setString(3, risposta.getUsername());
 			preparedStatement.setInt(4, idCommento);
@@ -334,6 +337,8 @@ public class ValcomModelDM {
 			System.out.println("inserisciRisposta: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
+			
+			model.creaNotificaRisposta(risposta);
 		}
 		finally 
 		{
@@ -480,7 +485,9 @@ public class ValcomModelDM {
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setInt(1, model.getLastIdValutazione()+1);
+			valutazione.setId_valutazione(model.getLastIdValutazione()+1);
+			valutazione.setId_progetto(idProgetto);
+			preparedStatement.setInt(1, valutazione.getId_valutazione());
 			preparedStatement.setInt(2, valutazione.getVoto());
 			preparedStatement.setInt(3, idProgetto);
 			preparedStatement.setString(4, valutazione.getUsername());
@@ -489,6 +496,8 @@ public class ValcomModelDM {
 			System.out.println("inserisciValutazione: "+ preparedStatement.toString());
 			preparedStatement.executeUpdate();
 			connection.commit();
+			
+			model.creaNotificaValutazione(valutazione);
 		}
 		finally 
 		{
@@ -716,4 +725,266 @@ public class ValcomModelDM {
 		return idNotifica;
 	}
 	
+	public Notifica creaNotificaRisposta(RispostaCommento risposta) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ValcomModelDM model=new ValcomModelDM();
+		ProgettoModelDM progettoModel=new ProgettoModelDM();
+		Notifica notifica=new Notifica();
+		Commento commento=model.getCommentoById(risposta.getId_commento());
+		Progetto progetto=progettoModel.getProgettoById(commento.getId_progetto());
+		if(risposta.getUsername().equalsIgnoreCase(commento.getUsername()))
+			return null;
+		notifica.setId_commento(commento.getId_commento());
+		notifica.setId_notifica(model.getLastIdNotifica()+1);
+		notifica.setTipo("risposta");
+		notifica.setId_risposta(risposta.getId_risposta());
+		notifica.setUsername(commento.getUsername());
+		notifica.setTitolo(risposta.getUsername()+" ha lasciato una risposta al tuo commento sul progetto: "+progetto.getTitolo());
+		notifica.setImmagine(progetto.getImmagine());
+
+		String insertSQL = "INSERT INTO notifica (id_notifica,immagine,titolo,tipo,isClicked,id_commento, id_risposta, username ) VALUES (?,?,?,?,?, ?, ?, ?)"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setInt(1,notifica.getId_notifica());
+			preparedStatement.setBlob(2, notifica.getImmagine());
+			preparedStatement.setString(3, notifica.getTitolo());
+			preparedStatement.setString(4, notifica.getTipo());
+			preparedStatement.setInt(5, notifica.isClicked());
+			preparedStatement.setInt(6, notifica.getId_commento());
+			preparedStatement.setInt(7, notifica.getId_risposta());
+			preparedStatement.setString(8, notifica.getUsername());
+
+			System.out.println("creaNotificaRisposta: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return notifica;
+	}
+	
+	public Commento getCommentoById(int idCommento) throws SQLException 
+	{
+	    Connection connection = null;
+	    Commento commento =null;
+	    PreparedStatement preparedStatement = null;
+
+	    final String select_sql = "SELECT * FROM commento WHERE id_commento= ?";
+
+	    try 
+	    {
+	      connection = DriverManagerConnectionPool.getConnection();
+	      preparedStatement = connection.prepareStatement(select_sql);
+
+	      preparedStatement.setInt(1, idCommento);
+
+	      System.out.println("getCommentoById:" + preparedStatement.toString());
+
+	      ResultSet rs = preparedStatement.executeQuery();
+
+	      if (rs.next())
+	      {
+	    	  commento=new Commento();
+	    	  commento.setId_commento(idCommento);
+	    	  commento.setContenuto(rs.getString("contenuto"));
+	    	  commento.setUsername(rs.getString("username"));
+	    	  commento.setId_progetto(rs.getInt("id_progetto"));
+	      }
+	    } 
+	    catch(Exception e)
+	    {
+	    	e.printStackTrace();
+	    }
+	    finally 
+	    {
+	      try 
+	      {
+	        if (preparedStatement != null) 
+	        {
+	          preparedStatement.close();
+	        }
+	      } 
+	      finally 
+	      {
+	        DriverManagerConnectionPool.releaseConnection(connection);
+	      }
+	    }
+	    return commento;
+	  }
+	
+	public Notifica creaNotificaValutazione(Valutazione valutazione) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ValcomModelDM model=new ValcomModelDM();
+		ProgettoModelDM progettoModel=new ProgettoModelDM();
+		Notifica notifica=new Notifica();
+		Progetto progetto=progettoModel.getProgettoById(valutazione.getId_progetto());
+		if(progetto.getUsername().equalsIgnoreCase(valutazione.getUsername()))
+			return null;
+		notifica.setId_valutazione(valutazione.getId_valutazione());
+		notifica.setId_notifica(model.getLastIdNotifica()+1);
+		notifica.setTipo("valutazione");
+		notifica.setId_progetto(progetto.getId_progetto());
+		notifica.setUsername(progetto.getUsername());
+		notifica.setTitolo(valutazione.getUsername()+" ha lasciato una valutazione di "+valutazione.getVoto()+" stelle/a al progetto: "+progetto.getTitolo());
+		notifica.setImmagine(progetto.getImmagine());
+
+		String insertSQL = "INSERT INTO notifica (id_notifica,immagine,titolo,tipo,isClicked,id_valutazione, id_progetto, username ) VALUES (?,?,?,?,?, ?, ?, ?)"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(insertSQL);
+			preparedStatement.setInt(1,notifica.getId_notifica());
+			preparedStatement.setBlob(2, notifica.getImmagine());
+			preparedStatement.setString(3, notifica.getTitolo());
+			preparedStatement.setString(4, notifica.getTipo());
+			preparedStatement.setInt(5, notifica.isClicked());
+			preparedStatement.setInt(6, notifica.getId_valutazione());
+			preparedStatement.setInt(7, notifica.getId_progetto());
+			preparedStatement.setString(8, notifica.getUsername());
+
+			System.out.println("creaNotificaValutazione: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return notifica;
+	}
+	
+	public static ArrayList<Notifica> getNotificheByUsername(String username) throws SQLException
+	{
+		Notifica n=null;
+		ArrayList<Notifica> notifiche=new ArrayList<Notifica>();
+		Connection conn = DriverManagerConnectionPool.getConnection();
+		try 
+		{
+			Statement st=conn.createStatement();
+			 System.out.println("getNotificheByUsername:" + "select * from notifica where username="+username);
+			ResultSet result =st.executeQuery("select * from notifica where username='"+username+"'");
+			while(result.next())
+			{
+				int id=result.getInt("id_notifica");
+				String titolo=result.getString("titolo");
+				String tipo=result.getString("tipo");
+				Blob immagine=result.getBlob("immagine");
+				int isClicked=result.getInt("isClicked");
+				String u=result.getString("username");
+				int id_commento=result.getInt("id_commento");
+				int id_risposta=result.getInt("id_risposta");
+				int id_valutazione=result.getInt("id_valutazione");
+				int id_progetto=result.getInt("id_progetto");
+				
+				n=new Notifica(id, immagine, titolo, tipo, isClicked, id_commento, id_risposta, id_progetto, id_valutazione, u);
+				notifiche.add(n);
+			}
+			DriverManagerConnectionPool.releaseConnection(conn);
+			return notifiche;
+		} 
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public Integer getNumeroNotificheNonLette(String username) throws SQLException 
+	{
+	    Connection connection = null;
+	    Integer n=null;
+	    PreparedStatement preparedStatement = null;
+
+	    final String select_sql = "SELECT count(*)as n FROM notifica WHERE username= ? and isClicked=0";
+
+	    try 
+	    {
+	      connection = DriverManagerConnectionPool.getConnection();
+	      preparedStatement = connection.prepareStatement(select_sql);
+
+	      preparedStatement.setString(1, username);
+	      
+	      System.out.println("getNumeroNotificheNonLette: "+ preparedStatement.toString());
+	      ResultSet rs = preparedStatement.executeQuery();
+
+	      if (rs.next())
+	      {
+	    	  n=rs.getInt("n");
+	      }
+	    } 
+	    catch(Exception e){
+	    	e.printStackTrace();
+	    }
+	    finally 
+	    {
+	      try 
+	      {
+	        if (preparedStatement != null) 
+	        {
+	          preparedStatement.close();
+	        }
+	      } 
+	      finally 
+	      {
+	        DriverManagerConnectionPool.releaseConnection(connection);
+	      }
+	    }
+	    return n;
+	  }
+
+	public void setClickedNotifica(Notifica notifica) throws SQLException
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		
+		String updateSQL = "UPDATE notifica set isClicked=1 where id_notifica = ?"; 
+		try 
+		{
+			connection = DriverManagerConnectionPool.getConnection();
+			preparedStatement = connection.prepareStatement(updateSQL);
+			preparedStatement.setInt(1, notifica.getId_notifica());
+			
+
+			System.out.println("setClickedNotifica: "+ preparedStatement.toString());
+			preparedStatement.executeUpdate();
+			connection.commit();
+		}
+		finally 
+		{
+			try 
+			{
+				if (preparedStatement != null)
+				preparedStatement.close();
+			} 
+			finally 
+			{
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 }

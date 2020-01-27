@@ -1,6 +1,7 @@
 <%@page import="manager.progetto.ProgettoModelDM"%>
+<%@page import="manager.valcom.ValcomModelDM"%>
 <%@ page language="java" contentType="text/html"
-    pageEncoding="UTF-8" import="java.util.*,model.Utente,model.Progetto,java.sql.*" %>
+    pageEncoding="UTF-8" import="java.util.*,model.Utente,model.*,java.sql.*" %>
     
     <%
 	Utente utente = (Utente) request.getSession().getAttribute("utente");
@@ -12,7 +13,7 @@
 	ProgettoModelDM model = new ProgettoModelDM();
 	ArrayList<Progetto> progetti = model.getByUsername(utente.getUsername());
 	System.out.println(progetti.isEmpty());
-
+	ValcomModelDM valcomModel=new ValcomModelDM();
 	%>          
 <!DOCTYPE html>
 <html>
@@ -43,7 +44,7 @@
 
 	 	
 	 	<div class="bott">
-	 		<button class="bottoni"> Notifiche (0)</button>
+	 		<a href="Notifiche.jsp"><button class="btn bottoni">Notifiche (<%=valcomModel.getNumeroNotificheNonLette(utente.getUsername()) %>)</button></a>
 	 		<br><br>
 	 		<a href="ModificaPassword.jsp"><button class="bottoni"> Modifica Password</button></a>
 	 		<br><br>

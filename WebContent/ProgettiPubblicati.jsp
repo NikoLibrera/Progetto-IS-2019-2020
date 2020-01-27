@@ -16,6 +16,7 @@
 	ProgettoModelDM model = new ProgettoModelDM();
 	ArrayList<Progetto> progetti = model.getByUsername(utente.getUsername());
 	System.out.println(progetti.isEmpty());
+	ValcomModelDM valcomModel=new ValcomModelDM();
 	%>          
 <!DOCTYPE html>
 <html>
@@ -30,7 +31,7 @@
 	 	<div class="racchiudi">
 		 	<div class="blocco1" align="center">
 		 		<br>
-		 		<a href="#"><button class="btn bottoni">Notifiche (0)</button></a>
+		 		<a href="Notifiche.jsp"><button class="btn bottoni">Notifiche (<%=valcomModel.getNumeroNotificheNonLette(utente.getUsername()) %>)</button></a>
 		 		<br><br>
 		 		<a href="ModificaPassword.jsp"><button class="btn bottoni">Modifica Password</button></a>
 		 		<br><br>
