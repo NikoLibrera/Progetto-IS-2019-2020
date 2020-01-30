@@ -10,6 +10,7 @@ import manager.progetto.ProgettoModelDM;
 import manager.utente.UtenteModelDM;
 import manager.valcom.ValcomModelDM;
 import model.Commento;
+import model.Notifica;
 import model.Progetto;
 import model.RispostaCommento;
 import model.Utente;
@@ -169,5 +170,334 @@ public class ValcomModelDM_Test extends TestCase  {
 	{
 		daoCom.cancellaCommento(daoCom.getLastIdCommento());
 		assertNotEquals(commento.getId_commento(), daoCom.getLastIdCommento());
+	}
+
+	public final void testInserisciValutazione() throws SQLException 
+	{
+	    System.out.println("Test inserisciValutazione");
+	    
+	    Utente u = new Utente();
+	    u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+	    UtenteModelDM.doRegistrazione(u, 123456);
+	    
+	    String username = u.getUsername();
+	    
+	    Valutazione val = new Valutazione();
+	    val.setId_progetto(progetto.getId_progetto());
+	    val.setId_valutazione(999);
+	    val.setUsername(username);
+	    val.setVoto(5);
+	    
+	    daoCom.inserisciValutazione(val, progetto.getId_progetto());
+	    
+	    int result= daoCom.getLastIdValutazione();
+	    
+	    valutazione.setId_valutazione(result);
+	    
+	    assertEquals(result, val.getId_valutazione());
+	    
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+	   
+	    System.out.println("\n");
+	  }
+	
+	public final void testGetLastIdValutazione() throws SQLException 
+	{
+		System.out.println("Test getLastIdValutazione");
+		
+		int val = daoCom.getLastIdValutazione();
+		
+		assertEquals(valutazione.getId_valutazione(), val);
+		
+		System.out.println("\n");
+	}
+	
+	public final void testIsValutato() throws SQLException 
+	{
+		System.out.println("Test isValutato");
+		
+		utente = UtenteModelDM.getUtenteByUsername(utente.getUsername());
+		progetto = daoProg.getProgettoById(progetto.getId_progetto());
+		
+		boolean isValutato = daoCom.isValutato(progetto, utente);
+		
+		assertEquals(true, isValutato);
+		
+		System.out.println("\n");	
+	}
+	
+	public final void testAggiornaValutazione() throws SQLException 
+	{
+		System.out.println("Test aggiornaValutazione");
+		
+		int id = progetto.getId_progetto();
+		
+		int media = daoCom.getMediaValutazioniById(id);
+		
+		valutazione.setVoto(5);
+		
+		daoCom.aggiornaValutazione(valutazione, id);
+		
+		assertNotEquals(media, daoCom.getMediaValutazioniById(id));
+		
+		System.out.println("\n");		
+	}
+	
+	public final void testEliminaValutazione() throws SQLException 
+	{
+		System.out.println("Test eliminaValutazione");
+		
+		int id = progetto.getId_progetto();
+		
+		String username = "TestUser";
+		
+		daoCom.eliminaValutazione(id, username);
+		
+		boolean isValutato = daoCom.isValutato(progetto, utente);
+		
+		assertEquals(false, isValutato);
+		
+		System.out.println("\n");		
+	}
+	
+	public final void testCreaNotificaCommento() throws SQLException 
+	{
+		System.out.println("Test creaNotificaCommento");
+		
+		int idCommento = daoCom.getLastIdCommento();
+		
+		daoCom.cancellaCommento(idCommento);
+		
+		Utente u = new Utente();
+		u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+		UtenteModelDM.doRegistrazione(u, 123456);
+		
+		Commento c = new Commento();
+		c.setContenuto("Test esempio");
+		c.setUsername("TestEsempio");
+		c.setId_progetto(99999);
+		
+		int id = progetto.getId_progetto();
+	    
+	    daoCom.inserisciCommento(c, id);
+	    
+	    ArrayList<Notifica> notifiche = null;
+	   
+	    notifiche = ValcomModelDM.getNotificheByUsername(utente.getUsername());
+	    
+	    assertEquals(false, notifiche.isEmpty());
+	    
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+	    
+	    System.out.println("\n");
+	}	
+	
+	public final void testGetLastIdNotifica() throws SQLException 
+	{
+		System.out.println("Test creaNotificaCommento");
+		
+		int idNotifica = daoCom.getLastIdNotifica();
+		
+		Utente u = new Utente();
+		u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+		UtenteModelDM.doRegistrazione(u, 123456);
+		
+		Commento c = new Commento();
+		c.setContenuto("Test esempio");
+		c.setUsername("TestEsempio");
+		c.setId_progetto(99999);
+		
+		int id = progetto.getId_progetto();
+	    
+	    daoCom.inserisciCommento(c, id);
+				
+	    assertEquals(idNotifica+1, daoCom.getLastIdNotifica());
+		
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+	    
+		System.out.println("\n");
+	}
+	
+	public final void testCreaNotificaRisposta() throws SQLException 
+	{
+		System.out.println("Test creaNotificaRisposta");
+		
+		int idCommento = daoCom.getLastIdCommento();
+		
+		Utente u = new Utente();
+		u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+		UtenteModelDM.doRegistrazione(u, 123456);
+		
+		RispostaCommento rc = new RispostaCommento();
+		rc.setContenuto("Test esempio");
+		rc.setUsername("TestEsempio");
+		rc.setId_commento(idCommento);
+	    
+	    daoCom.inserisciRisposta(rc, idCommento);
+	    
+	    ArrayList<Notifica> notifiche = null;
+	   
+	    notifiche = ValcomModelDM.getNotificheByUsername(utente.getUsername());
+	    
+	    assertEquals(false, notifiche.isEmpty());
+	    
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+	    
+	    System.out.println("\n");
+	}	
+	
+	public final void testGetCommentoById() throws SQLException 
+	{
+		System.out.println("Test getCommentoById");
+		
+		int idCommento = daoCom.getLastIdCommento();
+		
+		daoCom.getCommentoById(idCommento);
+		
+		assertEquals(commento.getId_commento(), idCommento);
+		
+		System.out.println("\n");
+	}
+	
+	public final void testCreaNotificaValutazione() throws SQLException
+	{
+		System.out.println("Test creaNotificaValutazione");
+		
+		Utente u = new Utente();
+		u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+		UtenteModelDM.doRegistrazione(u, 123456);
+		
+		Valutazione val = new Valutazione();
+	    val.setId_progetto(progetto.getId_progetto());
+	    val.setId_valutazione(999);
+	    val.setUsername("TestEsempio");
+	    val.setVoto(4);
+	    
+	    int id = progetto.getId_progetto();
+	    
+	    daoCom.inserisciValutazione(val, id);
+	    
+	    ArrayList<Notifica> notifiche = null;
+		   
+	    notifiche = ValcomModelDM.getNotificheByUsername(utente.getUsername());
+	    
+	    assertEquals(false, notifiche.isEmpty());
+	    
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+		
+		System.out.println("\n");
+	}
+	
+	public final void testGetNotificheByUsername() throws SQLException
+	{
+		System.out.println("Test getNotificheByUsername");
+
+		Utente u = new Utente();
+		u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+		UtenteModelDM.doRegistrazione(u, 123456);
+		
+		Valutazione val = new Valutazione();
+	    val.setId_progetto(progetto.getId_progetto());
+	    val.setId_valutazione(999);
+	    val.setUsername("TestEsempio");
+	    val.setVoto(4);
+	    
+	    int id = progetto.getId_progetto();
+	    
+	    daoCom.inserisciValutazione(val, id);
+	    
+	    ArrayList<Notifica> notifiche = null;
+		   
+	    notifiche = ValcomModelDM.getNotificheByUsername(utente.getUsername());
+	    
+	    assertEquals(false, notifiche.isEmpty());
+	    
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+		
+		System.out.println("\n");
+	}
+	
+	public final void testGetNumeroNotificheNonLette() throws SQLException
+	{
+		System.out.println("Test getNumeroNotificheNonLette");
+		
+		Utente u = new Utente();
+		u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+		UtenteModelDM.doRegistrazione(u, 123456);
+		
+		Valutazione val = new Valutazione();
+	    val.setId_progetto(progetto.getId_progetto());
+	    val.setId_valutazione(999);
+	    val.setUsername("TestEsempio");
+	    val.setVoto(4);
+	    
+	    int id = progetto.getId_progetto();
+	    
+	    daoCom.inserisciValutazione(val, id);
+	    
+	    Integer notifiche = daoCom.getNumeroNotificheNonLette(utente.getUsername());
+	    
+	    assertNotEquals(0, notifiche);
+	    
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+
+		System.out.println("\n");
+	}
+	
+	public final void testSetClickedNotifica() throws SQLException
+	{
+		System.out.println("Test setClickedNotifica");
+		
+		Utente u = new Utente();
+		u.setUsername("TestEsempio");
+	    u.setPassword("testPass");
+		u.setEmail("TestEsempio@Test.it");
+		
+		UtenteModelDM.doRegistrazione(u, 123456);
+		
+		Valutazione val = new Valutazione();
+	    val.setId_progetto(progetto.getId_progetto());
+	    val.setId_valutazione(999);
+	    val.setUsername("TestEsempio");
+	    val.setVoto(4);
+	    
+	    int id = progetto.getId_progetto();
+	    
+	    daoCom.inserisciValutazione(val, id);
+	    
+	    ArrayList<Notifica> notifiche = null;
+		   
+	    notifiche = ValcomModelDM.getNotificheByUsername(utente.getUsername());
+	    
+	    daoCom.setClickedNotifica(notifiche.get(0));
+	    
+	    int numero = daoCom.getNumeroNotificheNonLette(utente.getUsername());
+	    
+	    assertEquals(0, numero);
+	    
+	    UtenteModelDM.deleteUtenteByUsername(u.getUsername());
+
+		System.out.println("\n");
 	}
 }
