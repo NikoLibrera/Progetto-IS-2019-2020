@@ -426,7 +426,6 @@ public class ValcomModelDM
 		
 			preparedStatement.executeUpdate();
 			System.out.println("cancellaCommento: "+preparedStatement.toString());
-			//model.cancellaRisposteByIdCommento(idCommento);
 			connection.commit();
 		}
 		finally 
@@ -448,7 +447,6 @@ public class ValcomModelDM
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ValcomModelDM model=new ValcomModelDM();
-		
 		
 		String insertSQL = "INSERT INTO valutazione (id_valutazione, voto, id_progetto, username) VALUES (?, ?, ?, ?)"; 
 		try 
@@ -556,7 +554,6 @@ public class ValcomModelDM
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ValcomModelDM model=new ValcomModelDM();
-		
 		
 		String updateSQL = "UPDATE valutazione set id_valutazione=? , voto = ? where username = ? and id_progetto = ?"; 
 
@@ -685,7 +682,6 @@ public class ValcomModelDM
 			}
 			
 			connection.close();				
-	
 		}
 		catch (SQLException e) 
 		{

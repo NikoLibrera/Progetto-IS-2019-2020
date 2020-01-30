@@ -29,7 +29,6 @@
         
       <div class="all">
 		
-
 	 	<div class="infoutente">
 	 	<p style='font-size:1.4em; color:#FFC312;'>&nbsp;&nbsp;&nbsp;<b>Dati utente</b></p>
 	 		<p align="center"><img src="images/utente_profilo.png" ></p>
@@ -41,7 +40,6 @@
 		 	<p style='font-size:1.2em;'><b>E-Mail:</b> &nbsp;<%= utente.getEmail() %></p>
 		 	<p style='font-size:1.2em;'><b>Data di nascita:</b> &nbsp;<%= utente.getData_nascita() %></p>
 	 	</div>
-
 	 	
 	 	<div class="bott">
 	 		<a href="Notifiche.jsp"><button class="btn bottoni">Notifiche (<%=valcomModel.getNumeroNotificheNonLette(utente.getUsername()) %>)</button></a>
@@ -66,12 +64,12 @@
 						
 		 			}
 		 			else
-		 			{%>
+		 			{
+		 			%>
 		 				<table id="tabella">
 		 			<%	for(Progetto prog : progetti) 
 		   				{
 		 			%>	
-		 				
 							<tr>
 								<td rowspan="3" class="img"><%	
 										Blob image=prog.getImmagine();
@@ -100,7 +98,6 @@
 		   			}
 					%>
 			</div>
-	 	
 	  </div>
 	  <div class="footer"><%@ include file="footer.jsp" %></div>
 	</body>

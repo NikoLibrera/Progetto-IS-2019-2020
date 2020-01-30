@@ -51,12 +51,10 @@
 					<option value="Hobby">Hobby</option>
 					<option value="Tools">Tools</option>
 				</select>
-					
+
 					<p align="center"><input type="submit" value="Upload progetto" class="inserisci_btn">
 		</form>
 	</div>
 	</div>
-	
-	
 	</body>
 </html>

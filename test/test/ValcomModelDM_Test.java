@@ -16,8 +16,8 @@ import model.RispostaCommento;
 import model.Utente;
 import model.Valutazione;
 
-public class ValcomModelDM_Test extends TestCase  {
-	
+public class ValcomModelDM_Test extends TestCase 
+{
 	Commento commento=new Commento();
 	Progetto progetto=new Progetto();
 	Utente utente=new Utente();
@@ -28,7 +28,8 @@ public class ValcomModelDM_Test extends TestCase  {
 	RispostaCommento risposta=new RispostaCommento();
 	
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception 
+	{
 		super.setUp();
 		utente.setUsername("TestUser");
 		utente.setPassword("testPass");
@@ -61,38 +62,50 @@ public class ValcomModelDM_Test extends TestCase  {
 	}
 	
 	@Override
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception
+	{
 		super.tearDown();
 		UtenteModelDM.deleteUtenteByUsername("TestUser");
-		//daoProg.doCancellaProgetto(99999, "TestUser");
 	}
-	
 	
 	public void testGetNumeroValutazioniByIdProgetto() throws SQLException
 	{
+		System.out.println("Test getNumeroValutazioniByIdProgetto");
+		
 		int numero=daoCom.getNumeroValutazioniByIdProgetto(99999);
 		assertEquals(1, numero);
+		
+		System.out.println("\n");
 	}
 	
 	public void testGetNumeroCommentiByIdProgetto() throws SQLException
 	{
+		System.out.println("Test getNumeroCommentiByIdProgetto");
+		
 		int numero=daoCom.getNumeroCommentiByIdProgetto(99999);
 		assertEquals(1, numero);
+		
+		System.out.println("\n");
 	}
 	
 	public void testGetNumeroRisposteByIdCommento() throws SQLException
 	{
+		System.out.println("Test getNumeroRisposteByIdCommento");
+		
 		int numero=daoCom.getNumeroRisposteByIdCommento(daoCom.getLastIdCommento());
 		assertEquals(1,numero );
+		
+		System.out.println("\n");
 	}
 	
 	public void testGetMediaValutazioniById() throws SQLException
 	{
+		System.out.println("Test getMediaValutazioniById");
+		
 		Utente u=new Utente();
 		u.setUsername("TestUserVal");
 		UtenteModelDM.doRegistrazione(u, 123456);
-		
-		
+			
 		valutazione.setUsername("TestUserVal");
 		valutazione.setId_progetto(99999);
 		valutazione.setId_valutazione(99999);
@@ -103,22 +116,34 @@ public class ValcomModelDM_Test extends TestCase  {
 		assertEquals(2, media);
 		
 		UtenteModelDM.deleteUtenteByUsername("TestUserVal");
+		
+		System.out.println("\n");
 	}
 	
 	public void testGetCommentiByIdProgetto() throws SQLException
 	{
+		System.out.println("Test getCommentiByIdProgetto");
+		
 		ArrayList<Commento> commenti=ValcomModelDM.getCommentiByIdProgetto(99999);
 		assertFalse(commenti.isEmpty());
+		
+		System.out.println("\n");
 	}
 	
 	public void testGetRisposteByIdCommento() throws SQLException
 	{
+		System.out.println("Test getRisposteByIdCommento");
+		
 		ArrayList<RispostaCommento> risposte=ValcomModelDM.getRisposteByIdCommento(daoCom.getLastIdCommento());
 		assertFalse(risposte.isEmpty());
+		
+		System.out.println("\n");
 	}
 	
 	public void testInserisciCommento() throws SQLException
 	{
+		System.out.println("Test inserisciCommento");
+		
 		Utente u=new Utente();
 		u.setUsername("TestUserVal");
 		UtenteModelDM.doRegistrazione(u, 123456);
@@ -134,15 +159,23 @@ public class ValcomModelDM_Test extends TestCase  {
 		assertEquals(c.getId_commento(), daoCom.getLastIdCommento());
 		
 		UtenteModelDM.deleteUtenteByUsername("TestUserVal");
+		
+		System.out.println("\n");
 	}
 	
 	public void testGetLastIdCommento()
 	{
+		System.out.println("Test getLastIdCommento");
+		
 		assertEquals(commento.getId_commento(), daoCom.getLastIdCommento());
+		
+		System.out.println("\n");
 	}
 	
 	public void testInserisciRisposta() throws SQLException
 	{
+		System.out.println("Test inserisciRisposta");
+		
 		RispostaCommento r=new RispostaCommento();
 		
 		r.setContenuto("Test risposta");
@@ -153,23 +186,37 @@ public class ValcomModelDM_Test extends TestCase  {
 		daoCom.inserisciRisposta(r, daoCom.getLastIdCommento());
 		
 		assertEquals(r.getId_risposta(), daoCom.getLastIdRisposta());
+		
+		System.out.println("\n");
 	}
 	
 	public void testGetLastIdRisposta()
 	{
+		System.out.println("Test getLastIdRisposta");
+		
 		assertEquals(risposta.getId_risposta(), daoCom.getLastIdRisposta());
+		
+		System.out.println("\n");
 	}
 	
 	public void testCancellaRisposta() throws SQLException
 	{
+		System.out.println("Test cancellaRisposta");
+		
 		daoCom.cancellaRisposta(daoCom.getLastIdRisposta());
 		assertNotEquals(risposta.getId_risposta(), daoCom.getLastIdRisposta());
+		
+		System.out.println("\n");
 	}
 	
 	public void testCancellaCommento() throws SQLException
 	{
+		System.out.println("Test cancellaCommento");
+		
 		daoCom.cancellaCommento(daoCom.getLastIdCommento());
 		assertNotEquals(commento.getId_commento(), daoCom.getLastIdCommento());
+		
+		System.out.println("\n");
 	}
 
 	public final void testInserisciValutazione() throws SQLException 

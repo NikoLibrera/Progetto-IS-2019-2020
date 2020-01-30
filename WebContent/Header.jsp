@@ -10,7 +10,6 @@
 
 <header>
 	<div class="intestazione">
-	
 		
 		 <a class="logo" href="HomePage.jsp"><img  class="imgLogo" src="images/logo.PNG" ></a>
 			<form action="RicercaBarra.jsp" class="formRicerca" method="get">
@@ -20,16 +19,22 @@
 				</form>
 			<% 	
 		Utente u=(Utente)session.getAttribute("utente");
-		if(u==null){%>
+		if(u==null)
+		{
+		%>
 			  <form action="LoginPage.jsp" class="formAccedi">
 				<button class="button_accedi">Accedi o Registrati</button>
 			</form>
-	<% 	}else{ %>
+	<% 
+	}
+		else
+		{
+		%>
 				<a class="profilo" href="ProfiloPersonale.jsp"><button class="imgProfilo"><img src="images/utente_profilo.png" ><h3><%= u.getNome() + "\n" + u.getCognome() %></h3></button></a>
 				<a class="logout" href="Logout"><button class="imgLogout"><img src="images/logout.png"><h3>Logout</h3></button></a>
-        <%} %>
-        
-			
+        <%
+        } 
+        %>		
 		
 	</div>
 	<div class="nav">

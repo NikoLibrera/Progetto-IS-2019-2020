@@ -14,11 +14,15 @@
 	
 	<% 	
 		Utente u=(Utente)session.getAttribute("utente");
-		if(u!=null){%>
+		if(u!=null)
+		{
+		%>
 			<script>
 			window.open('http://localhost:8080/Simplify3D/HomePage.jsp','_self')
 			</script>
-	<% 	} %>
+	<% 	
+	}
+		%>
 		<div class="container" align="center">
 			<div class="foto">
 				<img src="images/logo.PNG" height="150px" width="250px">

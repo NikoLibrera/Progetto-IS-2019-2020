@@ -11,7 +11,6 @@ function validateFormRegistrazione() //Controlla se tutti i campi della registra
 	
 	var passid_len;
 		
-	
 	if(checkusername(username))
 	{
 		if(checkmail(email))
@@ -219,5 +218,3 @@ function checknazionalita(f)
 	}
 	return true;
 }
-
-

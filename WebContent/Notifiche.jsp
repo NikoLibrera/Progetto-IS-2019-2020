@@ -52,27 +52,37 @@
 						
 		 			}
 		 			else
-		 			{%>
+		 			{
+		 			%>
 		 				<table id="tabella">
 		 			<%	for(Notifica n : notifiche) 
-		   				{%>
+		   				{
+		   				%>
 							<tr>
 								<td rowspan="3" class="img"><%	
 										Blob image=n.getImmagine();
 										byte [] img=image.getBytes(1, (int) image.length()); 
 										String encode = Base64.getEncoder().encodeToString(img); 
 									 %>
-									 <% if(n.isClicked()==1){ %>
+									 <% if(n.isClicked()==1)
+									 { 
+									 %>
 									<a href="ProgettoView.jsp?id=<%=n.getId_progetto() %>"><img id="imgtabella" src="data:image/jpeg;base64,<%=encode %>" style='opacity: 0.5; '></a> 
 								</td>
 								<td class="titolo" style='font-size:1.1em;'><% String titolo=n.getTitolo();%>
 											<b><a href="ProgettoView.jsp?id=<%=n.getId_progetto() %>" class="ancoraTitolo" style='opacity: 0.5; '><%=titolo %></a></b></td>
-									<% }else{ %>
+									<% 
+									}
+									 else
+									 {
+										 %>
 									<a href="ProgettoView.jsp?id=<%=n.getId_progetto() %>" onclick="<% model.setClickedNotifica(n); %>"><img id="imgtabella" src="data:image/jpeg;base64,<%=encode %>"></a> 
 								</td>
 								<td class="titolo" style='font-size:1.1em;'><% String titolo=n.getTitolo();%>
 											<b><a href="ProgettoView.jsp?id=<%=n.getId_progetto() %>" class="ancoraTitolo"><%=titolo %></a></b></td>
-									<% } %>
+									<% 
+									}
+									 %>
 								<td class="valutazione">
 								
 								</td>

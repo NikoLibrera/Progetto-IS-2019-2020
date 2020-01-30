@@ -4,7 +4,6 @@
     <% 
     	ProgettoModelDM model=new ProgettoModelDM();
     	ArrayList<Progetto> progetti=model.getMostRated();
-    
     %>
 <!DOCTYPE html>
 <html>

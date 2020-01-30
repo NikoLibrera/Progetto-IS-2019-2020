@@ -50,15 +50,14 @@
 		 			%>
 		 				<p style='font-size:1.2em;'>&nbsp;&nbsp;&nbsp;<b>Non è stato ancora caricato nessun progetto.</b></p>
 		 			<%
-						
 		 			}
 		 			else
-		 			{%>
+		 			{
+		 			%>
 		 				<table id="tabella">
 		 			<%	for(Progetto prog : progetti) 
 		   				{
-		 			%>	
-		 				
+		 			%>		
 							<tr>
 								<td rowspan="3" class="img"><%	
 										Blob image=prog.getImmagine();
@@ -75,7 +74,8 @@
 								<% 
 								ValcomModelDM modelValCom = new ValcomModelDM();
 								int v = modelValCom.getMediaValutazioniById(prog.getId_progetto());
-								switch(v){
+								switch(v)
+								{
 						    	case 5:%>
 							    <img id="idimg" src="images/StarPiena.png">
 							    <img id="idimg" src="images/StarPiena.png">

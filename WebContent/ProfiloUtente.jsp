@@ -26,13 +26,14 @@
 		return;
 	}
 	
-	
 	UtenteModelDM utenteModel = new UtenteModelDM();
 	Utente utente2 = utenteModel.getUtenteByUsername(username);
-	if(utente2==null){
+	if(utente2==null)
+	{
 		response.sendRedirect("./HomePage.jsp");
 		return;
 	}
+	
 	ProgettoModelDM model = new ProgettoModelDM();
 	ArrayList<Progetto> progetti = model.getByUsername(username);
 	System.out.println(progetti.isEmpty());
@@ -67,12 +68,12 @@
 						
 		 			}
 		 			else
-		 			{%>
+		 			{
+		 			%>
 		 				<table id="tabella">
 		 			<%	for(Progetto prog : progetti) 
 		   				{
-		 			%>	
-		 				
+		 			%>		
 							<tr>
 								<td rowspan="3" class="img"><%	
 										Blob image=prog.getImmagine();

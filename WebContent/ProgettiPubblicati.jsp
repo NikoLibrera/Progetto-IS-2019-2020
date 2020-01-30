@@ -53,7 +53,8 @@
 						
 		 			}
 		 			else
-		 			{%>
+		 			{
+		 			%>
 		 				<table id="tabella">
 		 			<%	for(Progetto prog : progetti) 
 		   				{
@@ -75,7 +76,8 @@
 								<% 
 								ValcomModelDM modelValCom = new ValcomModelDM();
 								int v = modelValCom.getMediaValutazioniById(prog.getId_progetto());
-								switch(v){
+								switch(v)
+								{
 						    	case 5:%>
 							    <img id="idimg" src="images/StarPiena.png">
 							    <img id="idimg" src="images/StarPiena.png">
@@ -117,7 +119,9 @@
 							    <img id="idimg" src="images/StarVuota.png">
 							    <img id="idimg" src="images/StarVuota.png">
 							    <img id="idimg" src="images/StarVuota.png">
-							    <% }%>
+							    <% 
+							    }
+							    %>
 								</td>
 								<td class="versione">Versione: <%= prog.getVersione()%></td>
 								<td class="commenti">Commenti: (<%=modelValCom.getNumeroCommentiByIdProgetto(prog.getId_progetto()) %>)</td>

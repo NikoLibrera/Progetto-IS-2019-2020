@@ -7,6 +7,7 @@
     <%
 	Utente utente = (Utente) request.getSession().getAttribute("utente");
     String categoria=null;
+    
 	try
 	{
 		categoria = request.getParameter("categoria");
@@ -16,16 +17,19 @@
 		response.sendRedirect("./HomePage.jsp");
 		return;
 	} 
-	if(categoria==null){
+	
+	if(categoria==null)
+	{
 		categoria="Art";
-	} else if(!categoria.equalsIgnoreCase("Art") && !categoria.equalsIgnoreCase("Fashion") && !categoria.equalsIgnoreCase("Toys") 
+	}
+	else if(!categoria.equalsIgnoreCase("Art") && !categoria.equalsIgnoreCase("Fashion") && !categoria.equalsIgnoreCase("Toys") 
 			&& !categoria.equalsIgnoreCase("House") && !categoria.equalsIgnoreCase("Office") && !categoria.equalsIgnoreCase("Gadget") 
-			&& !categoria.equalsIgnoreCase("Hobby") && !categoria.equalsIgnoreCase("Tools")){
+			&& !categoria.equalsIgnoreCase("Hobby") && !categoria.equalsIgnoreCase("Tools"))
+	{
 		categoria="Art";
 	}
 	ProgettoModelDM model = new ProgettoModelDM();
 	ArrayList<Progetto> progetti = model.getByCategoria(categoria);
-	
 	%>          
 <!DOCTYPE html>
 <html>
@@ -64,8 +68,7 @@
 					{
 		 			%>
 		 				<p style='font-size:1.2em;'>&nbsp;&nbsp;&nbsp;<b>Non è stato ancora caricato nessun progetto in questa categoria.</b></p>
-		 			<%
-						
+		 			<%	
 		 			}
 		 			else
 		 			{%>
@@ -73,7 +76,6 @@
 		 			<%	for(Progetto prog : progetti) 
 		   				{
 		 			%>	
-		 				
 							<tr>
 								<td rowspan="3" class="img"><%	
 										Blob image=prog.getImmagine();
@@ -90,7 +92,8 @@
 								<% 
 								ValcomModelDM modelValCom = new ValcomModelDM();
 								int v = modelValCom.getMediaValutazioniById(prog.getId_progetto());
-								switch(v){
+								switch(v)
+								{
 						    	case 5:%>
 							    <img id="idimg" src="images/StarPiena.png">
 							    <img id="idimg" src="images/StarPiena.png">
