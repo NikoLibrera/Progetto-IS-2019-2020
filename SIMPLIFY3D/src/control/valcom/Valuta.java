@@ -40,19 +40,24 @@ public class Valuta extends HttpServlet
 		}
 		
 		Integer idProgetto=0;
-		try{
+		try
+		{
 			idProgetto=Integer.parseInt(request.getParameter("id_proge"));
-		} catch (NumberFormatException e) {
+		}
+		catch (NumberFormatException e) 
+		{
 			response.sendRedirect("./HomePage.jsp");
 			return;
 		} 
 		
 		ProgettoModelDM model2 = new ProgettoModelDM();
 		Progetto progetto=null;
-		try {
+		try 
+		{
 			progetto = model2.getProgettoById(idProgetto);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+		}
+		catch (SQLException e1) 
+		{
 			e1.printStackTrace();
 		}
 		if(progetto == null)
@@ -71,7 +76,8 @@ public class Valuta extends HttpServlet
 		boolean presente=false;
 		try 
 		{
-			if(model.isValutato(progetto, utente)) {
+			if(model.isValutato(progetto, utente)) 
+			{
 				model.aggiornaValutazione(valutazione, idProgetto);
 				presente=true;
 			}
@@ -84,12 +90,15 @@ public class Valuta extends HttpServlet
 		}
 		finally
 		{
-			if(presente) {
+			if(presente) 
+			{
 				out.println("<script>");
 				out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+idProgetto+"','_self')");
 				out.println("alert('Valutazione aggiornata.')");
 				out.println("</script>");
-			} else {
+			} 
+			else 
+			{
 				out.println("<script>");
 				out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+idProgetto+"','_self')");
 				out.println("alert('Valutazione inserita.')");

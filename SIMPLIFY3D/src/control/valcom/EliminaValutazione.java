@@ -40,19 +40,24 @@ public class EliminaValutazione extends HttpServlet
 		}
 		
 		Integer idProgetto=0;
-		try{
+		try
+		{
 			idProgetto=Integer.parseInt(request.getParameter("id_proge"));
-		} catch (NumberFormatException e) {
+		}
+		catch (NumberFormatException e)
+		{
 			response.sendRedirect("./HomePage.jsp");
 			return;
 		} 
 		
 		ProgettoModelDM model2 = new ProgettoModelDM();
 		Progetto progetto=null;
-		try {
+		try
+		{
 			progetto = model2.getProgettoById(idProgetto);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+		} 
+		catch (SQLException e1)
+		{
 			e1.printStackTrace();
 		}
 		if(progetto == null)
@@ -62,7 +67,8 @@ public class EliminaValutazione extends HttpServlet
 		}
 		try 
 		{
-			if(model.isValutato(progetto, utente)) {
+			if(model.isValutato(progetto, utente)) 
+			{
 				model.eliminaValutazione(idProgetto, utente.getUsername());
 			}
 		}
@@ -76,7 +82,6 @@ public class EliminaValutazione extends HttpServlet
 			out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+idProgetto+"','_self')");
 			out.println("alert('Valutazione cancellata.')");
 			out.println("</script>");
-			
 		}	
 	}
 

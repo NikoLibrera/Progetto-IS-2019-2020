@@ -52,12 +52,15 @@ public class Modifica extends HttpServlet
 		
 		ProgettoModelDM model2 = new ProgettoModelDM();
 		Progetto progetto=null;
-		try {
+		try 
+		{
 			progetto = model2.getProgettoById(idProgetto);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+		} 
+		catch (SQLException e1)
+		{
 			e1.printStackTrace();
 		}
+		
 		if(progetto == null)
 		{
 			response.sendRedirect("./HomePage.jsp");
@@ -71,7 +74,6 @@ public class Modifica extends HttpServlet
 		String categoria = request.getParameter("categoria");
 		Part file_modello = request.getPart("progetto");
 		Part immagine = request.getPart("immagine");
-		
 		
 		Progetto p = new Progetto();
 		p.setId_progetto(idProgetto);
@@ -90,12 +92,15 @@ public class Modifica extends HttpServlet
 		
 		try 
 		{
-			if(file_modello.getSize()==0) {
+			if(file_modello.getSize()==0) 
+			{
 				if(immagine.getSize()==0) 
 					model.modificaProgetto(p, progetto.getImmagine().getBinaryStream(),progetto.getFile_modello().getBinaryStream());
 				else
 					model.modificaProgetto(p, immagine.getInputStream(),progetto.getFile_modello().getBinaryStream());
-			}else {
+			}
+			else 
+			{
 				if(immagine.getSize()==0) 
 					model.modificaProgetto(p, progetto.getImmagine().getBinaryStream(),file_modello.getInputStream());
 				else

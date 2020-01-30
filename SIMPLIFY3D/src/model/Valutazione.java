@@ -18,9 +18,8 @@ public class Valutazione
 		this.username = username;
 	}
 	
-	
-
-	public Valutazione(int voto, int id_progetto, String username) {
+	public Valutazione(int voto, int id_progetto, String username) 
+	{
 		super();
 		this.voto = voto;
 		this.id_progetto = id_progetto;
@@ -72,7 +71,5 @@ public class Valutazione
 	{
 		return "Valutazione [id_valutazione=" + id_valutazione + ", voto=" + voto + ", id_progetto=" + id_progetto
 				+ ", username=" + username + "]";
-	}
-	
-	
+	}	
 }

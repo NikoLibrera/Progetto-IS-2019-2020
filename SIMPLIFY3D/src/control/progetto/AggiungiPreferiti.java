@@ -38,21 +38,28 @@ public class AggiungiPreferiti extends HttpServlet
 		}
 		
 		Integer idProgetto=0;
-		try{
+		try
+		{
 			idProgetto=Integer.parseInt(request.getParameter("id"));
-		} catch (NumberFormatException e) {
+		} 
+		catch (NumberFormatException e)
+		{
 			response.sendRedirect("./HomePage.jsp");
 			return;
 		} 
 		
 		ProgettoModelDM model2 = new ProgettoModelDM();
 		Progetto progetto=null;
-		try {
+		
+		try 
+		{
 			progetto = model2.getProgettoById(idProgetto);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+		} 
+		catch (SQLException e1) 
+		{
 			e1.printStackTrace();
 		}
+		
 		if(progetto == null)
 		{
 			response.sendRedirect("./HomePage.jsp");

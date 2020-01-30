@@ -20,27 +20,22 @@ import model.Utente;
  * Servlet implementation class InserisciCommento
  */
 @WebServlet("/InserisciCommento")
-public class InserisciCommento extends HttpServlet {
+public class InserisciCommento extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public InserisciCommento() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
+    public InserisciCommento() 
+    {
+        super();
+    }
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		PrintWriter out = response.getWriter();
 		Utente u=(Utente) request.getSession().getAttribute("utente");
 		String username = null;
 		if(u!=null)
 		{
-			
-		
 			username=u.getUsername();
 			
 		String contenuto=request.getParameter("inserisciCommento");
@@ -48,10 +43,12 @@ public class InserisciCommento extends HttpServlet {
 		int id_progetto=Integer.parseInt(id);
 		Commento commento=new Commento(contenuto, username, id_progetto);
 		ValcomModelDM daoCom=new ValcomModelDM();
-		try {
+		try 
+		{
 			daoCom.inserisciCommento(commento, id_progetto);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
 		
@@ -60,13 +57,10 @@ public class InserisciCommento extends HttpServlet {
         out.println("alert('Commento inserito Correttamente')");
         out.println("</script>");
 		}
-		
 	}
-
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{	
 		doGet(request, response);
 	}
-
 }

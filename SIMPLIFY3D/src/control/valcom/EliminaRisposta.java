@@ -17,17 +17,17 @@ import model.Utente;
  * Servlet implementation class EliminaRisposta
  */
 @WebServlet("/EliminaRisposta")
-public class EliminaRisposta extends HttpServlet {
+public class EliminaRisposta extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
-       
     
-    public EliminaRisposta() {
+    public EliminaRisposta() 
+    {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		PrintWriter out = response.getWriter();
 		Utente u=(Utente) request.getSession().getAttribute("utente");
 		
@@ -39,11 +39,13 @@ public class EliminaRisposta extends HttpServlet {
 		int idRisposta=Integer.parseInt(idC);
 		
 		ValcomModelDM daoCom=new ValcomModelDM();
-		try {
+		try 
+		{
 
 			daoCom.cancellaRisposta(idRisposta);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (SQLException e)
+		{
 			e.printStackTrace();
 		}
 		
@@ -53,11 +55,9 @@ public class EliminaRisposta extends HttpServlet {
         out.println("</script>");
 		}
 	}
-
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doGet(request, response);
 	}
-
 }

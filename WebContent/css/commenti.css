@@ -7,12 +7,13 @@
 	resize: none;
 }
 
-
-.commenti{
+.commenti
+{
 	margin-top:50px;
 	margin-left: 25%;
 	
 }
+
 .commenti input
 {
 	cursor: pointer;
@@ -28,6 +29,7 @@
   	height: 50px;
   	font-size: 18px;
 }
+
 #croce
 {
 	margin-left:0;
@@ -44,13 +46,14 @@
   	width:30px;
   	height: 30px;
 }
+
 #contElimina
 {
 	margin-left: 0;
 }
 
-.insertCom{
-	
+.insertCom
+{
 	cursor: pointer;
 	text-align: center;
   	text-decoration: none;
@@ -62,10 +65,11 @@
   	border-radius: 15px;
   	outline: none;
   	height: 50px;
-  	font-size: 18px;
-  	
+  	font-size: 18px;	
 }
-.commento{
+
+.commento
+{
 	margin-top:20px;
 	width:75%;
 	border-style: solid;
@@ -75,6 +79,7 @@
 	border-radius: 2px;
 	display: inline-flex;
 }
+
 .contenitoreCommento
 {
 	width: 90%;
@@ -85,7 +90,8 @@
 	width: 90%;
 }
 
-.commento *{
+.commento *
+{
 	margin-left: 3%;
 }
 
@@ -101,12 +107,13 @@
 	border-radius: 2px;
 	display: inline-flex;
 }
+
 .risposta textarea
 {
 	width: 90%;
 }
+
 .risposta *
 {
 	margin-left: 3%;
 }
-

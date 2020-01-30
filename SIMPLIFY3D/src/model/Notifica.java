@@ -28,11 +28,10 @@ public class Notifica
 		this.id_valutazione = id_valutazione;
 		this.username = username;
 	}
-
-	
 	
 	public Notifica(int id_commento, int id_risposta, int id_progetto, int id_valutazione, Blob immagine, String titolo,
-			String tipo, String username, int isClicked) {
+			String tipo, String username, int isClicked)
+	{
 		super();
 		this.id_commento = id_commento;
 		this.id_risposta = id_risposta;
@@ -46,7 +45,8 @@ public class Notifica
 	}
 	
 	public Notifica(int id_commento,int id_progetto, Blob immagine, String titolo,
-			String tipo, String username, int isClicked) {
+			String tipo, String username, int isClicked) 
+	{
 		super();
 		this.id_commento = id_commento;
 		this.id_progetto = id_progetto;
@@ -58,7 +58,8 @@ public class Notifica
 	}
 	
 	public Notifica( int id_risposta,  Blob immagine, int id_progetto,String titolo,
-			String tipo, String username, int isClicked) {
+			String tipo, String username, int isClicked) 
+	{
 		super();
 		this.id_risposta = id_risposta;
 		this.id_progetto = id_progetto;
@@ -70,7 +71,8 @@ public class Notifica
 	}
 	
 	public Notifica( int id_progetto,  Blob immagine, String titolo,
-			String tipo, String username, int isClicked, int id_valutazione) {
+			String tipo, String username, int isClicked, int id_valutazione)
+	{
 		super();
 		this.id_progetto = id_progetto;
 		this.id_valutazione = id_valutazione;

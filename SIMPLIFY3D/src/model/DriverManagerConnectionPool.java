@@ -8,7 +8,6 @@ import java.util.List;
 
 public class DriverManagerConnectionPool 
 {
-
 	static 
 	{
 		try 
@@ -31,7 +30,6 @@ public class DriverManagerConnectionPool
 		String password = "123qweasdzxc";
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?useTimezone=true&serverTimezone=UTC", username, password);
-
 		
 		newConnection.setAutoCommit(false);
 		return newConnection;

@@ -4,7 +4,6 @@ import java.sql.Blob;
 
 public class Progetto
 {
-	
 	private int id_progetto, versione;
 	private String titolo, descrizione, consigli, categoria, username;
 	private Blob file_modello, immagine;
@@ -13,8 +12,6 @@ public class Progetto
 	{
 		
 	}
-	
-	
 	
 	public Progetto(int id_progetto, String titolo, String descrizione, Blob file_modello, Blob immagine,
 			String consigli, String categoria, int versione, String username) 

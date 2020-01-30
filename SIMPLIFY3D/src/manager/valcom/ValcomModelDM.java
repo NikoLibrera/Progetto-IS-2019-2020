@@ -17,8 +17,8 @@ import model.RispostaCommento;
 import model.Utente;
 import model.Valutazione;
 
-public class ValcomModelDM {
-	
+public class ValcomModelDM 
+{	
 	public Integer getNumeroValutazioniByIdProgetto(int idProgetto) throws SQLException 
 	{
 	    Connection connection = null;
@@ -43,7 +43,8 @@ public class ValcomModelDM {
 	    	  n=rs.getInt("n");
 	      }
 	    } 
-	    catch(Exception e){
+	    catch(Exception e)
+	    {
 	    	e.printStackTrace();
 	    }
 	    finally 
@@ -283,7 +284,7 @@ public class ValcomModelDM {
 			try 
 			{
 				if (preparedStatement != null)
-				preparedStatement.close();
+					preparedStatement.close();
 			} 
 			finally 
 			{
@@ -526,9 +527,7 @@ public class ValcomModelDM {
 			{
 	        	idValutazione=r.getInt("id");
 			}
-			
 			connection.close();				
-	
 		}
 		catch (SQLException e) 
 		{
@@ -562,7 +561,8 @@ public class ValcomModelDM {
 	    	  n=true;
 	      }
 	    } 
-	    catch(Exception e){
+	    catch(Exception e)
+	    {
 	    	e.printStackTrace();
 	    }
 	    finally 
@@ -588,7 +588,6 @@ public class ValcomModelDM {
 		PreparedStatement preparedStatement = null;
 		ValcomModelDM model=new ValcomModelDM();
 		
-		
 		String updateSQL = "UPDATE valutazione set id_valutazione=? , voto = ? , id_progetto = ? where username = ?"; 
 		try 
 		{
@@ -598,7 +597,6 @@ public class ValcomModelDM {
 			preparedStatement.setInt(2, valutazione.getVoto());
 			preparedStatement.setInt(3, idProgetto);
 			preparedStatement.setString(4, valutazione.getUsername());
-			
 
 			System.out.println("aggiornaValutazione: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
@@ -964,14 +962,12 @@ public class ValcomModelDM {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		
 		String updateSQL = "UPDATE notifica set isClicked=1 where id_notifica = ?"; 
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(updateSQL);
 			preparedStatement.setInt(1, notifica.getId_notifica());
-			
 
 			System.out.println("setClickedNotifica: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();

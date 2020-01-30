@@ -67,7 +67,6 @@ public class ProgettoModelDM
 			}
 			
 			connection.close();				
-	
 		}
 		catch (SQLException e) 
 		{

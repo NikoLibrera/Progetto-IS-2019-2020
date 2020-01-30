@@ -19,27 +19,26 @@ import model.Utente;
  * Servlet implementation class InserisciRisposta
  */
 @WebServlet("/InserisciRisposta")
-public class InserisciRisposta extends HttpServlet {
+public class InserisciRisposta extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InserisciRisposta() {
+    public InserisciRisposta() 
+    {
         super();
         
     }
-
 	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		PrintWriter out = response.getWriter();
 		Utente u=(Utente) request.getSession().getAttribute("utente");
 		String username = null;
 		if(u!=null)
 		{
-			
-		
 			username=u.getUsername();
 			
 		String contenuto=request.getParameter("rispostaCommento");
@@ -50,10 +49,12 @@ public class InserisciRisposta extends HttpServlet {
 		RispostaCommento rispostaCommento=new RispostaCommento(contenuto, username, id_commento);
 		
 		ValcomModelDM daoCom=new ValcomModelDM();
-		try {
+		try
+		{
 			daoCom.inserisciRisposta(rispostaCommento, id_commento);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}
+		catch (SQLException e) 
+		{
 			e.printStackTrace();
 		}
 		
@@ -64,10 +65,8 @@ public class InserisciRisposta extends HttpServlet {
 		}
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		doGet(request, response);
 	}
-
 }

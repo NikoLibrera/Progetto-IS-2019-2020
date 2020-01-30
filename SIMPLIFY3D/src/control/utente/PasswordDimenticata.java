@@ -95,7 +95,6 @@ public class PasswordDimenticata extends HttpServlet
 			out.println("window.open('http://localhost:8080/Simplify3D/NotificaPasswordDimenticata.jsp','_self')");
 			out.println("</script>");
 			return;
-			
 	    } 
 	    catch (Exception e) 
 	    {
