@@ -239,38 +239,6 @@ public class ProgettoModelDM
 	    return progetto;
 	  }
 	
-	public void modificaProgetto(Progetto p) throws SQLException
-	{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		String updateSQL = "UPDATE progetto SET titolo ='"+p.getTitolo()+"',descrizione ='"+p.getDescrizione()+"',"+
-		"file_modello ='"+p.getFile_modello()+"',immagine ='"+p.getImmagine()+"',consigli ='"+p.getConsigli()+"',categoria ='"+p.getCategoria()+"',"+
-		"versione='"+p.getVersione()+"' WHERE id_progetto = ?";
-		try 
-		{
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(updateSQL);
-			preparedStatement.setInt(1, p.getId_progetto());
-			
-			System.out.println("doModificaProgetto: "+preparedStatement.toString());
-			preparedStatement.executeUpdate();
-			connection.commit();
-		} 
-		finally 
-		{
-			try 
-			{
-				if(preparedStatement != null)
-					preparedStatement.close();
-			} 
-			finally 
-			{
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}	
-	}
-	
 	public void addToPreferiti(Progetto progetto, Utente utente) throws SQLException
 	{
 		Connection connection = null;

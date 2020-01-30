@@ -353,4 +353,40 @@ public class UtenteModelDM
 			}
 		}	
 	}
+
+	public static void deleteUtenteByUsername(String username) throws SQLException 
+	{
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+
+	    final String delete_sql = "DELETE FROM utente WHERE username= ?";
+
+	    try 
+	    {
+	      connection = DriverManagerConnectionPool.getConnection();
+	      preparedStatement = connection.prepareStatement(delete_sql);
+
+	      preparedStatement.setString(1, username);
+
+	      System.out.println("deleteUtenteByUsername:" + preparedStatement.toString());
+
+	      preparedStatement.executeUpdate();
+
+	      connection.commit();
+	    } 
+	    finally 
+	    {
+	      try 
+	      {
+	        if (preparedStatement != null) 
+	        {
+	          preparedStatement.close();
+	        }
+	      } 
+	      finally
+	      {
+	        DriverManagerConnectionPool.releaseConnection(connection);
+	      }
+	    }
+	  }
 }

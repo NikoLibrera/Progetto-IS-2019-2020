@@ -443,37 +443,6 @@ public class ValcomModelDM
 		}
 	}
 	
-	public void cancellaRisposteByIdCommento(int idCommento) throws SQLException
-	{
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		
-		String deleteSQL = "DELETE FROM risposta_commento WHERE id_commento = ?";
-		try
-		{
-			connection = DriverManagerConnectionPool.getConnection();
-			preparedStatement = connection.prepareStatement(deleteSQL);
-		
-			preparedStatement.setInt(1, idCommento);
-		
-			preparedStatement.executeUpdate();
-			System.out.println("cancellaRisposteByIdCommento: "+preparedStatement.toString());
-			connection.commit();
-		}
-		finally 
-		{
-			try 
-			{
-				if(preparedStatement != null)
-					preparedStatement.close();
-			} 
-			finally 
-			{
-				DriverManagerConnectionPool.releaseConnection(connection);
-			}
-		}
-	}
-	
 	public void inserisciValutazione(Valutazione valutazione,int idProgetto) throws SQLException
 	{
 		Connection connection = null;
@@ -597,8 +566,8 @@ public class ValcomModelDM
 			preparedStatement = connection.prepareStatement(updateSQL);
 			preparedStatement.setInt(1, model.getLastIdValutazione()+1);
 			preparedStatement.setInt(2, valutazione.getVoto());
-			preparedStatement.setInt(3, idProgetto);
-			preparedStatement.setString(4, valutazione.getUsername());
+			preparedStatement.setInt(4, idProgetto);
+			preparedStatement.setString(3, valutazione.getUsername());
 
 			System.out.println("aggiornaValutazione: "+preparedStatement.toString());
 			preparedStatement.executeUpdate();
