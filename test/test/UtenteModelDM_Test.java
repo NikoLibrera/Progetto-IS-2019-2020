@@ -1,195 +1,163 @@
 package test;
 
-import static org.junit.Assert.*;
-
-import java.sql.Connection;
 import java.sql.SQLException;
-
-import org.junit.jupiter.api.Test;
-
+import junit.framework.TestCase;
 import manager.utente.UtenteModelDM;
 import model.Utente;
 
-public class UtenteModelDM_Test 
-{
-	Connection connection = null;
+public class UtenteModelDM_Test extends TestCase
+{ 
+	Utente utente = new Utente();
 	
-	@Test
+	@Override
+	protected void setUp() throws Exception 
+	{
+	    utente.setUsername("Pako98");
+	    utente.setCognome("Sorrentino");
+	    utente.setNome("Pasquale");
+	    utente.setData_nascita("1997-11-07");
+	    utente.setIsAdmin(0);
+	    utente.setPassword("123456789");
+	    utente.setEmail("pasqualesorrentino@gmail.com");
+	    utente.setNazionalita("Italy");
+	    utente.setConfermato(0);
+	    int codice = 8912;
+	    UtenteModelDM.doRegistrazione(utente, codice);
+	}
+	
+	@Override
+	protected void tearDown() throws Exception 
+	{
+		UtenteModelDM.deleteUtenteByUsername(utente.getUsername());
+	}
+	
 	public final void testDoRegistrazione() throws SQLException 
 	{
 	    System.out.println("Test DoRegistrazione");
 
 	    Utente utente = new Utente();
-	    utente.setUsername("Gennaro97");
-	    utente.setCognome("Confuorto");
-	    utente.setNome("Gennaro");
-	    utente.setData_nascita("1997-11-07");
+	    utente.setUsername("A.Papini");
+	    utente.setCognome("Papini");
+	    utente.setNome("Antonio");
+	    utente.setData_nascita("1996-09-10");
 	    utente.setIsAdmin(0);
 	    utente.setPassword("123456789");
-	    utente.setEmail("confuortogennaro@gmail.com");
+	    utente.setEmail("antoniopapini@gmail.com");
 	    utente.setNazionalita("Italy");
-	    utente.setPassword("0123456789");
 	    utente.setConfermato(1);
 	    int codice = 8912;
 	    UtenteModelDM.doRegistrazione(utente, codice);
 
-	    Utente result = UtenteModelDM.getUtenteByUsername("Gennaro97");
+	    Utente result = UtenteModelDM.getUtenteByUsername("A.Papini");
 	    assertEquals(utente.getUsername(), result.getUsername());
 	    
+	    UtenteModelDM.deleteUtenteByUsername(utente.getUsername());
 	    System.out.println("\n");
 	  }
 	
-	@Test
 	public final void testDoLogin() throws SQLException 
 	{
 	    System.out.println("Test DoLogin");
-	
-	    Utente utente = new Utente();
-	    utente.setUsername("Gennaro97");
-	    utente.setCognome("Confuorto");
-	    utente.setNome("Gennaro");
-	    utente.setData_nascita("1997-11-07");
-	    utente.setIsAdmin(0);
-	    utente.setPassword("123456789");
-	    utente.setEmail("confuortogennaro@gmail.com");
-	    utente.setNazionalita("Italy");
-	    utente.setPassword("0123456789");
-	    utente.setConfermato(1);
-	    int codice = 8912;
-	    UtenteModelDM.doRegistrazione(utente, codice);
-	
-	    String email = "confuortogennaro@gmail.com";
+	    
+	    String usernameDaTrovare = "Pako98";
 	    
 	    String username = utente.getUsername();
 	    String password = utente.getPassword();
 	    
 	    UtenteModelDM model = new UtenteModelDM();
 	    
+	    UtenteModelDM.setConfermato(utente);
 	    Utente result = model.doLogin(username, password);
 
-	    assertEquals(result.getUsername(), username);
+	    assertEquals(result.getUsername(), usernameDaTrovare);
 
 	    System.out.println("\n");
 	  }
 	
-	/*
-	@Test
-	public final void testDoModificaPassword() throws SQLException
+	public final void testDoModificaPassword() throws SQLException 
 	{
-		System.out.println("TestDoPasswordDimenticata");
+	    System.out.println("Test DoModificaPassword");
 	    
-	    Utente utentedb = new Utente();
-	    utentedb.setUsername("Gennaro97");
-	    utentedb.setCognome("Confuorto");
-	    utentedb.setNome("Gennaro");
-	    utentedb.setData_nascita("1997-11-07");
-	    utentedb.setIsAdmin(0);
-	    utentedb.setPassword("123456789");
-	    utentedb.setEmail("confuortogennaro@gmail.com");
-	    utentedb.setNazionalita("Italy");
-	    utentedb.setPassword("0123456789");
-	    utentedb.setConfermato(1);
-	    int codice = 8912;
-	    UtenteModelDM.doRegistrazione(utentedb, codice);
+	    String nuovaPassword = "Pako98";
 	    
-	    final String nuova_password = "gennarino";
-
-	    utentedb.setPassword(nuova_password);
-
 	    UtenteModelDM model = new UtenteModelDM();
 	    
-	    model.doModificaPassword(utentedb, nuova_password);
+	    Utente result = model.doModificaPassword(utente, nuovaPassword);
 
-	    Utente result = model.getUtenteByUsername("Gennaro97");
+	    assertEquals(result.getPassword(), nuovaPassword);
 
-	    assertEquals(nuova_password, result.getPassword());
-	    
-	    System.out.println("\n");
-	}
-
-	@Test
-	public final void testGetUtenteByUsername() throws SQLException 
-	{
-	    System.out.println("TestGetUtenteByUsername");
-
-	    Utente utentedb = new Utente();
-	    utentedb.setUsername("Gennaro97");
-	    utentedb.setCognome("Confuorto");
-	    utentedb.setNome("Gennaro");
-	    utentedb.setData_nascita("1997-11-07");
-	    utentedb.setIsAdmin(0);
-	    utentedb.setPassword("123456789");
-	    utentedb.setEmail("confuortogennaro@gmail.com");
-	    utentedb.setNazionalita("Italy");
-	    utentedb.setPassword("0123456789");
-	    utentedb.setConfermato(1);
-	    int codice = 8912;
-	    UtenteModelDM.doRegistrazione(utentedb, codice);
-	    
-	    UtenteModelDM model = new UtenteModelDM();
-
-	    Utente result = model.getUtenteByUsername("Gennaro97");
-
-	    assertEquals(utentedb.getUsername(), result.getUsername());
-	    
 	    System.out.println("\n");
 	  }
+	
+	public final void testSetConfermato() throws SQLException 
+	{
+	    System.out.println("Test setConfermato");
+	    
+	    int confermato = 1;
+	    
+	    UtenteModelDM.setConfermato(utente);
+	    
+	    utente = UtenteModelDM.getUtenteByUsername(utente.getUsername());
 
-	@Test
+	    assertEquals(utente.getConfermato(),confermato);
+
+	    System.out.println("\n");
+	  }
+	
+	public final void testGetUtenteByUsername() throws SQLException
+	{
+		System.out.println("Test getUtenteByUsername");
+		
+		String usernameDaTrovare = "Pako98";
+		
+		utente = UtenteModelDM.getUtenteByUsername(utente.getUsername());
+		
+		assertEquals(utente.getUsername(), usernameDaTrovare);
+		
+		System.out.println("\n");
+	}
+	
 	public final void testVerificaCodice() throws SQLException 
 	{
-	    System.out.println("TestVerificaCodice");
-	    Utente utente = new Utente();
-
-	    Utente utentedb = new Utente();
-	    utentedb.setUsername("Gennaro97");
-	    utentedb.setCognome("Confuorto");
-	    utentedb.setNome("Gennaro");
-	    utentedb.setData_nascita("1997-11-07");
-	    utentedb.setIsAdmin(0);
-	    utentedb.setPassword("123456789");
-	    utentedb.setEmail("confuortogennaro@gmail.com");
-	    utentedb.setNazionalita("Italy");
-	    utentedb.setPassword("123456789");
-	    utentedb.setConfermato(1);
-	    int codice = 8912;
-	    UtenteModelDM.doRegistrazione(utentedb, codice);
-	    
-	    UtenteModelDM model = new UtenteModelDM();
-	    utente = model.getUtenteByUsername("Gennaro97");
-
-	    int result = model.verificaCodice(utente.getUsername());
-	    assertEquals(codice, result);
-	    
-	    System.out.println("\n");
-	  }
-
-	@Test
+		System.out.println("Test verificaCodice");
+		
+		int codiceDaTrovare = 8912;
+		
+		UtenteModelDM.verificaCodice(utente.getUsername());
+		
+		utente = UtenteModelDM.getUtenteByUsername(utente.getUsername());
+		assertEquals(utente.getCodice(), codiceDaTrovare);
+		
+		System.out.println("\n");
+	}
+	
+	public final void testDeleteUtenteByUsername() throws SQLException
+	{
+		System.out.println("Test deleteUtenteByUsername");
+		
+		String usernameDaTrovare = "Pako98";
+		
+		UtenteModelDM.deleteUtenteByUsername(utente.getUsername());
+		
+		assertEquals(utente.getUsername(), usernameDaTrovare);
+		
+		System.out.println("\n");
+	}
+	
 	public final void testDoPasswordDimenticata() throws SQLException 
 	{
-	    System.out.println("TestDoPasswordDimenticata");
-
-	    Utente utentedb = new Utente();
-	    utentedb.setUsername("Gennaro97");
-	    utentedb.setCognome("Confuorto");
-	    utentedb.setNome("Gennaro");
-	    utentedb.setData_nascita("1997-11-07");
-	    utentedb.setIsAdmin(0);
-	    utentedb.setPassword("123456789");
-	    utentedb.setEmail("confuortogennaro@gmail.com");
-	    utentedb.setNazionalita("Italy");
-	    utentedb.setPassword("123456789");
-	    utentedb.setConfermato(1);
-	    int codice = 8912;
-	    UtenteModelDM.doRegistrazione(utentedb, codice);
+	    System.out.println("Test doPasswordDimenticata");
+	    
+	    String passwordDaInserire = "987654321";
 	    
 	    UtenteModelDM model = new UtenteModelDM();
 	    
-	    Utente result = model.doPasswordDimenticata(utentedb, "123456");
+	    model.doPasswordDimenticata(utente, passwordDaInserire);
 	    
-	    assertTrue(true);
+	    utente = UtenteModelDM.getUtenteByUsername(utente.getUsername());
+	    
+	    assertEquals(utente.getPassword(), passwordDaInserire);
 
 	    System.out.println("\n");
 	  }
-	  */
 }
