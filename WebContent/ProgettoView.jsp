@@ -228,9 +228,9 @@
 					<input type="hidden" name="id_proge" value="<%=p.getId_progetto()%>">
 					<% 	if(utente!=null){
 							if(daoCom.isValutato(p, utente)) {%>
-							<br><p><input type="submit" value="Aggiorna Valutazione">
+							<br><p><input type="submit" value="Aggiorna Valutazione" id="v">
 						<% }else{ %>	
-							<p><input type="submit" value="Inserisci Valutazione">
+							<p><input type="submit" value="Inserisci Valutazione" id="v">
 						<% }
 						} %>
 				</form>
@@ -238,7 +238,7 @@
 							if(daoCom.isValutato(p, utente)) {%>
 								<form action="EliminaValutazione" method="post">
 								<input type="hidden" name="id_proge" value="<%=p.getId_progetto()%>">
-								<p><input type="submit" value="Elimina Valutazione">
+								<p><input type="submit" value="Elimina Valutazione" id="v">
 								</form>
 						<% } 
 						} %>
@@ -283,7 +283,7 @@
 					
 					<%
 					if(u!=null)
-					if(u.getUsername().equals(commenti.get(i).getUsername())){  %>
+					if(u.getUsername().equals(commenti.get(i).getUsername())||u.getIsAdmin()==1){  %>
 					<input type="submit" value="X"  style="color: white;" id="croce">
 				<%} %>
 					<input type="hidden" value="<%=id%>" name="id">
@@ -306,7 +306,7 @@
 				</div>
 				<div id="contElimina">
 				<%if(u!=null)
-					if(u.getUsername().equals(risposte.get(k).getUsername())){ %>
+					if(u.getUsername().equals(risposte.get(k).getUsername())||u.getIsAdmin()==1){ %>
 				<form action="EliminaRisposta" method="post" id="deleteRisp">
 				<input type="submit" value="X"  style="color: white;" id="croce">
 				<input type="hidden" value="<%=id%>" name="id">

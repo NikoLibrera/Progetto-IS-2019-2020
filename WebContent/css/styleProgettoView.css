@@ -54,6 +54,28 @@
   	transition: all 0.5s
 }
 
+#v{
+	text-align: center;
+  	text-decoration: none;
+  	outline: none;
+  	border: none;
+ 	background-color: #FFC312; 
+  	border-color:#FFC312;
+ 	color:black;
+  	border-radius: 15px;
+  	outline: none;
+  	height: 50px;
+  	font-size: 18px;
+  	transition: all 0.5s
+}
+
+#v:hover{
+	color: white; 
+	background-color: black; 
+	cursor: pointer; 
+	transition: all 0.5s;
+}
+
 .button input:hover
 { 
 	color: white; 
@@ -122,6 +144,8 @@
   	font-size: 18px;
   	width: 170px;
 }
+
+
 
 fieldset, label
 { 
