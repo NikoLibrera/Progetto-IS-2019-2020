@@ -34,7 +34,7 @@ public class PasswordDimenticata extends HttpServlet
 		
 		PrintWriter out = response.getWriter();
 		
-		Utente utente = new Utente();
+		Utente utente = null;
 		
 		String username = request.getParameter("username");		
 		String email = request.getParameter("email");
@@ -91,10 +91,7 @@ public class PasswordDimenticata extends HttpServlet
 	        
 	        Transport.send(message);
         
-	        out.println("<script>");
-			out.println("window.open('http://localhost:8080/Simplify3D/NotificaPasswordDimenticata.jsp','_self')");
-			out.println("</script>");
-			return;
+
 	    } 
 	    catch (Exception e) 
 	    {
@@ -107,7 +104,7 @@ public class PasswordDimenticata extends HttpServlet
 			request.setAttribute("utente", utente);
 			
 			out.println("<script>");
-			out.println("window.open('http://localhost:8080/Simplify3D/LoginPage.jsp','_self')");
+			out.println("window.open('http://localhost:8080/Simplify3D/NotificaPasswordDimenticata.jsp','_self')");
 			out.println("</script>");
 			return;
 		}

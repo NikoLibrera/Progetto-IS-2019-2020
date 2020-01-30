@@ -588,7 +588,9 @@ public class ValcomModelDM
 		PreparedStatement preparedStatement = null;
 		ValcomModelDM model=new ValcomModelDM();
 		
-		String updateSQL = "UPDATE valutazione set id_valutazione=? , voto = ? , id_progetto = ? where username = ?"; 
+		
+		String updateSQL = "UPDATE valutazione set id_valutazione=? , voto = ? where username = ? and id_progetto = ?"; 
+
 		try 
 		{
 			connection = DriverManagerConnectionPool.getConnection();
