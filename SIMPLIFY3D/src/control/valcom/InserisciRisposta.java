@@ -68,4 +68,10 @@ public class InserisciRisposta extends HttpServlet
 	{
 		doGet(request, response);
 	}
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
+		doGet(req, resp);
+	}
 }
