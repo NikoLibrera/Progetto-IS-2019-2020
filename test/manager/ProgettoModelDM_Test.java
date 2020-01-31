@@ -39,18 +39,13 @@ public class ProgettoModelDM_Test extends TestCase
 	}
 	
 	@Override
-	protected void tearDown() throws Exception 
+	protected void tearDown() throws Exception  , SQLException
 	{
 		UtenteModelDM.deleteUtenteByUsername(utente.getUsername());
 		ProgettoModelDM model=new ProgettoModelDM();
-		try
-		{
-			model.doCancellaProgetto(99999, "username");
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+		
+		model.doCancellaProgetto(99999, "username");
+		
 	}
 	
 	public void testDoUpload() throws SQLException

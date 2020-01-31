@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
@@ -23,6 +24,7 @@ import org.springframework.mock.web.MockPart;
 
 import control.progetto.AggiungiPreferiti;
 import control.progetto.CancellaProgetto;
+import control.progetto.Download;
 import control.progetto.Modifica;
 import control.progetto.RimuoviPreferiti;
 import control.progetto.Upload;
@@ -179,4 +181,5 @@ public class ControlProgettoTest extends TestCase{
 		assertEquals(before, after-1);
 		System.out.println("\n");
 	}
+
 }
