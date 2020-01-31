@@ -67,6 +67,7 @@ public class Upload extends HttpServlet
 		}
 		finally
 		{
+			request.setAttribute("cazzo","cazzo ne");
 			out.println("<script>");
 			out.println("window.open('http://localhost:8080/Simplify3D/ProgettoView.jsp?id="+p.getId_progetto()+"','_self')");
 			out.println("alert('Upload effettuato con successo')");
@@ -77,5 +78,10 @@ public class Upload extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		doGet(request, response);
+	}
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 }
