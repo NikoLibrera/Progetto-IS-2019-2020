@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.valcom.ValcomModelDM;
-import model.Commento;
 import model.RispostaCommento;
 import model.Utente;
 

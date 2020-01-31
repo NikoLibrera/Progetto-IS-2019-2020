@@ -414,7 +414,6 @@ public class ValcomModelDM
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		ValcomModelDM model= new ValcomModelDM();
 		
 		String deleteSQL = "DELETE FROM commento WHERE id_commento = ?";
 		try
