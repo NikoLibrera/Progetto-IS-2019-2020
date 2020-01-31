@@ -32,6 +32,12 @@ public class Registrazione extends HttpServlet
 	{
 		doPost(request, response);
 	}
+	
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPost(req, resp);
+	}
 			
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -169,5 +175,6 @@ public class Registrazione extends HttpServlet
             out.println("</script>");
             e1.printStackTrace();
         } 
+        
 	}
 }

@@ -17,7 +17,7 @@ public class ProgettoModelDM_Test extends TestCase
 	Progetto p=null;
 	
 	@Override
-	protected void setUp() throws Exception 
+	protected void setUp() throws Exception , SQLException 
 	{
 		utente=new Utente();
 		utente.setUsername("username");
@@ -35,14 +35,7 @@ public class ProgettoModelDM_Test extends TestCase
 		p.setVersione(1);
 		p.setId_progetto(99999);
 		
-		try 
-		{
-			model.doUpload(p, InputStream.nullInputStream(), InputStream.nullInputStream());
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+		model.doUpload(p, InputStream.nullInputStream(), InputStream.nullInputStream());
 	}
 	
 	@Override
@@ -60,7 +53,7 @@ public class ProgettoModelDM_Test extends TestCase
 		}
 	}
 	
-	public void testDoUpload() 
+	public void testDoUpload() throws SQLException
 	{
 		System.out.println("Test doUpload");
 		
@@ -75,37 +68,16 @@ public class ProgettoModelDM_Test extends TestCase
 		p.setVersione(1);
 		p.setId_progetto(model.getLastId()+1);
 		
-		try 
-		{
-			model.doUpload(p, InputStream.nullInputStream(), InputStream.nullInputStream());
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		
+		model.doUpload(p, InputStream.nullInputStream(), InputStream.nullInputStream());
+	
 		Progetto p2=null;
 		
-		try
-		{
-			p2=model.getProgettoById(p.getId_progetto());
-		} 
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		p2=model.getProgettoById(p.getId_progetto());
 		
 		assertEquals(p.getId_progetto(), p2.getId_progetto());
-		
-		try 
-		{
-			model.doCancellaProgetto(p.getId_progetto(), p.getUsername());
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		
+
+		model.doCancellaProgetto(p.getId_progetto(), p.getUsername());
+
 		System.out.println("\n");
 	}
 
@@ -122,350 +94,189 @@ public class ProgettoModelDM_Test extends TestCase
 		System.out.println("\n");
 	}
 
-	public void testGetByCategoria() 
+	public void testGetByCategoria() throws SQLException
 	{
 		System.out.println("Test getByCategoria");
 		
 		ArrayList<Progetto> progetti = null;
-		
-		try
-		{
-			progetti=ProgettoModelDM.getByCategoria("Art");
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		
+
+		progetti=ProgettoModelDM.getByCategoria("Art");
+
 		assertEquals(false, progetti.isEmpty());
 		
 		System.out.println("\n");
 	}
 
-	public void testGetByUsername()
+	public void testGetByUsername() throws SQLException
 	{
 		System.out.println("Test getByUsername");
 		
 		ArrayList<Progetto> progetti = null;
-		
-		try
-		{
-			progetti=ProgettoModelDM.getByUsername(utente.getUsername());
-		} 
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+
+		progetti=ProgettoModelDM.getByUsername(utente.getUsername());
 		
 		assertEquals(false, progetti.isEmpty());
 		
 		System.out.println("\n");
 	}
 
-	public void testGetProgettoById()
+	public void testGetProgettoById() throws SQLException
 	{
 		System.out.println("Test getProgettoById");
 		
 		ProgettoModelDM model=new ProgettoModelDM();
 	
 		Progetto p2=null;
-		
-		try 
-		{
-			p2=model.getProgettoById(p.getId_progetto());
-		}
-		catch (SQLException e1) 
-		{
-			e1.printStackTrace();
-		}
+
+		p2=model.getProgettoById(p.getId_progetto());
 		
 		assertEquals(p.getId_progetto(), p2.getId_progetto());
 	
 		System.out.println("\n");
 	}
 
-	public void testModificaProgetto() 
+	public void testModificaProgetto() throws SQLException
 	{
 		System.out.println("Test ModificaProgetto");
 		
 		ProgettoModelDM model=new ProgettoModelDM();
 		
 		p.setTitolo("titolo modificato");
-			
-		try
-		{
-			model.modificaProgetto(p, InputStream.nullInputStream(), InputStream.nullInputStream());
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+
+		model.modificaProgetto(p, InputStream.nullInputStream(), InputStream.nullInputStream());
 		
 		Progetto p2=null;
-		
-		try
-		{
-			p2=model.getProgettoById(p.getId_progetto());
-		} 
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		
+
+		p2=model.getProgettoById(p.getId_progetto());
+
 		assertEquals(p.getTitolo(), p2.getTitolo());
 		
 		System.out.println("\n");
 	}
 
-	public void testAddToPreferiti() 
+	public void testAddToPreferiti() throws SQLException
 	{
 		System.out.println("Test addToPreferiti");
 		
 		ProgettoModelDM model = new ProgettoModelDM();
-		
-		try
-		{
-			model.addToPreferiti(p, utente);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		
+	
+		model.addToPreferiti(p, utente);
+
 		boolean b=false;
 		
-		try
-		{
-			b=model.isPreferito(p, utente);
-		} 
-		catch (SQLException e1) 
-		{
-			e1.printStackTrace();
-		}
-		
+		b=model.isPreferito(p, utente);
+
 		assertEquals(true, b);
-		
-		try
-		{
-			model.removeFromPreferiti(p, utente);
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+
+		model.removeFromPreferiti(p, utente);
 		
 		System.out.println("\n");
 	}
 
-	public void testAggiornaDownload() 
+	public void testAggiornaDownload() throws SQLException
 	{
 		System.out.println("Test aggiornaDownload");
 		
 		ProgettoModelDM model = new ProgettoModelDM();
-		
-		try 
-		{
-			model.aggiornaDownload(p, utente);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+
+		model.aggiornaDownload(p, utente);
 		
 		int download = 0;
-		
-		try 
-		{
-			download=model.getDownloadById(p.getId_progetto());
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
-		
+
+		download=model.getDownloadById(p.getId_progetto());
+
 		assertNotEquals(0, download);
 		
 		System.out.println("\n");
 	}
 
-	public void testGetDownloadById()
+	public void testGetDownloadById() throws SQLException
 	{
 		System.out.println("Test getDownloadById");
 		
 		ProgettoModelDM model = new ProgettoModelDM();
 		
-		try
-		{
-			model.aggiornaDownload(p, utente);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		model.aggiornaDownload(p, utente);
 		
 		int download = 0;
 		
-		try 
-		{
-			download=model.getDownloadById(p.getId_progetto());
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		
+		download=model.getDownloadById(p.getId_progetto());
+
 		assertNotEquals(0, download);
 		
 		System.out.println("\n");
 	}
 
-	public void testRemoveFromPreferiti()
+	public void testRemoveFromPreferiti() throws SQLException
 	{
 		System.out.println("Test removeFromPreferiti");
 		
 		ProgettoModelDM model = new ProgettoModelDM();
-		
-		try
-		{
-			model.addToPreferiti(p, utente);
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+
+		model.addToPreferiti(p, utente);
 		
 		boolean b=false;
-		
-		try
-		{
-			b=model.isPreferito(p, utente);
-		}
-		catch (SQLException e1)
-		{
-			e1.printStackTrace();
-		}
+
+		b=model.isPreferito(p, utente);
 		
 		assertEquals(true, b);
-		
-		try
-		{
-			model.removeFromPreferiti(p, utente);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+
+		model.removeFromPreferiti(p, utente);
 		
 		b=true;
-		
-		try
-		{
-			b=model.isPreferito(p, utente);
-		} 
-		catch (SQLException e1)
-		{
-			e1.printStackTrace();
-		}
+
+		b=model.isPreferito(p, utente);
 		
 		assertEquals(false, b);
 		
 		System.out.println("\n");
 	}
 
-	public void testIsPreferito() 
+	public void testIsPreferito() throws SQLException
 	{
 		System.out.println("Test isPreferito");
 		
 		ProgettoModelDM model = new ProgettoModelDM();
-		
-		try
-		{
-			model.addToPreferiti(p, utente);
-		} 
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+
+		model.addToPreferiti(p, utente);
 		
 		boolean b=false;
 		
-		try
-		{
-			b=model.isPreferito(p, utente);
-		}
-		catch (SQLException e1)
-		{
-			e1.printStackTrace();
-		}
+		b=model.isPreferito(p, utente);
 		
 		assertEquals(true, b);
 		
-		try 
-		{
-			model.removeFromPreferiti(p, utente);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		model.removeFromPreferiti(p, utente);
 		
 		b=true;
 		
-		try 
-		{
-			b=model.isPreferito(p, utente);
-		}
-		catch (SQLException e1)
-		{
-			e1.printStackTrace();
-		}
+		b=model.isPreferito(p, utente);
 		
 		assertEquals(false, b);
 		
 		System.out.println("\n");
 	}
 
-	public void testGetPreferitiByUsername()
+	public void testGetPreferitiByUsername() throws SQLException
 	{
 		System.out.println("Test getPreferitiByUsername");
 		
 		ProgettoModelDM model = new ProgettoModelDM();
-		
-		try
-		{
-			model.addToPreferiti(p, utente);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+
+		model.addToPreferiti(p, utente);
 		
 		ArrayList<Progetto> progetti = null;
 		
-		try 
-		{
-			progetti=ProgettoModelDM.getPreferitiByUsername(utente.getUsername());
-		}
-		catch (SQLException e1)
-		{
-			e1.printStackTrace();
-		}
+		progetti=ProgettoModelDM.getPreferitiByUsername(utente.getUsername());
 		
 		assertEquals(false, progetti.isEmpty());
 		
-		try 
-		{
-			model.removeFromPreferiti(p, utente);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		model.removeFromPreferiti(p, utente);
 		
 		System.out.println("\n");
 	}
 	
-	public void testDoCancellaProgetto()
+	public void testDoCancellaProgetto() throws SQLException
 	{
 		System.out.println("Test doCancellaProgetto");
 		
@@ -483,57 +294,29 @@ public class ProgettoModelDM_Test extends TestCase
 		p.setVersione(1);
 		p.setId_progetto(idProgetto);
 		
-		try
-		{
-			model.doUpload(p, InputStream.nullInputStream(), InputStream.nullInputStream());
-		} 
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		model.doUpload(p, InputStream.nullInputStream(), InputStream.nullInputStream());
 		
 		Progetto p2=null;
-		
-		try 
-		{
-			p2=model.getProgettoById(p.getId_progetto());
-		}
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+
+		p2=model.getProgettoById(p.getId_progetto());
 		
 		assertEquals(p.getId_progetto(), p2.getId_progetto());
-		
-		try 
-		{
-			model.doCancellaProgetto(p.getId_progetto(), p.getUsername());
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+	
+		model.doCancellaProgetto(p.getId_progetto(), p.getUsername());
 		
 		assertNotEquals(idProgetto, model.getLastId());
 		
 		System.out.println("\n");
 	}
 
-	public void testRicercaBarra()
+	public void testRicercaBarra() throws SQLException
 	{
 		System.out.println("Test ricercaBarra");
 		
 		ProgettoModelDM model = new ProgettoModelDM();
 		ArrayList<Progetto> progetti = null;
 		
-		try
-		{
-			progetti=model.ricercaBarra("titolo");
-		} 
-		catch (SQLException e) 
-		{
-			e.printStackTrace();
-		}
+		progetti=model.ricercaBarra("titolo");
 		
 		assertEquals(false, progetti.isEmpty());
 		
