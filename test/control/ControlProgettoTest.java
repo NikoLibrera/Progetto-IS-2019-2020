@@ -70,6 +70,7 @@ public class ControlProgettoTest extends TestCase{
 		p.setId_progetto(99999);
 		model.doUpload(p, InputStream.nullInputStream(), InputStream.nullInputStream());
 		System.out.println("\n");
+		
 	}
 	
 	@Override
