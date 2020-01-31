@@ -1,4 +1,4 @@
-package test;
+package manager;
 
 import java.sql.SQLException;
 import junit.framework.TestCase;
