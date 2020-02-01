@@ -31,18 +31,18 @@ import model.Utente;
 
 import org.junit.*;
 
-public class ControlUtenteTest extends TestCase{
-	
-	
-	
+public class ControlUtenteTest extends TestCase
+{
 	MockHttpServletRequest request;
 	MockHttpServletResponse response;
 	Utente utente;
 	String generatedPassword1 = CryptWithMD5.cryptWithMD5("testPass");
 	
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() throws Exception 
+	{
 		super.setUp();
+		
 		request=new MockHttpServletRequest();
 		response=new MockHttpServletResponse();
 		
@@ -55,32 +55,39 @@ public class ControlUtenteTest extends TestCase{
 	}
 	
 	@Override
-	protected void tearDown() throws Exception {
+	protected void tearDown() throws Exception 
+	{
 		super.tearDown();
 		UtenteModelDM.deleteUtenteByUsername("TestUtente");
 	}
 	
 	public void testLogin() throws ServletException, IOException
 	{
+		System.out.println("Test Login");
+		
 		Login login =new Login();
 		request.addParameter("username", "TestUtente");
 		request.addParameter("password", "testPass");
 		login.service(request, response);
 		
 		Utente u=(Utente) request.getAttribute("utente");
-		//response.isCommitted();
 		
 		assertEquals(u.getUsername(), "TestUtente");
 		
+		System.out.println("\n");
 	}
 	
 	public void testConfermaRegistrazione() throws SQLException, ServletException, IOException
 	{
+		System.out.println("Test ConfermaRegistrazione");
+		
 		Utente u=new Utente();
 		u.setUsername("carminuccio");
 		u.setPassword(generatedPassword1);
+		
 		UtenteModelDM.doRegistrazione(u, 99);
 		request.addParameter("username",u.getUsername());
+		
 		Integer numero=99;
 		request.addParameter("codice",numero.toString());
 		
@@ -91,23 +98,31 @@ public class ControlUtenteTest extends TestCase{
 		assertEquals(1, codice);
 		UtenteModelDM.deleteUtenteByUsername("carminuccio");
 		
+		System.out.println("\n");
 	}
 	
 	public void testLogout() throws ServletException, IOException
 	{
+		System.out.println("Test Logout");
+		
 		Login l=new Login();
 		request.addParameter("username", utente.getUsername());
 		request.addParameter("password", "testPass");
 		l.service(request, response);
+		
 		Logout logout=new Logout();
 		logout.service(request, response);
 		
 		Utente u=(Utente) request.getSession().getAttribute("utente");
 		assertNull(u);
+		
+		System.out.println("\n");
 	}
 	
 	public void testModificaPassword() throws ServletException, IOException, SQLException
 	{
+		System.out.println("Test ModificaPassword");
+		
 		String generatedPass = CryptWithMD5.cryptWithMD5("nuovoTest");
 		ModificaPassword modifica=new ModificaPassword();
 		
@@ -129,10 +144,14 @@ public class ControlUtenteTest extends TestCase{
 		String nuova=u.getPassword();
 		
 		assertNotEquals(vecchia, nuova);
+		
+		System.out.println("\n");
 	}
 	
 	public void testPasswordDimenticata() throws ServletException, IOException, SQLException
 	{
+		System.out.println("Test PasswordDimenticata");
+		
 		request.addParameter("username", utente.getUsername());
 		
 		request.addParameter("email",utente.getEmail());
@@ -151,10 +170,13 @@ public class ControlUtenteTest extends TestCase{
 		
 		assertNotEquals(vecchia,nuova);
 		
+		System.out.println("\n");
 	}
 	
 	public void testRegistrazione() throws ServletException, IOException, SQLException
 	{
+		System.out.println("Test Registrazione");
+		
 		Registrazione reg=new Registrazione();
 		request.addParameter("username", "utenteTest");
 		request.addParameter("cognome", "cognomeTest");
@@ -173,6 +195,7 @@ public class ControlUtenteTest extends TestCase{
 		assertEquals(0, u.getConfermato());
 		
 		UtenteModelDM.deleteUtenteByUsername("utenteTest");
+		
+		System.out.println("\n");
 	}
-
 }

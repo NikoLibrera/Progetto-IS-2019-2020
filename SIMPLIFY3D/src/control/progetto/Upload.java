@@ -81,7 +81,8 @@ public class Upload extends HttpServlet
 	}
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
 		doGet(req, resp);
 	}
 }

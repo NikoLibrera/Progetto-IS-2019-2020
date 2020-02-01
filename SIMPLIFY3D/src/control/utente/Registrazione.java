@@ -34,8 +34,8 @@ public class Registrazione extends HttpServlet
 	}
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+	{
 		doPost(req, resp);
 	}
 			

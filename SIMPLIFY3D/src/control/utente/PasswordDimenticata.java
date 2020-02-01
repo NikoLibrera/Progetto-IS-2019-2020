@@ -124,8 +124,8 @@ public class PasswordDimenticata extends HttpServlet
 	}
 	
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException 
+	{
 		doGet(req, resp);
 	}
 }
